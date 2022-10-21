@@ -1,6 +1,6 @@
 import React from 'react'
-import help from '../img/help.png'
-import solver from '../img/solver.png'
+import help from '../asset/img/help.png'
+import solver from '../asset/img/solver.png'
 
 const Main = () => {
   return (

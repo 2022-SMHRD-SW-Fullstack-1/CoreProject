@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import nolnyeon from '../img/nolnyeon.png'
-import searchIcon from '../img/searchIcon.png'
+import nolnyeon from '../asset/img/nolnyeon.png'
+import searchIcon from '../asset/img/searchIcon.png'
 
 
 const Header = () => {
