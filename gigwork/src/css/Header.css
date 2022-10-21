@@ -1,6 +1,7 @@
 .rightSection img {
     height: 36px;
     margin-left: 15px;
+    cursor: pointer;
 }
 
 #rsLogin {
@@ -37,6 +38,7 @@
   
   .menu span {
     margin-left: 15px;
+    cursor: pointer;
   }
   
   .searchBox{
@@ -73,4 +75,14 @@
     height: 23px;
     margin-right: 8px;
     margin-left: 4px;
+  }
+
+
+  .alarmList {
+    position: absolute;
+    top: 60px;
+    width: 960px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
   }

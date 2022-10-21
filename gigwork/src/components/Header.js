@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
-import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 import Toast from 'react-bootstrap/Toast';
 import { Link } from 'react-router-dom'
 
@@ -23,9 +20,9 @@ const Header = () => {
       <img src={user} ref={ref} onClick={(e) => {
         e.preventDefault();
         onClick(e);
-      }}/>
+      }} />
     ));
-  
+
     if (isLoggedIn == 'true') {
       return <div className='rightSection'>
         <Link to='/login'><button>로그인</button></Link>
@@ -33,7 +30,7 @@ const Header = () => {
       </div>;
     } else {
       return <div className='rightSection' id='rsLogin'>
-        <Alarm isAlarmOn='true' />
+        <Alarm isAlarmOn='true'/>
         <Dropdown>
           <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
             Custom toggle
@@ -56,8 +53,8 @@ const Header = () => {
   function Alarm(props) {
     const isAlarmOn = props.isAlarmOn;
     return isAlarmOn == 'true'
-      ?<img className='alarmImg' src={alarmOn} onClick={toggleAlarm}/>
-      :<img className='alarmImg' src={alarmOff} onClick={toggleAlarm}/>
+      ? <img className='alarmImg' src={alarmOn} onClick={toggleAlarm} />
+      : <img className='alarmImg' src={alarmOff} onClick={toggleAlarm} />
   }
 
 
@@ -78,19 +75,31 @@ const Header = () => {
         </div>
         <Login isLoggedIn='tue' />
       </div>
-      <div>
-      <Toast onClose={toggleAlarm} show={alarm} animation={false}>
-        <Toast.Header>
-          <img
-            src="holder.js/20x20?text=%20"
-            className="rounded me-2"
-            alt=""
-          />
-          <strong className="me-auto">알림 제목</strong>
-          <small>10분 전</small>
-        </Toast.Header>
-        <Toast.Body>알림 내용</Toast.Body>
-      </Toast>
+      <div className='alarmList'>
+        <Toast onClose={toggleAlarm} show={alarm} animation={false}>
+          <Toast.Header>
+            <img
+              src="holder.js/20x20?text=%20"
+              className="rounded me-2"
+              alt=""
+            />
+            <strong className="me-auto">알림 제목</strong>
+            <small>10분 전</small>
+          </Toast.Header>
+          <Toast.Body>알림 내용</Toast.Body>
+        </Toast>
+        <Toast onClose={toggleAlarm} show={alarm} animation={false}>
+          <Toast.Header>
+            <img
+              src="holder.js/20x20?text=%20"
+              className="rounded me-2"
+              alt=""
+            />
+            <strong className="me-auto">알림 제목</strong>
+            <small>10분 전</small>
+          </Toast.Header>
+          <Toast.Body>알림 내용</Toast.Body>
+        </Toast>
       </div>
     </div>
   )
