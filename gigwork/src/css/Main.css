@@ -10,7 +10,7 @@
   .category {
     border: 1px solid black;
   }
-  .category div{
+  .categoryRow{
     width: 960px;
     height: 200px;
   }
@@ -27,16 +27,56 @@
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    width: 360px;
+    width: 390px;
     margin-right: 30px;
     
     border: none;
     border-radius: 12px;
-    background: linear-gradient(to right, rgb(155, 255, 247), rgb(180, 163, 255));
+    background: linear-gradient(to right, rgb(111, 244, 233), rgb(180, 163, 255));
     color: white;
   }
   .buttonHelp div {
     margin-bottom: 15px;
+  }
+  .buttonNote {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 180px;
+    margin-right: 30px;
+  
+    border: none;
+    border-radius: 12px;
+    background-color: rgb(111, 244, 233);
+    color: white;
+  }
+  .buttonNote div {
+    margin-bottom: 5px;
+    margin-left: 10px;
+  }
+  .buttonNote p {
+    margin: 0px;
+    height: 25px;
+  }
+  .buttonMagnif {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 180px;
+    margin-right: 30px;
+  
+    border: none;
+    border-radius: 12px;
+    background-color: rgb(180, 163, 255);
+    color: white;
+  }
+  .buttonMagnif div {
+    margin-bottom: 5px;
+    margin-left: 10px;
+  }
+  .buttonMagnif p {
+    margin: 0px;
+    height: 25px;
   }
   .buttonSolver {
     display: flex;
@@ -58,8 +98,17 @@
     height: 25px;
   }
   button img {
-    width: 60px;
+    height: 60px;
   }
+  #showBtn {
+    animation: fade-in 0.7s;
+    animation-fill-mode: forwards;
+    display: flex;
+  }
+  #hideBtn {
+    display: none;
+  }
+  
   
   .hurry {
     background-color: Gainsboro;
