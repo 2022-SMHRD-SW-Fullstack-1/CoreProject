@@ -1,0 +1,76 @@
+.rightSection img {
+    height: 36px;
+    margin-left: 15px;
+}
+
+#rsLogin {
+    padding-left: 75px;
+    display: flex;
+    align-items: center;
+}
+
+
+#header {
+    background-color: #feca57;
+    width: 100%;
+    position: fixed;
+  }
+  
+  .desktopHeader {
+    width: 960px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+  }
+  
+  .leftSection {
+    display: flex;
+    align-items: center;
+  }
+  
+  .menu {
+    padding-top: 25px;
+    font-size: 18px;
+  }
+  
+  .menu span {
+    margin-left: 15px;
+  }
+  
+  .searchBox{
+    display: flex;
+    width: 280px;
+    padding: 5px;
+    border: 1px solid Gainsboro;
+    border-radius: 5px;
+    background-color: white;
+  }
+  
+  .searchBox input {
+    flex-grow: 1;
+    border: none;
+  }
+  
+  .rightSection button {
+    margin-left: 8px;
+    font-size: 17px;
+    /* 버튼안에있는 글자 위치 변환 */
+    padding: 4px 8px;
+    border: none;
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.5);
+    height: 27px;
+  }
+  
+  
+  #logo {
+    height: 36px;
+  }
+  
+  #searchIcon {
+    height: 23px;
+    margin-right: 8px;
+    margin-left: 4px;
+  }

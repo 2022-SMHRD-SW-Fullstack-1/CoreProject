@@ -3,6 +3,9 @@ import help from '../asset/img/help.png'
 import solver from '../asset/img/solver.png'
 
 const Main = () => {
+
+
+    
   return (
     <div className='top_div' id='main'>
         <div className='blankForHeader'/>
