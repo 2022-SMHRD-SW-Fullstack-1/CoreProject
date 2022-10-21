@@ -12,7 +12,7 @@ function App() {
   return (
     <div>
       <Header/>
-
+      <div style={{height: '60px'}}/>
       <Routes>
         <Route path='/' element={<Main/>}></Route>
         <Route path='/login' element={<Login/>}/>

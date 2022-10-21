@@ -10,7 +10,7 @@ const Header = () => {
     <div className='top_div' id='header'>
       <div className='desktopHeader'>
         <div className='leftSection'>
-          <img id='logo' src={nolnyeon} />
+        <Link to='/'><img id='logo' src={nolnyeon} /></Link>
           <ul className='menu'>
             <span>도움받기</span>
             <span>도움주기</span>
@@ -22,8 +22,8 @@ const Header = () => {
           <input placeholder='어떤 서비스가 필요하세요?'></input>
         </div>
         <div className='rightSection'>
-          <button>로그인</button>
-          <button>회원가입</button>
+          <Link to='/login'><button>로그인</button></Link>
+          <Link to='/register'><button>회원가입</button></Link>
         </div>
       </div>
     </div>
