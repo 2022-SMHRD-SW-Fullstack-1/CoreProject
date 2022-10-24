@@ -1,0 +1,59 @@
+#chatHead {
+    margin: 60px;
+}
+
+#chatHead>div {
+    display: flex;
+    width: 900px;
+}
+
+.leftBox {
+    width: 300px;
+    height: 700px;
+    background-color: rgba(214, 214, 214, 0.5);
+    padding: 10px 10px;
+    margin-right: 5px;
+}
+
+.chatroomTab {
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 20px;
+    margin-top: 1px;
+    background-color: white;
+}
+
+.rightBox {
+    height: 700px;
+    width: 500px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    background-color: rgba(214, 214, 214, 0.5);
+}
+
+.inputBox {
+    height: 50px;
+    width: 450px;
+    background-color: white;
+    margin: 15px 0px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inputBox>input {
+    width: 350px;
+    margin-right: 10px;
+    border: none;
+}
+
+.inputBox button {
+    border: none;
+    border-radius: 15px;
+    padding: 5px 10px;
+    background-color: #feca57;
+}

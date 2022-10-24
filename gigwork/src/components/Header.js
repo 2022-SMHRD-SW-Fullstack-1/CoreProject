@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 import Toast from 'react-bootstrap/Toast';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import nolnyeon from '../asset/img/nolnyeon.png'
 import searchIcon from '../asset/img/searchIcon.png'
@@ -14,6 +15,7 @@ const Header = () => {
 
   function Login(props) {
 
+    const navigate = useNavigate()
     const isLoggedIn = props.isLoggedIn;
 
     const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
@@ -23,6 +25,10 @@ const Header = () => {
       }} />
     ));
 
+    const goToChat = () => {
+      navigate('/chat')
+    }
+
     if (isLoggedIn == 'true') {
       return <div className='rightSection'>
         <Link to='/login'><button>로그인</button></Link>
@@ -30,17 +36,19 @@ const Header = () => {
       </div>;
     } else {
       return <div className='rightSection' id='rsLogin'>
-        <Alarm isAlarmOn='true'/>
-        <Dropdown>
+        <Alarm isAlarmOn='true' />
+        <Dropdown align='end'>
           <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
             Custom toggle
           </Dropdown.Toggle>
 
           <Dropdown.Menu>
             <Dropdown.Item eventKey="1">마이페이지</Dropdown.Item>
-            <Dropdown.Item eventKey="2">로그아웃</Dropdown.Item>
+            <Dropdown.Item onClick={goToChat} href='/chat' eventKey="2">채팅방</Dropdown.Item>
+            <Dropdown.Item eventKey="3">로그아웃</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
+
       </div>;
     }
   }
