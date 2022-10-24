@@ -54,7 +54,7 @@ const Header = () => {
   }
 
   // 알람 메세지를 껏다켯다 할 조건
-  const [alarm, setAlarm] = useState(true);
+  const [alarm, setAlarm] = useState(false);
   const toggleAlarm = () => setAlarm(!alarm);
 
   // 알람 메세지가 있을때와 없을때 이미지 변환
