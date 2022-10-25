@@ -1,7 +1,9 @@
 .rightSection img, #menuImg {
     height: 2rem;
-    margin-left: 1rem;
     cursor: pointer;
+}
+.rightSection img {
+  margin-left: 0.6rem;
 }
 
 #rsLogin {
@@ -22,7 +24,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    
+    padding: 0rem 0.5rem;
   }
   
   .leftSection {
@@ -68,7 +70,6 @@
   
   #logo {
     height: 2.25rem;
-    margin-left: 0.5rem;
   }
   
   #searchIcon {
@@ -95,5 +96,4 @@
   /* header_s의 css */
   #menu {
     height: 3.75rem;
-    margin-left: 1rem;
   }

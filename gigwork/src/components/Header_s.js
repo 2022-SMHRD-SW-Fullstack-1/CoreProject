@@ -107,7 +107,7 @@ const Header_s = () => {
           </Toast.Header>
           <Toast.Body>알림 내용</Toast.Body>
         </Toast>
-        <Offcanvas show={menu} onHide={handleClose}>
+        <Offcanvas show={menu} onHide={handleClose} placement='top'>
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>메뉴</Offcanvas.Title>
         </Offcanvas.Header>
