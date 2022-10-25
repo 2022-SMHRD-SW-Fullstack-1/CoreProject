@@ -39,7 +39,7 @@
     margin-top: 0;
     margin-bottom: 0;
     margin-left: 0.625rem;
-    font-size: 2.3vmin;
+    font-size: 2.3vw;
   }
   .buttonHelp {
     display: flex;
@@ -54,7 +54,7 @@
     color: white;
   }
   button img {
-    height: 7vmin;
+    height: 7vw;
   }
 
   .buttonNote div,.buttonMagnif div, .buttonSolver div {

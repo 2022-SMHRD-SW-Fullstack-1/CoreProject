@@ -11,6 +11,8 @@ import note from '../asset/img/note.png'
 import clean from '../asset/img/mainCategory_cleaning.png'
 import care from '../asset/img/mainCategory_care.png'
 import bug from '../asset/img/mainCategory_bug.png'
+import teach from '../asset/img/teach.png'
+import lineUp from '../asset/img/lineUp.png'
 import drive from '../asset/img/mainCategory_drive.png'
 import stroll from '../asset/img/mainCategory_stroll.png'
 import workHome from '../asset/img/mainCategory_workHome.png'
@@ -57,8 +59,8 @@ const Main = () => {
                     <div><img src={stroll}/></div>
                     <div><img src={workHome}/></div>
                     <div><img src={drive}/></div>
-                    <div><img src={delivery}/></div>
-                    <div><img src={install}/></div>
+                    <div><img src={teach}/></div>
+                    <div><img src={lineUp}/></div>
                 </div>
             </div>
             <div className='buttonBox'>

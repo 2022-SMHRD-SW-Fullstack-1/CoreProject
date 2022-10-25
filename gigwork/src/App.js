@@ -41,6 +41,7 @@ function App() {
       :setHeader(<Header_s/>)
     },[url])
   
+    handleResize();
 
   return (
     <div>
