@@ -1,0 +1,377 @@
+.top_div{
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* ===PFnone=== */
+  /* 가장 큰 div */
+  .pfNoneDiv{
+    margin-top: 100px;
+    margin-left: 300px;
+    display : flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  /* 프로필생성버튼 */
+  #makePF{
+    padding: 10px;
+    background-color: gray;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 30px;
+  }
+  #makePF:hover{
+    background-color: rgb(200, 200, 200);
+  }
+  
+  /* PFcreate */
+  /* 가장 큰 틀 */
+  .pfCreateDiv{
+    margin-top: 5em;
+    /* margin-left: 15em; */
+    border-radius: 50px;
+    padding: 2em;
+    width: 32em;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    background-color: rgb(228, 226, 226);
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  /* 이미지 동그랗게 만들기 */
+  .pfImgDiv img{
+    height: 6em;
+    width: 6em;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  /* 이미지 옆에 닉네임 오게만들기 */
+  .pfImgDiv{
+    display: flex;
+    align-items: center;
+  }
+  /* 이미지와 닉네임 공간 띄우기 */
+  .pfImgDiv h2{
+    margin: 1em;
+  }
+  /* 카테고리 사이드 띄우기 */
+  .pfCategory{
+    margin: 1em 0em;
+  }
+  /* 카테고리 버튼 버튼처럼 만들기 */
+  .pfCategoryBox{
+    text-align: center;
+    width: 9em;
+    height: 2.8em;
+    margin: 0.3em;
+    background-color: rgb(183, 183, 183);
+    display:inline-block;
+    padding: 0.3em;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 0.95em;
+    font-weight: bold;
+    border: 0px;
+  }
+  /* 하고싶은 말 들어갈 공간 스크롤 만들기 */
+  #say{
+    width: 27em;
+    padding: 1em;
+    border-radius: 10px;
+    overflow: auto;
+    resize:none;
+    font-size: 1.04em;
+    font-weight: bold;
+  }
+  /* 활동내역 들어갈 공간 스크롤 만들기 */
+  .pfActive{
+    width: 28em;
+    height: 13em;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    border : 2px solid black;
+    overflow: auto;
+  }
+  /* 공개기간의 날짜 꾸미기 */
+  .pfDate input{
+    padding: 0.5em 0.5em;
+    margin: 0.5em 1.3em;
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: 10px;
+  }
+  /* 저장하기 버튼 꾸미기 */
+  #savePF{
+    padding: 0.5em 2em;
+    background-color: gray;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+  }
+  #savePF:hover{
+    background-color: rgb(200, 200, 200);
+  }
+  /* 활동내역 들어갈 공간 */
+  .pfActive div{
+    width: 24.85em;
+    height: 4.5em;
+    margin: 10px 0px;
+    background-color: gray;
+  }
+  /* 저장하기 버튼 가운데로 옮기기 */
+  .pfSaveDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  
+  /*MPmenu*/
+  /* 메뉴 고정시키기 */
+  .SJmenu{
+    position: fixed;
+    top: 4rem;
+    left: 0px;
+    padding: 1.5rem;
+    width: 16rem;
+    height: 50rem;
+    background-color: rgba(14, 47, 76, 0.838);
+  }
+  /* 메뉴 목록들 간의 공간 띄우기 */
+  .SJmenu div{
+    margin-bottom: 1.5em;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.2em;
+  }
+  /* .menuArrow{
+    position: absolute;
+    top: 72px;
+    left: 50px;
+    border-radius: 50px;
+    width : 80px; 
+    height : 80px;
+  } */
+  /* 메뉴에 들어갈 글씨 꾸미기 */
+  .menuBtn{
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+  }
+  /* 메뉴숨기기 */
+  .menuNone{
+    display: none;
+  }
+  
+  
+  
+  
+  
+  /*PFmyView*/
+  /* 내가 보는 프로필 가장 큰 div */
+  .pfMyView{
+      margin-top: 5em;
+    /* margin-left: 15em; */
+    border-radius: 50px;
+    padding: 2em;
+    width: 32em;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    background-color: rgb(228, 226, 226);
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  .triangle{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.7em;
+    color: black;
+  }
+  .triangle img{
+    width: 1.3em;
+  }
+  .faceImg{
+    display: flex;
+    justify-content: flex-end;
+    font-size: 1em;
+    color: black;
+    margin:0.5em;
+  }
+  .faceImg img{
+    width: 1.7em;
+    margin-left: 0.5em;
+  }
+  
+  
+  /*마우스*/
+  /* 카테고리 올렸을 경우 어떻게? */
+  #pfCateHover:hover{
+    background-color: rgb(200, 200, 200);
+  }
+  /* 카테고리를 클릭했을 경우 */
+  .pfClickBtn{
+    background-color: aliceblue !important;
+  }
+  
+  
+  /* PFlist */
+  /* 셀렉트 부분의 창 조절 */
+  /* .listDiv {
+    width: 800px;
+    height: 1000px;
+    background-color: lightblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .selLocDiv{
+    margin-top: 30px;
+    width: 700px;
+    height: 180px;
+    background-color: antiquewhite;
+    display: flex;
+  } */
+  /* .pfList{
+    margin-top: 30px;
+    width: 700px;
+    height: 700px;
+    background-color: blueviolet;
+  } */
+  .selLocDiv div:nth-child(2){
+    flex-grow: 2;
+  }
+  
+  
+  /* select태그 관리 */
+  
+  select{
+    width:12rem;
+    height: 3rem;
+    text-align-last: center;
+    -webkit-appearance:none; /* 크롬 화살표 없애기 */
+    -moz-appearance:none; /* 파이어폭스 화살표 없애기 */
+    appearance:none; /* 화살표 없애기 */
+    font-weight: bold;
+  }
+  .selDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  
+  
+  }
+  
+  
+  /* 선택창 폰트 조절 */
+  .selLocDiv span{
+    font-size: 1.3rem;
+    font-weight: bold;
+  }
+  .selLocDiv p {
+    font-size: 1rem;
+  }
+  
+  /* 큰 선택 div 크기 줄이기 */
+  /* .selLocDiv div{
+    margin: 0.3rem;
+  } */
+  /* 큰 선택 div 가운데로 모으기 */
+  .listDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  
+  /*  */
+  #choiceDiv{
+    margin-top: 3rem;
+    height: 4rem;
+  }
+  
+  /* 모든 radio타입에 디자인 적용 */
+  [type="radio"]{
+    vertical-align: middle;
+    appearance: none;
+    border: max(2px, 0.1em) solid gray;
+    border-radius: 50%;
+    width: 1.5em;
+    height: 1.5em;
+  }
+  [type="radio"]:checked {
+    border: 0.4em solid rgb(255, 225, 0);
+  }
+  /* checkbox타입에도 radio와 같은 디자인적용 */
+  [type="checkbox"]{
+    vertical-align: middle;
+    appearance: none;
+    border: max(2px, 0.1em) solid gray;
+    border-radius: 50%;
+    width: 1.5em;
+    height: 1.5em;
+  }
+  [type="checkbox"]:checked{
+    border: 0.4em solid rgb(255, 225, 0);
+  }
+  
+  /* number타입 디자인 */
+  [type="number"]{
+    width : 3em;
+    margin: 0.2rem;
+  }
+  
+  /* 선택 검색창의 글자 조절 */
+  .selLocDiv p{
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  .selLocDiv .headP{
+    margin-top: 2rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+  }
+  
+  
+  /* 내 개인정보 관리 페이지 */
+  .myPrivacy{
+    display: flex;
+    flex-direction: column;
+    margin-top: 5em;
+    border-radius: 50px;
+    padding: 2em;
+    width: 32em;
+    background-color: rgb(228, 226, 226);
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  .myPrivacy div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2em;
+  }
+  
+  /* 수정버튼 */
+  .changeInfo{
+    padding: 0.2em 0.7em;
+    background-color: rgba(128, 128, 128, 0.632);
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+  }
+  .changeInfo:hover{
+    background-color: rgb(200, 200, 200);
+  }
+  
+  .myPrivacy img{
+    height: 10em;
+    width: 10em;
+    object-fit: cover;
+    border-radius: 50%;
+  }

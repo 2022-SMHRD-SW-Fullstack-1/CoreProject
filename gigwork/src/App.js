@@ -9,6 +9,12 @@ import Main from './pages/Main'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import { useEffect, useState } from 'react';
+import PFnone from './pages/PFnone';
+import PFmyview from './pages/PFmyview';
+import PFotherview from './pages/PFotherview';
+import PFlist from './pages/PFlist';
+import MPprivacy from './pages/MPprivacy';
+import PFcreate from './pages/PFcreate';
 
 
 function App() {
@@ -47,6 +53,12 @@ function App() {
         <Route path='/login' element={<Login/>}/>
         <Route path='/register' element={<Register/>}/>
         <Route path='/chat' element={<Chat/>}/>
+        <Route path='/PFnone' element={<PFnone/>}/>
+        <Route path='/PFcreate' element={<PFcreate/>}/>
+        <Route path='/PFmyview' element={<PFmyview/>}/>
+        <Route path='/PFotherview' element={<PFotherview/>}/>
+        <Route path='/PFlist' element={<PFlist/>}/>
+        <Route path='/MPprivacy' element={<MPprivacy/>}/>
       </Routes>
 
       <Footer/>
