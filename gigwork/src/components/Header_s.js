@@ -82,7 +82,7 @@ const Header_s = () => {
                 </div>
                 <Login isLoggedIn='tue' />
             </div>
-            <div className='alarmList'>
+            <div className='alarmList_s'>
         <Toast onClose={toggleAlarm} show={alarm} animation={false}>
           <Toast.Header>
             <img

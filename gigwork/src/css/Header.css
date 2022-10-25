@@ -87,6 +87,14 @@
     flex-direction: column;
     align-items: flex-end;
   }
+  .alarmList_s {
+    position: absolute;
+    top: 3.75rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
 
 
 
