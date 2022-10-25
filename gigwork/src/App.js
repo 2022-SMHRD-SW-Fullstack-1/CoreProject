@@ -37,7 +37,7 @@ function App() {
   
 
   return (
-    <div id='top_div'>
+    <div>
 
       {header}
       
