@@ -28,6 +28,9 @@ const Header = () => {
     const goToChat = () => {
       navigate('/chat')
     }
+    const goToPFnone = () => {
+      navigate('/PFnone')
+    }
 
     if (isLoggedIn == 'true') {
       return <div className='rightSection'>
@@ -43,7 +46,7 @@ const Header = () => {
           </Dropdown.Toggle>
 
           <Dropdown.Menu>
-            <Dropdown.Item eventKey="1">마이페이지</Dropdown.Item>
+            <Dropdown.Item onClick={goToPFnone} eventKey="1">마이페이지</Dropdown.Item>
             <Dropdown.Item onClick={goToChat} href='/chat' eventKey="2">채팅방</Dropdown.Item>
             <Dropdown.Item eventKey="3">로그아웃</Dropdown.Item>
           </Dropdown.Menu>

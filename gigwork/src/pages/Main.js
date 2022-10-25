@@ -43,8 +43,8 @@ const Main = () => {
 
 
     return (
-        <div className={topDivClass}  id='main'>
-            <div className='blankForHeader' />
+        <div className={topDivClass}>
+            <div id='main'>
             <div className='category' onMouseOver={() => { setBtnToggle(true) }}>
                 <div className='categoryRow'>
                     <div><img src={clean}/></div>
@@ -78,6 +78,7 @@ const Main = () => {
                 </div>
             </div>
             <div className='todayPost'></div>
+            </div>
         </div>
     )
 }
