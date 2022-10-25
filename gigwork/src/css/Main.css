@@ -7,6 +7,11 @@
   #main>div {
     margin: 1.25rem 0rem;
   }
+  .top_div_width {
+    width: 60rem;
+  }
+
+
   .category {
     border: 1px solid black;
     width: 90%;
@@ -22,9 +27,7 @@
   .category img {
     width: 100%;
   }
-  .top_div_width {
-    width: 60rem;
-  }
+  
 
 
 

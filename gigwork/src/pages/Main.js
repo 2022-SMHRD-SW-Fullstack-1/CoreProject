@@ -20,11 +20,11 @@ import '../css/Main.css'
 
 const Main = () => {
 
-    const [topDivClass, setTopDivClass] = useState('top_div')
+    const [topDivClass, setTopDivClass] = useState('')
     const handleResize = () => {
         window.innerWidth>900
-        ?setTopDivClass('top_div top_div_width')
-        :setTopDivClass('top_div')
+        ?setTopDivClass('top_div_width')
+        :setTopDivClass('')
     }
     useEffect(()=>{
         window.addEventListener('resize', handleResize);
@@ -43,8 +43,8 @@ const Main = () => {
 
 
     return (
-        <div className={topDivClass}>
-            <div id='main'>
+        <div className='top_div'>
+            <div className={topDivClass} id='main'>
             <div className='category' onMouseOver={() => { setBtnToggle(true) }}>
                 <div className='categoryRow'>
                     <div><img src={clean}/></div>
