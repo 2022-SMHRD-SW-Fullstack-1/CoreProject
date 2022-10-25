@@ -19,7 +19,7 @@ const Header = () => {
     const isLoggedIn = props.isLoggedIn;
 
     const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
-      <img src={user} ref={ref} onClick={(e) => {
+      <img style={{marginRight: '8px'}} src={user} ref={ref} onClick={(e) => {
         e.preventDefault();
         onClick(e);
       }} />
@@ -83,6 +83,7 @@ const Header = () => {
         </div>
         <Login isLoggedIn='tue' />
       </div>
+      
       <div className='alarmList'>
         <Toast onClose={toggleAlarm} show={alarm} animation={false}>
           <Toast.Header>

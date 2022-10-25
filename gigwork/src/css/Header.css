@@ -1,11 +1,10 @@
-.rightSection img {
-    height: 36px;
-    margin-left: 15px;
+.rightSection img, #menuImg {
+    height: 2rem;
+    margin-left: 1rem;
     cursor: pointer;
 }
 
 #rsLogin {
-    padding-left: 75px;
     display: flex;
     align-items: center;
 }
@@ -18,8 +17,8 @@
   }
   
   .desktopHeader {
-    width: 960px;
-    height: 60px;
+    width: 60rem;
+    height: 4rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -32,19 +31,19 @@
   }
   
   .menu {
-    padding-top: 25px;
-    font-size: 18px;
+    padding-top: 1.5rem;
+    font-size: 1.1rem;
   }
   
   .menu span {
-    margin-left: 15px;
+    margin-left: 1rem;
     cursor: pointer;
   }
   
   .searchBox{
     display: flex;
-    width: 280px;
-    padding: 5px;
+    width: 17.5rem;
+    padding: 0.3rem;
     border: 1px solid Gainsboro;
     border-radius: 5px;
     background-color: white;
@@ -56,33 +55,45 @@
   }
   
   .rightSection button {
-    margin-left: 8px;
-    font-size: 17px;
+    margin-left: 0.5rem;
+    font-size: 1rem;
     /* 버튼안에있는 글자 위치 변환 */
-    padding: 4px 8px;
+    padding: 0.25rem 0.5rem;
     border: none;
     border-radius: 6px;
     background-color: rgba(255, 255, 255, 0.5);
-    height: 27px;
+    height: 1.6rem;
   }
   
   
   #logo {
-    height: 36px;
+    height: 2.25rem;
+    margin-left: 0.5rem;
   }
   
   #searchIcon {
-    height: 23px;
-    margin-right: 8px;
-    margin-left: 4px;
+    height: 1.5rem;
+    margin-right: 0.5rem;
+    margin-left: 0.25rem;
   }
 
 
   .alarmList {
     position: absolute;
-    top: 60px;
-    width: 960px;
+    top: 3.75rem;
+    width: 60rem;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+  }
+
+
+
+
+
+
+  /* header_s의 css */
+  #menu {
+    height: 3.75rem;
+    margin-left: 1rem;
   }
