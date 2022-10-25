@@ -2,9 +2,3 @@
   display: flex;
   justify-content: center;
 }
-
-#top_div {
-  display: flex;
-    flex-direction: column;
-    align-items: center;
-}
