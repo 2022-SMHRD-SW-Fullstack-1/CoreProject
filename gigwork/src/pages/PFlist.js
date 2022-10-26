@@ -244,21 +244,21 @@ const PFlist = () => {
     const [pointPfs, setPointPfs] = useState(pfs.filter(v => v.age < 100 && v.age > 0))
 
     // 각 카드 map
-    let resPfs = pointPfs.map((item, idx) =>
-        <Card style={{ width: '18rem' }} key={item+idx} className="pfCard">
-            <Card.Img variant="top" src={item.imgsrc} style={{ width: '6rem' }} />
-            <Card.Body>
-                <Card.Title>{item.name}( {item.gender} / {item.age}세 )</Card.Title>
-                <Card.Text>
-                    {item.say}
-                </Card.Text>
-                <Link to='/PFotherview' id='savePF'>프로필 자세히</Link>
-            </Card.Body>
-        </Card>
-    )
+    // let resPfs = pointPfs.map((item, idx) =>
+    //     <Card style={{ width: '18rem' }} key={item+idx} className="pfCard">
+    //         <Card.Img variant="top" src={item.imgsrc} style={{ width: '6rem' }} />
+    //         <Card.Body>
+    //             <Card.Title>{item.name}( {item.gender} / {item.age}세 )</Card.Title>
+    //             <Card.Text>
+    //                 {item.say}
+    //             </Card.Text>
+    //             <Link to='/PFotherview' id='savePF'>프로필 자세히</Link>
+    //         </Card.Body>
+    //     </Card>
+    // )
 
     let resPfs1 = pointPfs.map((item, idx) =>
-        <div className='pfCard'>
+        <div className='pfCard' key={item+idx}>
             <div className='pfCardHead'>
                 <div><img src={item.imgsrc} style={{ width: '6rem' }}></img></div>
                 <div className='pfNameGen'>
@@ -278,49 +278,47 @@ const PFlist = () => {
     return (
         <div className='top_div'>
             <div className='listDiv'>
-                <div className='selLocDiv'>
-                            <div className="selDiv">
-                                <p className='headP'>카테고리</p>
-                                <select onChange={cateChange}>
-                                    {resCate}
-                                </select>
-                                <div></div>
 
-                            </div>
-                            <div className="selDiv">
-                                <p className='headP'>지역 선택</p>
-                                <select onChange={sidoChange}>
+                <div className='selLocDiv'>
+
+                    <div className='cateTwinDiv'>
+                        <div className='selDivTop'>
+                            <div className='selTopSm'><p className='headP'>카테고리</p></div>
+                            <div className='selTopSm'><p className='headP'>지역 선택</p></div>
+                        </div>
+                        <div className='selDivBot'>
+                            <div className='selBotSm'><select onChange={cateChange}>{resCate}</select></div>
+                            <div className='selBotSm'><select onChange={sidoChange}>
                                     {resSido}
                                 </select>
                                 <select onChange={gunguChange}>
                                     {resGungu}
-                                </select>
-                            </div>
-                          
-                            <div className='genAge'>
-
-                            <div className="selDiv">
-                                <div onChange={genderChange}>
-                                    <p className='headP'>성별</p>
-                                    <p>무관<input type="radio" name='gender' value="N"></input></p>
+                                </select></div>
+                        </div>
+                    </div>
+                    
+                    <div className='cateTwinDiv'>
+                        <div className='selDivTop'>
+                            <div className='selTopSm'><p className='headP'>성 별</p></div>
+                            <div className='selTopSm'><p className='headP'>연 령</p></div>
+                        </div>
+                        <div className='selDivBot'>
+                            <div className='selBotSm' onChange={genderChange}>
+                                <p>무관<input type="radio" name='gender' value="N"></input></p>
                                     <p>여자<input type="radio" name='gender' value="여" ></input></p>
-                                    <p>남자<input type="radio" name='gender' value="남"></input></p>
-                                </div>
-                            </div>
-                            <div className="selDiv">
-                                <div>
-                                    <p className='headP'>연령</p>
-                                    <p>무관<input type="checkbox" name='age' onClick={anyAge}></input></p>
-                                    <input type="number" name='minAge' min='0' onChange={minAgeChange}></input>
-                                    <br /><span>~</span>
-                                    <input type="number" name='maxAge' min='0' onChange={maxAgeChange}></input>
-                                </div>
-                            </div>
-                           
-                            </div>
+                                    <p>남자<input type="radio" name='gender' value="남"></input></p></div>
+                            <div className='selBotSm'>
+                                <p>무관<input type="checkbox" name='age' onClick={anyAge}></input></p>
+                                <p><input type="number" name='minAge' min='0' onChange={minAgeChange}></input></p>
+                                <p>~<input type="number" name='maxAge' min='0' onChange={maxAgeChange}></input></p></div>
+                        </div>
+                    </div>
+
                 </div>
+{/*  */}
+
                 <div id="choiceDiv">
-                    <span onClick={choiceDone} id="savePF">선택</span>
+                    <span onClick={choiceDone} id="cateChoBtn">선택</span>
                 </div>
                 <div className='selListDiv'>
 

@@ -38,7 +38,7 @@
   /* PFcreate */
   /* 가장 큰 틀 */
   .pfCreateDiv{
-    margin: 5em;
+    margin: 3em;
     /* margin-left: 15em; */
     border-radius: 50px;
     padding: 2em;
@@ -76,24 +76,24 @@
     width: 9em;
     height: 2.8em;
     margin: 0.3em;
-    background-color: rgb(183, 183, 183);
+    background-color: white;
     display:inline-block;
     padding: 0.3em;
     border-radius: 50px;
     cursor: pointer;
     font-size: 0.95em;
-    font-weight: bold;
+
     border: 0px;
   }
   /* 하고싶은 말 들어갈 공간 스크롤 만들기 */
   #say{
-    width: 27em;
+    width: 29.5em;
     padding: 1em;
     border-radius: 10px;
     overflow: auto;
     resize:none;
-    font-size: 1.04em;
-    font-weight: bold;
+    font-size: 0.95em;
+   
   }
   /* 활동내역 들어갈 공간 스크롤 만들기 */
   .pfActive{
@@ -108,28 +108,28 @@
   /* 공개기간의 날짜 꾸미기 */
   .pfDate input{
     padding: 0.5em 0.5em;
-    margin: 0.5em 1.3em;
+    margin: 0.5em 1em;
     font-size: 1em;
-    font-weight: bold;
     border-radius: 10px;
   }
   /* 저장하기 버튼 꾸미기 */
   #savePF{
     padding: 0.5em 2em;
-    background-color: gray;
-    color: white;
+    background-color: white;
+    color: black;
     border-radius: 5px;
     text-decoration: none;
+    border: 7px solid var(--mainGray)
   }
   #savePF:hover{
-    background-color: rgb(200, 200, 200);
+    background-color: #fec95776;
   }
   /* 활동내역 들어갈 공간 */
   .pfActive div{
     width: 24.85em;
     height: 4.5em;
     margin: 10px 0px;
-    background-color: gray;
+    background-color: var(--mainYellow);
   }
   /* 저장하기 버튼 가운데로 옮기기 */
   .pfSaveDiv{
@@ -171,6 +171,9 @@
     color: white;
     font-weight: bold;
   }
+  .menuBtn:hover{
+    color:var(--mainYellow)
+  }
   /* 메뉴숨기기 */
   .menuNone{
     display: none;
@@ -183,7 +186,7 @@
   /*PFmyView*/
   /* 내가 보는 프로필 가장 큰 div */
   .pfMyView{
-      margin: 5em;
+      margin: 3em;
     /* margin-left: 15em; */
     border-radius: 50px;
     padding: 2em;
@@ -221,49 +224,17 @@
   /*마우스*/
   /* 카테고리 올렸을 경우 어떻게? */
   #pfCateHover:hover{
-    background-color: rgb(200, 200, 200);
+    background-color: #fec95776;
   }
   /* 카테고리를 클릭했을 경우 */
   .pfClickBtn{
-    background-color: aliceblue !important;
+    background-color: var(--mainYellow) !important;
   }
   
   /* PFlist */
   /* 셀렉트 부분의 창 조절 */
-  /* .listDiv {
-    width: 800px;
-    height: 1000px;
-    background-color: lightblue;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .selLocDiv{
-    margin-top: 30px;
-    width: 700px;
-    height: 180px;
-    background-color: antiquewhite;
-    display: flex;
-  } */
-  /* .pfList{
-    margin-top: 30px;
-    width: 700px;
-    height: 700px;
-    background-color: blueviolet;
-  } */
 
   /* 카테고리박스 10/25 */
-  .selLocDiv{
-    margin-top: 1rem;
-    justify-content: center;
-    display: flex;
-    flex-wrap: wrap;
-  }
-  .selLocDiv div{
-    margin:2vw;
-  }
-
-
 
   .pfList{
     position:static;
@@ -275,44 +246,87 @@
     margin: 1vw;
 
   }
-
-  .genAge{
-    display: flex;
-  }
   /* 카테고리박스 10/25 */
 
 
-  
+  /*  */
+.selLocDiv{
+  margin-top: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--mainGray);
+  padding: 2em;
+  border-radius: 20px;
+}
+.cateTwinDiv{
+  width:23rem;
+  height: 15rem;
+
+}
+.selDivTop{
+  display: flex;
+  width: 100%;
+  height: 20%;
+
+}
+.selDivBot{
+  display: flex;
+  width: 100%;
+  height: 80%;
+
+}
+.selTopSm{
+  width: 50%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+}
+.selBotSm{
+  width: 50%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.cateTwinDiv .headP{
+  padding: 0.4em 1em;
+  padding-bottom: 1.6em;
+  font-size: 1.5em;
+  background-color: var(--mainYellow);
+  border-radius: 10px;
+}
+#cateChoBtn{
+  background-color: var(--mainYellow);
+  padding: 1em 2em;
+  border-radius: 10px;
+}
+#cateChoBtn:hover{
+  background-color: #fec95776;
+  cursor: pointer;
+}
+
+
+/*  */
+
   
   /* select태그 관리 */
   
   select{
-    width:12rem;
+    width:80%;
     height: 3rem;
     text-align-last: center;
     -webkit-appearance:none; /* 크롬 화살표 없애기 */
     -moz-appearance:none; /* 파이어폭스 화살표 없애기 */
     appearance:none; /* 화살표 없애기 */
-    font-weight: bold;
   }
-  .selDiv{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+
   
-  
-  }
-  
-  
-  /* 선택창 폰트 조절 */
-  .selLocDiv span{
-    font-size: 1.3rem;
-    font-weight: bold;
-  }
-  .selLocDiv p {
-    font-size: 1rem;
-  }
   
   /* 큰 선택 div 크기 줄이기 */
   /* .selLocDiv div{
@@ -334,27 +348,32 @@
   
   /* 모든 radio타입에 디자인 적용 */
   [type="radio"]{
+    
     vertical-align: middle;
     appearance: none;
     border: max(2px, 0.1em) solid gray;
+    margin: 0em 1em;
     border-radius: 50%;
     width: 1.5em;
     height: 1.5em;
+    background-color: white;
   }
   [type="radio"]:checked {
-    border: 0.4em solid rgb(255, 225, 0);
+    border: 0.4em solid var(--mainYellow);
   }
   /* checkbox타입에도 radio와 같은 디자인적용 */
   [type="checkbox"]{
     vertical-align: middle;
     appearance: none;
     border: max(2px, 0.1em) solid gray;
+    margin: 0em 1em;
     border-radius: 50%;
     width: 1.5em;
     height: 1.5em;
+    background-color: white;
   }
   [type="checkbox"]:checked{
-    border: 0.4em solid rgb(255, 225, 0);
+    border: 0.4em solid var(--mainYellow);
   }
   
   /* number타입 디자인 */
@@ -363,23 +382,13 @@
     margin: 0.2rem;
   }
   
-  /* 선택 검색창의 글자 조절 */
-  .selLocDiv p{
-    font-size: 1rem;
-    font-weight: bold;
-  }
-  .selLocDiv .headP{
-    margin-top: 2rem;
-    font-size: 1.3rem;
-    font-weight: bold;
-  }
-  
+
   
   /* 내 개인정보 관리 페이지 */
   .myPrivacy{
     display: flex;
     flex-direction: column;
-    margin: 5em;
+    margin: 3em;
     border-radius: 50px;
     padding: 2em;
     width: 32em;
@@ -426,7 +435,7 @@
   /* 프로필 카드 */
 
   .selListDiv{
-    max-width: 65rem;
+    max-width: 70rem;
   }
   .pfCard{
 
@@ -434,7 +443,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 14em;
+    width: 13.89em;
     background-color: var(--mainGray);
     border-radius: 20px;
   }
@@ -456,11 +465,16 @@
   }
   .pfCardBody{
     margin: 1em;
-    padding: 1em;
+    border: 1em white solid;
     box-sizing: border-box;
     background-color: white;
     border-radius: 20px;
     height: 8em;
     width: 12em;
-    overflow: auto;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-break: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; 
+    -webkit-box-orient: vertical
   }
