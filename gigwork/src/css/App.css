@@ -2,3 +2,8 @@
   display: flex;
   justify-content: center;
 }
+
+:root {
+  --mainGray : rgb(235, 235, 235);
+  --mainYellow : #feca57;
+}
