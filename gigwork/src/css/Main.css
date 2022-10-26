@@ -59,10 +59,10 @@
     margin-top: 0;
     margin-bottom: 0;
     margin-left: 0.625rem;
-    font-size: 2.3vw;
+    font-size: 1.4rem;
   }
   .buttonBox img {
-    height: 7vw;
+    height: 4rem;
   }
   #btnImgP img{
     height: 4rem;
@@ -149,6 +149,7 @@
   .postListBox {
     display: flex;
     flex-direction: column;
+    align-items: flex-end;
     overflow: auto;
     padding: 0.3rem;
   }
