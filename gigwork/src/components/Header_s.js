@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import Dropdown from 'react-bootstrap/Dropdown';
 import Toast from 'react-bootstrap/Toast';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import Button from 'react-bootstrap/Button';
 
 import '../css/Header.css'
 import nolnyeon from '../asset/img/nolnyeon.png'

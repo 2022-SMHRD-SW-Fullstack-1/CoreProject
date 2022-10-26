@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import MapContainer from '../components/MapContainer'
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import SearchPlace from '../components/SearchPlace'
 
 import help from '../asset/img/help.png'
 import solver from '../asset/img/solver.png'

@@ -40,6 +40,13 @@
     cursor: pointer;
     padding: 0.5rem;
   }
+  .categoryBox span {
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: center;
+  }
   
 
 
