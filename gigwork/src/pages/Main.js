@@ -14,16 +14,57 @@ import teach from '../asset/img/teach.png'
 import lineUp from '../asset/img/lineUp.png'
 import drive from '../asset/img/mainCategory_drive.png'
 import stroll from '../asset/img/mainCategory_stroll.png'
-import workHome from '../asset/img/mainCategory_workHome.png'
+import etc from '../asset/img/etc.png'
 import install from '../asset/img/mainCategory_install.png'
 import delivery from '../asset/img/mainCategory_delivery.png'
 import '../css/Main.css'
 
 const Main = () => {
 
+    const [myloc, setMyLoc] = useState({lat: 35.14987499845749, lng: 126.91981851928963})
+    const [makerloc, setMakerLoc] = useState(myloc)
+    const [urgetPost, setUrgetPost] = useState([{title: "바선생 출몰!!@! 잡아주실 분 구해요 ㅠ",
+                                                pay: 5000,
+                                                payoffer: true,
+                                                lat: 35.14979419266745,
+                                                lng: 126.91694331749281},
+                                                {title: "택시가 안잡혀요 ㅠㅠ 문화전당역 쪽에서 첨단까지 가시는 카풀 가능하신 분?",
+                                                pay: 15000,
+                                                payoffer: false,
+                                                lat: 35.146633960926714,
+                                                lng: 126.91885050539693},
+                                                {title: "컴퓨터 조립 하실 줄 아시는 분??",
+                                                pay: 20000,
+                                                payoffer: true,
+                                                lat: 35.14792725339202,
+                                                lng: 126.93336796277288},
+                                                {title: "바선생 출몰!!@! 잡아주실 분 구해요 ㅠ",
+                                                pay: 5000,
+                                                payoffer: true,
+                                                lat: 35.14979419266745,
+                                                lng: 126.91694331749281},
+                                                {title: "택시가 안잡혀요 ㅠㅠ 문화전당역 쪽에서 첨단까지 가시는 카풀 가능하신 분?",
+                                                pay: 15000,
+                                                payoffer: false,
+                                                lat: 35.146633960926714,
+                                                lng: 126.91885050539693},
+                                                {title: "컴퓨터 조립 하실 줄 아시는 분??",
+                                                pay: 20000,
+                                                payoffer: true,
+                                                lat: 35.14792725339202,
+                                                lng: 126.93336796277288}])
+
+    const placeMarker = (e) => {
+        setMakerLoc({lat: e.currentTarget.getAttribute('lat'),
+                    lng: e.currentTarget.getAttribute('lng')})
+    }
+
+
+
     const url = useLocation()
     const [topDivClass, setTopDivClass] = useState('')
     const [btnId, setBtnId] = useState('')
+    const [brTag, setbrTag] = useState(<></>)
     const handleResize = () => {
         window.innerWidth>900
         ?setTopDivClass('top_div_width')
@@ -31,6 +72,9 @@ const Main = () => {
         window.innerWidth>900
         ?setBtnId('btnImgP')
         :setBtnId('')
+        window.innerWidth>900
+        ?setBtnId(<></>)
+        :setBtnId(<><br/><br/></>)
     }
     useEffect(()=>{
         window.addEventListener('resize', handleResize);
@@ -64,10 +108,10 @@ const Main = () => {
                 </div>
                 <div className='categoryRow'>
                     <div className='categoryBox'><img src={stroll}/><span>펫 케어</span></div>
-                    <div className='categoryBox'><img src={workHome}/><span>원격, 재택 근무</span></div>
                     <div className='categoryBox'><img src={drive}/><span>대리, 카풀</span></div>
                     <div className='categoryBox'><img src={teach}/><span>과외 수업</span></div>
                     <div className='categoryBox'><img src={lineUp}/><span>역할 대행</span></div>
+                    <div className='categoryBox'><img src={etc}/><span>기타 등등</span></div>
                 </div>
             </div>
             <div className='buttonBox' id={btnId}>
@@ -83,9 +127,14 @@ const Main = () => {
                 </div>
                 <div className='realTimePost' onMouseOver={() => { setBtnToggle(true) }}>
                     <div className='postListBox'>
-                        
+                        {urgetPost.map((item,idx)=>(<div key={idx+item.title} onMouseOver={placeMarker} lat={item.lat} lng={item.lng} >
+                                                        <span>{item.title}</span>
+                                                        {brTag}
+                                                        <button className={item.payoffer?'payOfferT':'payOfferF'}>제의받음</button>
+                                                        <span>{item.pay}원</span>
+                                                    </div>))}
                     </div>
-                    <MapContainer/>
+                    <MapContainer myloc={myloc} makerloc={makerloc}/>
                 </div>
             </div>
             <div className='todayPost'></div>
