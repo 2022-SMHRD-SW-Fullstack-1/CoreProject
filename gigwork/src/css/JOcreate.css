@@ -1,0 +1,152 @@
+
+
+.topdivB{
+    margin-top: 10rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+}
+
+.postbox{
+
+  width: 40rem;;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  line-height: 2rem;
+  font-weight: bold;
+  
+}
+
+
+
+#selectbox{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 25rem;
+    height: 2rem;
+      
+  
+}
+
+#categoryinput{
+    margin-bottom: 2rem;
+  
+}
+
+.firstbox{
+    margin-bottom: 1rem;
+    
+}
+
+.datebox{
+    
+
+    padding-bottom: 0.5rem;
+}
+
+.datepart{
+    margin-bottom: 0.5rem;
+}
+
+.timepart{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.salary{
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly
+  
+}
+
+#salarybox{
+    width: 16rem;
+    height: 1.7rem;
+}
+
+.user_enroll_text{
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+#textArea{
+    width: 25rem;
+    height: 10rem;
+    resize: none;
+    margin-bottom: 2.5rem;
+}
+
+.pic{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#adrrbtn{
+    background-color: rgb(255, 243, 165);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    height: 30px;
+    width: 100px;
+    box-sizing: border-box;
+    color:rgb(75, 75, 80);
+    border: none ;
+}
+
+.postbtn{
+    margin-top: 4rem;
+    display:flex;
+    flex-direction: row;
+   justify-content: center;
+   
+}
+
+.postbtn>button{
+    margin-top: 10px;
+    margin-right: 10px;
+    height: 30px;
+    width: 80px;
+    background-color: rgb(255, 243, 165);
+    box-sizing: border-box;
+    color:rgb(75, 75, 80);
+    border: none ;
+
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+
+}
+
+.postbtn>button:hover{
+    color:white;
+    background-color: navy;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+
+}
+
+.top_div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+ 
+}
+
+.contentBox{
+    margin-top: 72;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 25rem;
+}
+
+#pic{
+    width: 3rem;
+    height: 3rem;
+}
+ 

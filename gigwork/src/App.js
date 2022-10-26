@@ -15,6 +15,9 @@ import PFotherview from './pages/PFotherview';
 import PFlist from './pages/PFlist';
 import MPprivacy from './pages/MPprivacy';
 import PFcreate from './pages/PFcreate';
+import JOcreate from './pages/JOcreate';
+import JOdetail from './pages/JOdetail';
+import JOlist from './pages/JOlist';
 
 
 function App() {
@@ -58,6 +61,10 @@ function App() {
         <Route path='/PFotherview' element={<PFotherview/>}/>
         <Route path='/PFlist' element={<PFlist/>}/>
         <Route path='/MPprivacy' element={<MPprivacy/>}/>
+        <Route path='/JOcreate' element={<JOcreate/>}/>
+        <Route path='/JOlist' element={<JOlist/>}/>
+        <Route path='/JOdetail' element={<JOdetail/>}/>
+
       </Routes>
 
       <Footer/>

@@ -1,0 +1,114 @@
+.topdivB {
+    display: flex;
+    margin-top: 72px;
+    flex-direction: row;
+    justify-content: center;
+}
+/* .sidebar {
+    height: 550px;
+    width: 270px;
+    /* background-color: rgb(255, 237, 138); */
+    /* justify-content: flex-start; */
+
+    /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); */
+
+ #sidepic{
+    width:50px;
+ }
+
+.filter{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.pressbtn{
+    background-color: rgb(255, 237, 138);
+}
+.secondtopdiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+#dong{
+    display: flex;
+    font-size: 16px;
+    font-weight: 200%;
+ 
+}
+#filterB{
+    flex-direction: row;
+    justify-content: flex-end;
+}
+#contentbox {
+    margin-top: 20px;
+    margin-left: 14px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.previewlist {
+    margin-top: 40px;
+    width: 610px;
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.boxes {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid black; */
+}
+#itembox{
+    justify-content: center;
+}
+#box {
+    /* margin-right: 5px; */
+    /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); */
+    margin-bottom: 5px;
+    font-size: 18px;
+    width: 300px;
+    height: 150px;
+    background-color: beige;
+    border: none;
+    text-align: left;
+    padding-left: 18px;
+    padding-top: 18px;
+    padding-right: 18px;
+    
+}
+#morebtn {
+    font-size: 15px;
+    font-weight: 20px;
+    border: none;
+    width: 70px;
+    height: 40px;
+    background-color: rgb(255, 237, 138);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    border-radius: 10%;
+
+}
+.moreviewbtn {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+#morebtn:hover {
+    background-color: navy;
+    color: white;
+}
+.Row{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#bookmark{
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
