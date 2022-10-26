@@ -10,9 +10,9 @@ const PFnone = () => {
     <div width="990px" className='top_div'>
       <MPmenu></MPmenu>
       <div  className='pfNoneDiv'>
-      <img src={man} width="600px" height="500px">
+      <img src={man}>
       </img>
-      <h1>프로필이 존재하지 않습니다</h1>
+      <span>프로필이 존재하지 않습니다</span>
       <Link to='/PFcreate' id='makePF'>프로필 생성</Link>
       </div>
     </div>
