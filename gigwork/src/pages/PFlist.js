@@ -147,19 +147,19 @@ const PFlist = () => {
         name: "정OO",
         gender: "여",
         age: "23",
-        say: "열심히 하겠습니다!",
+        say: "열심히 하겠습니다!열심히 하겠습니다!열심히 하겠습니다!열심히 하겠습니다!열심히 하겠습니다!열심히 하겠습니다!",
         imgsrc: pfimg
     }, {
         name: "한OO",
         gender: "남",
         age: "53",
-        say: "열심히 하겠습니다!",
+        say: "열심히 하겠습니다!열심히 하겠습니다!열심히 하겠습니다!열심히 하겠습니다!열심히 하겠습니다!열심히 하겠습니다!열심히 하겠습니다!",
         imgsrc: pfimg
     }, {
         name: "권OO",
         gender: "남",
         age: "27",
-        say: "열심히 하겠습니다!",
+        say: "안녕",
         imgsrc: pfimg
     }, {
         name: "박OO",
@@ -257,6 +257,19 @@ const PFlist = () => {
         </Card>
     )
 
+    let resPfs1 = pointPfs.map((item, idx) =>
+        <div className='pfCard'>
+            <div className='pfCardHead'>
+                <div><img src={item.imgsrc} style={{ width: '6rem' }}></img></div>
+                <div className='pfNameGen'>
+                <div>{item.name}</div>
+                <div>{item.gender} / {item.age}세</div>
+                </div>
+            </div>
+            <div className='pfCardBody'>{item.say}</div>
+            <div><Link to='/PFotherview' id='savePF'>프로필 자세히</Link></div>
+        </div>)
+
     // 더보기 버튼 구현
 
 
@@ -309,8 +322,11 @@ const PFlist = () => {
                 <div id="choiceDiv">
                     <span onClick={choiceDone} id="savePF">선택</span>
                 </div>
+                <div className='selListDiv'>
+
                 <div className='pfList'>
-                    {resPfs}
+                    {resPfs1}
+                </div>
                 </div>
             </div>
 

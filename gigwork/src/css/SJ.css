@@ -7,7 +7,8 @@
   /* ===PFnone=== */
   /* 가장 큰 div */
   .pfNoneDiv{
-    margin: 5rem;
+    margin: 1rem;
+    margin-bottom: 10rem;
     display : flex;
     flex-direction: column;
     align-items: center;
@@ -15,8 +16,9 @@
     font-weight: bold;
   }
   .pfNoneDiv img{
-    width: 30rem;
-    height: 25rem;
+    /* 여기 주석은 상단바가 움직여서 주석처리 */
+    /* width: 30rem;
+    height: 25rem; */
     margin: 2rem;
   }
   /* 프로필생성버튼 */
@@ -260,6 +262,9 @@
   .selLocDiv div{
     margin:2vw;
   }
+
+
+
   .pfList{
     position:static;
     display: flex;
@@ -407,4 +412,55 @@
     width: 10em;
     object-fit: cover;
     border-radius: 50%;
+  }
+
+  /* 부트스트랩 게이지바 색상선정 */
+  .progress{
+    background-color: white !important;
+  }
+  .progress div{
+    background-color: var(--mainYellow) !important;
+  }
+  
+
+  /* 프로필 카드 */
+
+  .selListDiv{
+    max-width: 65rem;
+  }
+  .pfCard{
+
+    margin-bottom: 3em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 14em;
+    background-color: var(--mainGray);
+    border-radius: 20px;
+  }
+  .pfCardHead{
+    margin-top:1em;
+    display: flex;
+    align-items: center;
+  }
+  .pfNameGen{
+    margin: 1em;
+    font-size: 1.1em;
+    font-weight: 700;
+  }
+  .pfCard img{
+    height: 6em;
+    width: 6em;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  .pfCardBody{
+    margin: 1em;
+    padding: 1em;
+    box-sizing: border-box;
+    background-color: white;
+    border-radius: 20px;
+    height: 8em;
+    width: 12em;
+    overflow: auto;
   }
