@@ -15,6 +15,17 @@ import PFotherview from './PFotherview';
 
 const PFlist = () => {
 
+    const[message, setMessage] = useState("");
+
+    useEffect(() => {        
+        fetch('/gigwork/hello')            
+        .then(response => response.text())            
+        .then(message => {                
+            setMessage(message);            
+        });    
+    },[])
+
+    console.log(message);
 
     let category = ["동행/돌봄", "배달/장보기", "동물/벌레퇴치", "설치/조립", "청소/집안일", "역할대행", "운반/운송", "운전/대리/카풀", "재택/부업"]
 
