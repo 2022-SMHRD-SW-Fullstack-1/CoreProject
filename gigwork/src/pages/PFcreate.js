@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import man from '../asset/imgSJ/검정색사람.png'
 import MPmenu from '../components/MPmenu'
 
+let choiceCate =[];
 const PFcreate = () => {
     const clickBtn=(e)=>{
         if(e.target.className=="pfCategoryBox"){
@@ -11,7 +12,22 @@ const PFcreate = () => {
         }else{
             e.target.classList.remove('pfClickBtn')
         }
+
+        if(choiceCate.includes(e.target.innerText)){
+            for(let i =0; i<choiceCate.length;i++){
+                if(choiceCate[i]==e.target.innerText){
+                    choiceCate.splice(i,1);
+                    i--;
+                }
+            }
+        }else{
+            choiceCate.push(e.target.innerText)
+
+        }
+
+        console.log(choiceCate)
     }
+
 
 let category =[
     "동행/돌봄","배달/장보기","동물/벌레퇴치",
