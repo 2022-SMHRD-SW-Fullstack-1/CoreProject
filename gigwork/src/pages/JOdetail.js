@@ -33,7 +33,6 @@ const JOdetail = () => {
                             </div>
                         </div>
                     </div>
-                    <hr />
 
 
                     <div className='contentpart'>

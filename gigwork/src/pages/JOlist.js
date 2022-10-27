@@ -75,31 +75,28 @@ const JOlist = () => {
                     </Offcanvas.Header>
                     <Offcanvas.Body>
                         <div className='filter'>
-                            <div className='period'>
-                                <h3>희망 기간</h3>
-                                <input type='checkbox' />급구만 보기<br />
-                                <input type='date' />{"\u00A0"}부터
-                                {"\u00A0"}
-                                {"\u00A0"}
-                                <input type='date' />{"\u00A0"}까지
-                                <input type='time' />{"\u00A0"}부터
-                                {"\u00A0"}
-                                {"\u00A0"}
-                                <input type='time' />{"\u00A0"}까지
+                         
+                                <h3 id='wantedperiod'>희망 기간</h3>
+                                <input type='checkbox' id='checkpart'/>급구만 보기<br />
+                                <div className='period'>
+                                    <input type='date' />{"\u00A0"}부터{"\u00A0"}
+                                    <input type='date' />{"\u00A0"}까지{"\u00A0"}
+                                    <input type='time' />{"\u00A0"}부터{"\u00A0"}
+                                    <input type='time' />{"\u00A0"}까지
+                                </div>
+                                <div className='wantedjob'>
+                                    <h3>희망 직무</h3>
+                                    <select id='wantedcategory'>
+                                        <option value="defualt">직무 선택</option>
+                                        {job && job.map((item, idx) => <option key={item + idx}>{item}</option>)}
+                                    </select>
+                                </div>
+                                <div className='wantedprice'>
+                                    <h3>희망 수당</h3>
+                                    <input type='checkbox' id='checkpart'/>제의받음만 보기<br />
+                                    <input type='number' id='pricenum'></input>
+                                </div>
                             </div>
-                            <div className='wantedjob'>
-                                <h3>희망 직무</h3>
-                                <select>
-                                    <option value="" selected disabled hidden>직무 선택</option>
-                                    {job && job.map((item, idx) => <option key={item + idx}>{item}</option>)}
-                                </select>
-                            </div>
-                            <div className='wantedprice'>
-                                <h3>희망 수당</h3>
-                                <input type='checkbox' />제의받음만 보기<br />
-                                <input type='number' />
-                            </div>
-                        </div>
                     </Offcanvas.Body>
                 </Offcanvas>
             </div>
@@ -107,8 +104,8 @@ const JOlist = () => {
                 <div className="listalignbox">
                     <div className='secondtopdiv'>
                         <span id='dong'>{dong} 검색결과</span>
-                        <select id='filterB'>
-                            <option value="" selected disabled hidden>정렬 기준</option>
+                        <select id='category_listmain'>
+                            <option value="default" >정렬 기준</option>
                             <option>최다 거래순</option>
                             <option>인기순</option>
                             <option>오래된 순서순</option>

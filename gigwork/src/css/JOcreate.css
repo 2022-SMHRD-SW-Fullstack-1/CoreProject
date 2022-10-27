@@ -1,23 +1,25 @@
 
 
 .topdivB{
-    margin-top: 10rem;
+    margin-top: 8rem;
     display: flex;
     flex-direction: row;
     justify-content: center;
     
+   
 }
 
 .postbox{
-
+  height: 60rem;
   width: 40rem;;
   display: flex;
   flex-direction: row;
   justify-content: center;
-
+  margin-bottom: 10rem;
   line-height: 2rem;
-  font-weight: bold;
-  
+  border-color:var(--mainGray);
+  border-radius: 3%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 
@@ -26,9 +28,14 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    
     width: 25rem;
     height: 2rem;
-      
+    border: none;
+    background-color:var( --mainGray);;
+    font-weight: lighter;
+    color: rgb(51,51,51);
+    
   
 }
 
@@ -41,6 +48,14 @@
     margin-bottom: 1rem;
     
 }
+.postcode{
+    margin-top: 1rem;
+
+}
+
+.textpart{
+    margin-top: 1rem;
+}
 
 .datebox{
     
@@ -50,13 +65,25 @@
 
 .datepart{
     margin-bottom: 0.5rem;
+    
+}   
+
+.datepart>input{
+    border:none;
+    background-color:var( --mainGray);;
 }
 
-.timepart{
+.timebox{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
+
+.timepart>input {
+    border: none;
+    background-color:var( --mainGray);;
+}
+
 .salary{
     margin-bottom: 1rem;
     display: flex;
@@ -65,14 +92,29 @@
   
 }
 
+
+
 #salarybox{
     width: 16rem;
-    height: 1.7rem;
+    border: none;
+    background-color: var( --mainGray);;
 }
 
 .user_enroll_text{
     margin-right: 0.5rem;
     margin-bottom: 0.5rem;
+    border:none;
+    background-color:var( --mainGray);;
+}
+
+#posttitle{
+    width: 25rem;
+    border:none;
+    background-color:var( --mainGray);;
+}
+
+.textcontext{
+    margin-top:1rem;
 }
 
 #textArea{
@@ -80,6 +122,8 @@
     height: 10rem;
     resize: none;
     margin-bottom: 2.5rem;
+    border:none;
+    background-color:var( --mainGray);;
 }
 
 .pic{
@@ -90,20 +134,28 @@
 }
 
 #adrrbtn{
-    background-color: rgb(255, 243, 165);
+    background-color: var( --mainYellow);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
     height: 30px;
     width: 100px;
     box-sizing: border-box;
-    color:rgb(75, 75, 80);
+    /* color: rgb(51,51,51); */
     border: none ;
+    border-radius: 5px;
+}
+
+#adrrbtn:hover{
+    color:white;
+    background-color: var(--mainNavy);
+
 }
 
 .postbtn{
-    margin-top: 4rem;
+    margin-top: 2.5rem;
     display:flex;
     flex-direction: row;
    justify-content: center;
+   
    
 }
 
@@ -112,9 +164,9 @@
     margin-right: 10px;
     height: 30px;
     width: 80px;
-    background-color: rgb(255, 243, 165);
+    background-color: var( --mainYellow);
     box-sizing: border-box;
-    color:rgb(75, 75, 80);
+    /* color: rgb(51,51,51); */
     border: none ;
 
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
@@ -124,8 +176,8 @@
 
 .postbtn>button:hover{
     color:white;
-    background-color: navy;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    background-color: var(--mainNavy);
+    
 
 }
 
