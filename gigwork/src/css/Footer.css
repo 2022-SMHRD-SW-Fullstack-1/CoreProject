@@ -5,7 +5,8 @@
     padding: 1rem 0rem;
   }
 #footer * {
-    font-family: 'twayair';
+    font-weight: lighter;
+    font-size: 0.8rem;
 }
   
 .footerTop {
@@ -18,10 +19,3 @@
     margin: 0.2rem 0.5rem;
     padding: 0rem;
 }
-
-@font-face {
-    font-family: 'twayair';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-  }

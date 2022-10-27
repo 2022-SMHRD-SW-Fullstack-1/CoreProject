@@ -8,7 +8,7 @@
     margin: 1.25rem 0rem;
   }
   .top_div_width {
-    width: 60rem;
+    width: 70rem;
   }
 
 
@@ -25,7 +25,7 @@
     flex-grow: 1;
   }
   .category img {
-    width: 100%;
+    width: 90%;
   }
   .categoryBox:hover {
     background-color: var(--mainGray);
@@ -157,7 +157,7 @@
     display: none;
   }
  .postListBox>div button.payOfferT {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     border: none;
     border-radius: 6px;
     background-color: tomato;
@@ -168,7 +168,7 @@
   }
   .postListBox>div span:first-child {
     color: white;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     max-width: 100%;
     max-height: 2.4rem;
     text-overflow: ellipsis;
@@ -178,7 +178,7 @@
     -webkit-line-clamp: 2 ;
   }
   .postListBox>div span:last-child {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: var(--mainYellow);
     min-width: fit-content;
     height: fit-content;
