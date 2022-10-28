@@ -85,7 +85,6 @@ const Header_s = () => {
         <Toast onClose={toggleAlarm} show={alarm} animation={false}>
           <Toast.Header>
             <img
-              src="holder.js/20x20?text=%20"
               className="rounded me-2"
               alt=""
             />
@@ -97,7 +96,6 @@ const Header_s = () => {
         <Toast onClose={toggleAlarm} show={alarm} animation={false}>
           <Toast.Header>
             <img
-              src="holder.js/20x20?text=%20"
               className="rounded me-2"
               alt=""
             />

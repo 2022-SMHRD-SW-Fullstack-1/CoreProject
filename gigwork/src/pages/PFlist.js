@@ -1,5 +1,6 @@
 import '../css/SJ.css'
 import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -18,11 +19,10 @@ const PFlist = () => {
     const[message, setMessage] = useState("");
 
     useEffect(() => {        
-        fetch('/gigwork/hello')            
-        .then(response => response.text())            
-        .then(message => {                
-            setMessage(message);            
-        });    
+        axios
+        .get('/gigwork/hello')            
+        .then(res => setMessage(res.data))            
+        .catch(e=> console.log(e));    
     },[])
 
     console.log(message);
