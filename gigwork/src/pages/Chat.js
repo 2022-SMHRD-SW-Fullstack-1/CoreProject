@@ -17,12 +17,16 @@ const Chat = () => {
     setChatContent(e.target.value)
   }
   const chatInputSend = (e) => {
+    const config = {"Content-Type": 'application/json'};
     axios
-    .post('/gigwork/chat/test', chatContent)
+    .post('/gigwork/chat/test', {chatContent: chatContent}, config)
     .then(res => console.log(res))            
     .catch(e=> console.log(e));
     
-    e.target.parentElement.children[0].value = ""
+    setChatContent("")
+  }
+  const enterPress = (e) => {
+    e.keyCode==13&&chatInputSend()
   }
 
 
@@ -35,7 +39,7 @@ const Chat = () => {
         <div  className='rightBox'>
           {chatContentList.map((item, idx) => (<div className={item.side} key={idx+item.side}><span>{item.text}</span><span>{item.date}</span></div>))}
           <div className='inputBox'>
-            <input type='text' onChange={handleChatInput} placeholder='메세지 입력...' autoFocus></input>
+            <input type='text' onChange={handleChatInput} onKeyUp={enterPress} placeholder='메세지 입력...' value={chatContent} autoFocus></input>
             <button onClick={chatInputSend}>전송</button>
           </div>
         </div>
