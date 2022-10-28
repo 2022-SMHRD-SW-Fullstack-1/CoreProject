@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import '../css/Chat.css'
 import chat from '../asset/img/chat.png'
+import axios from 'axios'
 
 const Chat = () => {
 
@@ -16,8 +17,12 @@ const Chat = () => {
     setChatContent(e.target.value)
   }
   const chatInputSend = (e) => {
-    console.log(chatContent)
-    console.log(e.target.parentElement.get)
+    axios
+    .post('/gigwork/chat/test', chatContent)
+    .then(res => console.log(res))            
+    .catch(e=> console.log(e));
+    
+    e.target.parentElement.children[0].value = ""
   }
 
 
