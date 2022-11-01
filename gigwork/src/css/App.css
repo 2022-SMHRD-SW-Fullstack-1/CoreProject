@@ -6,7 +6,7 @@
 :root {
   --mainGray : rgb(235, 235, 235);
   --mainYellow : #ffef79;
-  --mainNavy : rgba(14, 47, 76, 0.838);
+  --mainNavy : #586591;
 }
 
 :root * {
