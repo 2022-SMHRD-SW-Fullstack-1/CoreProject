@@ -153,103 +153,120 @@ const PFlist = () => {
     }
 
     // 카드 정보 모음
-    let pfs = [{
-        name: "정OO",
-        gender: "여",
-        age: "23",
-        say: "열심히 하겠습니다!열심히 하겠습니다!열심히 하겠습니다!열심히 하겠습니다!열심히 하겠습니다!열심히 하겠습니다!",
-        imgsrc: pfimg
-    }, {
-        name: "한OO",
-        gender: "남",
-        age: "53",
-        say: "열심히 하겠습니다!열심히 하겠습니다!열심히 하겠습니다!열심히 하겠습니다!열심히 하겠습니다!열심히 하겠습니다!열심히 하겠습니다!",
-        imgsrc: pfimg
-    }, {
-        name: "권OO",
-        gender: "남",
-        age: "27",
-        say: "안녕",
-        imgsrc: pfimg
-    }, {
-        name: "박OO",
-        gender: "여",
-        age: "66",
-        say: "열심히 하겠습니다!",
-        imgsrc: pfimg
-    }, {
-        name: "정OO",
-        gender: "여",
-        age: "23",
-        say: "열심히 하겠습니다!",
-        imgsrc: pfimg
-    }, {
-        name: "한OO",
-        gender: "남",
-        age: "53",
-        say: "열심히 하겠습니다!",
-        imgsrc: pfimg
-    }, {
-        name: "권OO",
-        gender: "남",
-        age: "27",
-        say: "열심히 하겠습니다!",
-        imgsrc: pfimg
-    }, {
-        name: "박OO",
-        gender: "여",
-        age: "66",
-        say: "열심히 하겠습니다!",
-        imgsrc: pfimg
-    }, {
-        name: "정OO",
-        gender: "여",
-        age: "23",
-        say: "열심히 하겠습니다!",
-        imgsrc: pfimg
-    }, {
-        name: "한OO",
-        gender: "남",
-        age: "53",
-        say: "열심히 하겠습니다!",
-        imgsrc: pfimg
-    }, {
-        name: "권OO",
-        gender: "남",
-        age: "27",
-        say: "열심히 하겠습니다!",
-        imgsrc: pfimg
-    }, {
-        name: "박OO",
-        gender: "여",
-        age: "66",
-        say: "열심히 하겠습니다!",
-        imgsrc: pfimg
-    }, {
-        name: "정OO",
-        gender: "여",
-        age: "23",
-        say: "열심히 하겠습니다!",
-        imgsrc: pfimg
-    }, {
-        name: "한OO",
-        gender: "남",
-        age: "53",
-        say: "열심히 하겠습니다!",
-        imgsrc: pfimg
-    }, {
-        name: "권OO",
-        gender: "남",
-        age: "27",
-        say: "열심히 하겠습니다!",
-        imgsrc: pfimg
-    }, {
-        name: "박OO",
-        gender: "여",
-        age: "66",
-        say: "열심히 하겠습니다!",
-        imgsrc: pfimg
-    }]
+    // let pfs = [{
+    //     // mem_id:"tjdwns65"
+    //     name: "정OO",
+    //     gender: "여",
+    //     age: "23",
+    //     say: "열심히 하겠습니다!열심히 하겠습니다!열심히 하겠습니다!열심히 하겠습니다!열심히 하겠습니다!열심히 하겠습니다!",
+    //     imgsrc: pfimg,
+    //     // lat: 34.151515,
+    //     // lng: 124.454554,
+    //     // cate: ["동행/돌봄", "배달/장보기", "동물/벌레퇴치"],
+    // }, {
+    //     name: "한OO",
+    //     gender: "남",
+    //     age: "53",
+    //     say: "열심히 하겠습니다!열심히 하겠습니다!열심히 하겠습니다!열심히 하겠습니다!열심히 하겠습니다!열심히 하겠습니다!열심히 하겠습니다!",
+    //     imgsrc: pfimg
+    // }, {
+    //     name: "권OO",
+    //     gender: "남",
+    //     age: "27",
+    //     say: "안녕",
+    //     imgsrc: pfimg
+    // }, {
+    //     name: "박OO",
+    //     gender: "여",
+    //     age: "66",
+    //     say: "열심히 하겠습니다!",
+    //     imgsrc: pfimg
+    // }, {
+    //     name: "정OO",
+    //     gender: "여",
+    //     age: "23",
+    //     say: "열심히 하겠습니다!",
+    //     imgsrc: pfimg
+    // }, {
+    //     name: "한OO",
+    //     gender: "남",
+    //     age: "53",
+    //     say: "열심히 하겠습니다!",
+    //     imgsrc: pfimg
+    // }, {
+    //     name: "권OO",
+    //     gender: "남",
+    //     age: "27",
+    //     say: "열심히 하겠습니다!",
+    //     imgsrc: pfimg
+    // }, {
+    //     name: "박OO",
+    //     gender: "여",
+    //     age: "66",
+    //     say: "열심히 하겠습니다!",
+    //     imgsrc: pfimg
+    // }, {
+    //     name: "정OO",
+    //     gender: "여",
+    //     age: "23",
+    //     say: "열심히 하겠습니다!",
+    //     imgsrc: pfimg
+    // }, {
+    //     name: "한OO",
+    //     gender: "남",
+    //     age: "53",
+    //     say: "열심히 하겠습니다!",
+    //     imgsrc: pfimg
+    // }, {
+    //     name: "권OO",
+    //     gender: "남",
+    //     age: "27",
+    //     say: "열심히 하겠습니다!",
+    //     imgsrc: pfimg
+    // }, {
+    //     name: "박OO",
+    //     gender: "여",
+    //     age: "66",
+    //     say: "열심히 하겠습니다!",
+    //     imgsrc: pfimg
+    // }, {
+    //     name: "정OO",
+    //     gender: "여",
+    //     age: "23",
+    //     say: "열심히 하겠습니다!",
+    //     imgsrc: pfimg
+    // }, {
+    //     name: "한OO",
+    //     gender: "남",
+    //     age: "53",
+    //     say: "열심히 하겠습니다!",
+    //     imgsrc: pfimg
+    // }, {
+    //     name: "권OO",
+    //     gender: "남",
+    //     age: "27",
+    //     say: "열심히 하겠습니다!",
+    //     imgsrc: pfimg
+    // }, {
+    //     name: "박OO",
+    //     gender: "여",
+    //     age: "66",
+    //     say: "열심히 하겠습니다!",
+    //     imgsrc: pfimg
+    // }]
+
+    let [pfs,setPfs] = useState([])
+
+
+    useEffect(()=>{
+        axios
+        .post('gigwork/profile/prolist')
+        .then(res=>setPfs(res.data.JsonArray))
+        .catch(e=>console.log(e));
+    },[])
+
+
+
 
     const [pointPfs, setPointPfs] = useState(pfs.filter(v => v.age < 100 && v.age > 0))
 

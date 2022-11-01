@@ -9,6 +9,18 @@ import axios, { Axios } from 'axios'
 let choiceCate =[];
 
 const PFcreate = () => {
+
+
+    let testId = "test1";
+
+
+
+
+let [cateOne,setCateOne] = useState('N');
+let [cateTwo,setCateTwo] = useState('N');
+let [cateThree,setCateThree] = useState('N');
+
+
     const clickBtn=(e)=>{
         if(e.target.className=="pfCategoryBox"){
             if(choiceCate.length!==3){
@@ -28,13 +40,18 @@ const PFcreate = () => {
         }else{
             if(choiceCate.length==3){
                 alert("최대 3가지만 가능합니다")
-            }else{
+            }else if(choiceCate.length==0){
                 choiceCate.push(e.target.innerText)
+                setCateOne(e.target.innerText)
+            }else if(choiceCate.length==1){
+                choiceCate.push(e.target.innerText)
+                setCateTwo(e.target.innerText)
+            }else if(choiceCate.length==2){
+                choiceCate.push(e.target.innerText)
+                setCateThree(e.target.innerText)
             }
 
         }
-
-        console.log(choiceCate)
     }
 
 
@@ -48,7 +65,7 @@ let resCate = category.map((item)=>
 <button className='pfCategoryBox' id='pfCateHover' onClick={clickBtn} key={item}>
     {item}</button>)
 
-let testId = "mem_id 001";
+
 
 let [proCreInfo,setProCreInfo]=useState('')
 
@@ -68,9 +85,12 @@ const closeDate=(e)=>{
         setCloseInfo(e.target.value)
 }
 
+let [imgSrcInfo,setImgSrcInfo] = useState('N');
+
+
 useEffect(()=>{
-    setProCreInfo({id:testId,cate:choiceCate,say:sayInfo,openDate:openInfo,closeDate:closeInfo})
-},[choiceCate,sayInfo,openInfo,closeInfo])
+    setProCreInfo({id:testId,say:sayInfo,imgSrc:imgSrcInfo,cOne:cateOne,cTwo:cateTwo,cThree:cateThree,openDate:openInfo,closeDate:closeInfo})
+},[cateOne,cateTwo,cateThree,sayInfo,openInfo,closeInfo])
 
 // useEffect(()=>{
 //     setProCreInfo({testId,sayInfo,date:openInfo,closeInfo})
@@ -82,6 +102,7 @@ const handleImg=(e)=>{
     console.log(e.target.value);
     console.log(e.target.files[0]);
 }
+
 
 // 10월 31일
 
@@ -105,26 +126,24 @@ const handleImg=(e)=>{
 // }
 
 // getLocation()
-// 11월 1일
 
-const [message, setMessage] = useState("");
 
-useEffect(() => {
-    fetch('gigwork/hello')
-    .then(response => response.text())
-    .then(res=>console.log(res))
-    .then(res =>{setMessage(res)})
-    .catch(e=>console.log(e));
-}, [])
-
+// 백엔드에서 정보가져와 저장하기
+// const [message, setMessage] = useState('');
 // useEffect(()=>{
 //     axios
-//     .get('gigwork/hello')
-//     .then(response => response.text())
-//     .then(res=>console.log(res))
+//     .post('gigwork/profile/select')
+//      .then(res=>setMessage(res.data))
+//     .catch(e=>console.log(e));
 // },[])
 
 
+
+
+
+// 
+
+// 11월 1일
 
 const saveProfile=(e)=>{
     if(openInfo>closeInfo){
@@ -132,6 +151,9 @@ const saveProfile=(e)=>{
         alert(choiceCate)
         e.preventDefault()
     }else{
+        console.log(proCreInfo)
+
+
         axios
         .post('/gigwork/profile/create', proCreInfo)
         .then(res=>console.log(res))
@@ -149,8 +171,7 @@ const saveProfile=(e)=>{
                 <input type='file' onChange={handleImg}></input>
 
 
-                <h2>닉네임 : OOO님</h2>
-                <span>{message}</span>
+                <h2>닉네임 : 님</h2>
             </div>
             <div className='pfCategory'>
                 <div>
