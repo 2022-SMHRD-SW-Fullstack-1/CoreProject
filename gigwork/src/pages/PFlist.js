@@ -8,13 +8,23 @@ import Col from 'react-bootstrap/Col';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
 import pfimg from '../asset/imgSJ/검정색사람.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import PFmyview from './PFmyview';
 import PFotherview from './PFotherview';
 
 
 const PFlist = () => {
+
+    
+    const navigate = useNavigate()
+    const goToProfile = (e) =>{
+        const name = e.target.getAttribute("name")
+        navigate(encodeURI('/PFotherview?name='+name))
+    }
+
+
+
 
     const[message, setMessage] = useState("");
 
@@ -149,14 +159,6 @@ const PFlist = () => {
 
     // 선택사항 선택 후 정보 저장
     const choiceDone = () => {
-        console.log(whatCate)
-        console.log(whatSido)
-        console.log(whatGungu)
-        console.log(whatGender)
-        console.log(whatAnyAge)
-        console.log(whatMinAge)
-        console.log(whatMaxAge)
-        console.log(pfs)
         setPointPfs(pfs.filter(v => (v.age <= whatMaxAge && v.age >= whatMinAge || "N" == whatAnyAge) 
         && (v.gender == whatGender || "N" == whatGender)&&(v.sido == whatSido)&&(v.gungu == whatGungu)
         &&(v.cate_one == whatCate || v.cate_two == whatCate || v.cate_three == whatCate)))
@@ -192,7 +194,7 @@ const PFlist = () => {
     // )
 
     let resPfs1 = pointPfs.map((item, idx) =>
-        <div className='pfCard' key={item+idx}>
+    <div className='pfCard' key={item+idx}>
             <div className='pfCardHead'>
                 <div><img src={item.imgsrc} style={{ width: '6rem' }}></img></div>
                 <div className='pfNameGen'>
@@ -201,12 +203,10 @@ const PFlist = () => {
                 </div>
             </div>
             <div className='pfCardBody'>{item.say}</div>
-            <div><Link to='/PFotherview' id='savePF'>프로필 자세히</Link></div>
+            <div><span id="savePF" onClick={goToProfile} name={item.name}>프로필 자세히</span></div>
         </div>)
 
     // 더보기 버튼 구현
-
-
 
 
     return (

@@ -1,6 +1,6 @@
 import '../css/SJ.css'
 import React, { useEffect, useRef, useState } from 'react'
-import { Await, Link } from 'react-router-dom'
+import { Await, Link, useNavigate } from 'react-router-dom'
 import man from '../asset/imgSJ/검정색사람.png'
 import MPmenu from '../components/MPmenu'
 import axios, { Axios } from 'axios'
@@ -274,7 +274,7 @@ const saveProfile=(e)=>{
                 <input type='file' onChange={handleImg}></input>
 
 
-                <h2>닉네임 : 님</h2>
+                <h2>닉네임 : {testId}님</h2>
             </div>
             <div className='pfCategory'>
                 <div>
