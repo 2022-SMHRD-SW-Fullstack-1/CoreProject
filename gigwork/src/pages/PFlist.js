@@ -66,18 +66,25 @@ const PFlist = () => {
         setWhatSido(value)
         if (value == "서울특별시") {
             setSelArea(area0)
+            setWhatSido("서울")
         } else if (value == "인천광역시") {
             setSelArea(area1)
+            setWhatSido("인천")
         } else if (value == "대전광역시") {
             setSelArea(area2)
+            setWhatSido("대전")
         } else if (value == "광주광역시") {
             setSelArea(area3)
+            setWhatSido("광주")
         } else if (value == "대구광역시") {
             setSelArea(area4)
+            setWhatSido("대구")
         } else if (value == "울산광역시") {
             setSelArea(area5)
+            setWhatSido("울산")
         } else if (value == "부산광역시") {
             setSelArea(area6)
+            setWhatSido("부산")
         } else if (value == "경기도") {
             setSelArea(area7)
         } else if (value == "강원도") {
@@ -149,111 +156,11 @@ const PFlist = () => {
         console.log(whatAnyAge)
         console.log(whatMinAge)
         console.log(whatMaxAge)
-        setPointPfs(pfs.filter(v => (v.age <= whatMaxAge && v.age >= whatMinAge || "N" == whatAnyAge) && (v.gender == whatGender || "N" == whatGender)))
+        console.log(pfs)
+        setPointPfs(pfs.filter(v => (v.age <= whatMaxAge && v.age >= whatMinAge || "N" == whatAnyAge) 
+        && (v.gender == whatGender || "N" == whatGender)&&(v.sido == whatSido)&&(v.gungu == whatGungu)
+        &&(v.cate_one == whatCate || v.cate_two == whatCate || v.cate_three == whatCate)))
     }
-
-    // 카드 정보 모음
-    // let pfs = [{
-    //     // mem_id:"tjdwns65"
-    //     name: "정OO",
-    //     gender: "여",
-    //     age: "23",
-    //     say: "열심히 하겠습니다!열심히 하겠습니다!열심히 하겠습니다!열심히 하겠습니다!열심히 하겠습니다!열심히 하겠습니다!",
-    //     imgsrc: pfimg,
-    //     // lat: 34.151515,
-    //     // lng: 124.454554,
-    //     // cate: ["동행/돌봄", "배달/장보기", "동물/벌레퇴치"],
-    // }, {
-    //     name: "한OO",
-    //     gender: "남",
-    //     age: "53",
-    //     say: "열심히 하겠습니다!열심히 하겠습니다!열심히 하겠습니다!열심히 하겠습니다!열심히 하겠습니다!열심히 하겠습니다!열심히 하겠습니다!",
-    //     imgsrc: pfimg
-    // }, {
-    //     name: "권OO",
-    //     gender: "남",
-    //     age: "27",
-    //     say: "안녕",
-    //     imgsrc: pfimg
-    // }, {
-    //     name: "박OO",
-    //     gender: "여",
-    //     age: "66",
-    //     say: "열심히 하겠습니다!",
-    //     imgsrc: pfimg
-    // }, {
-    //     name: "정OO",
-    //     gender: "여",
-    //     age: "23",
-    //     say: "열심히 하겠습니다!",
-    //     imgsrc: pfimg
-    // }, {
-    //     name: "한OO",
-    //     gender: "남",
-    //     age: "53",
-    //     say: "열심히 하겠습니다!",
-    //     imgsrc: pfimg
-    // }, {
-    //     name: "권OO",
-    //     gender: "남",
-    //     age: "27",
-    //     say: "열심히 하겠습니다!",
-    //     imgsrc: pfimg
-    // }, {
-    //     name: "박OO",
-    //     gender: "여",
-    //     age: "66",
-    //     say: "열심히 하겠습니다!",
-    //     imgsrc: pfimg
-    // }, {
-    //     name: "정OO",
-    //     gender: "여",
-    //     age: "23",
-    //     say: "열심히 하겠습니다!",
-    //     imgsrc: pfimg
-    // }, {
-    //     name: "한OO",
-    //     gender: "남",
-    //     age: "53",
-    //     say: "열심히 하겠습니다!",
-    //     imgsrc: pfimg
-    // }, {
-    //     name: "권OO",
-    //     gender: "남",
-    //     age: "27",
-    //     say: "열심히 하겠습니다!",
-    //     imgsrc: pfimg
-    // }, {
-    //     name: "박OO",
-    //     gender: "여",
-    //     age: "66",
-    //     say: "열심히 하겠습니다!",
-    //     imgsrc: pfimg
-    // }, {
-    //     name: "정OO",
-    //     gender: "여",
-    //     age: "23",
-    //     say: "열심히 하겠습니다!",
-    //     imgsrc: pfimg
-    // }, {
-    //     name: "한OO",
-    //     gender: "남",
-    //     age: "53",
-    //     say: "열심히 하겠습니다!",
-    //     imgsrc: pfimg
-    // }, {
-    //     name: "권OO",
-    //     gender: "남",
-    //     age: "27",
-    //     say: "열심히 하겠습니다!",
-    //     imgsrc: pfimg
-    // }, {
-    //     name: "박OO",
-    //     gender: "여",
-    //     age: "66",
-    //     say: "열심히 하겠습니다!",
-    //     imgsrc: pfimg
-    // }]
 
     let [pfs,setPfs] = useState([])
 
@@ -315,7 +222,8 @@ const PFlist = () => {
                         </div>
                         <div className='selDivBot'>
                             <div className='selBotSm'><select onChange={cateChange}>{resCate}</select></div>
-                            <div className='selBotSm'><select onChange={sidoChange}>
+                            <div className='selBotSm'>
+                                <select onChange={sidoChange}>
                                     {resSido}
                                 </select>
                                 <select onChange={gunguChange}>
