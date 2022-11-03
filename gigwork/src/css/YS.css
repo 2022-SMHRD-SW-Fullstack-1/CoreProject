@@ -1,0 +1,52 @@
+.registerContainer{
+    margin: 3em;
+    /* margin-left: 15em; */
+    border-radius: 50px;
+    padding: 2em;
+    width: 32em;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    background-color: var(--mainGray);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.registerContainer div{
+    margin-bottom: 1em;
+}
+.emailContainer input {
+    width: 10em;
+    margin:0em 1em ;
+}
+.registerContainer input{
+    margin: 0em 1em;
+}
+.birthGenderContainer{
+    display: flex;
+    justify-content: space-around;
+}
+.saveRegi{
+    display: flex;
+    justify-content: center;
+}
+.saveRegi span{
+    margin: 1em;
+    padding:0.5em 2em ;
+    background-color: gray;
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 0.8em;
+}
+.saveRegi span:hover{
+    background-color: rgb(200, 200, 200);
+    cursor: pointer;
+}
+.birthGenderContainer input{
+    margin: 0px;
+}
+
+.birthGenderContainer select{
+    width: 3em;
+    height: 1.8em;
+}

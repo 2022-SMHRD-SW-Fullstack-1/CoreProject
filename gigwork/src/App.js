@@ -64,6 +64,7 @@ function App() {
         <Route path='/JOcreate' element={<JOcreate/>}/>
         <Route path='/JOlist' element={<JOlist/>}/>
         <Route path='/JOdetail' element={<JOdetail/>}/>
+        <Route path='/Register' element={<Register/>}/>
 
       </Routes>
 
