@@ -11,7 +11,7 @@ let choiceCate =[];
 const PFcreate = () => {
 
 
-    let testId = "tjdwns65";
+    let testId = "test2";
 
 
 
@@ -133,11 +133,7 @@ let [cateThree,setCateThree] = useState('N');
     
 
 // 희망근무지역 선택 div만들기
-let category =[
-    "동행/돌봄","배달/장보기","동물/벌레퇴치",
-    "설치/조립","청소/집안일","역할대행",
-    "운반/운송","운전/대리/카풀","재택/부업"
-]
+let category =["청소/집안일", "동행/돌봄", "벌레/쥐잡기", "배달/장보기", "설치/조립", "펫 케어", "대리/카풀", "과외 수업", "역할 대행"]
 let resCate = category.map((item)=>
 <button className='pfCategoryBox' id='pfCateHover' onClick={clickBtn} key={item}>
     {item}</button>)
@@ -204,18 +200,8 @@ function getLocation(){
                 console.log(res.data.documents[0].address.region_2depth_name)
                 console.log(whatSido)
                 console.log(whatGungu)
-        }
-        ).catch(e=>console.log(e))
-
-
-
-            // const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=f1ac598e1d9ac7ea30dd5a1a6cdaed78`
-            // fetch(url)
-            //     .then((response)=>response.json())
-            //     .then((data)=>{
-            //         console.log(data)
-            //     })
-            
+                }
+            ).catch(e=>console.log(e))
         },function(error){
             console.error(error);
         },{
@@ -229,6 +215,7 @@ function getLocation(){
 }
 
 getLocation()
+
 
 
 

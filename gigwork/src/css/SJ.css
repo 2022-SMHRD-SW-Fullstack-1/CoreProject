@@ -519,10 +519,14 @@
 
 
   /* 프로필 뷰 페이지 카테고리 */
+  .catesContainer{
+    display: flex;
+    justify-content: space-around;
+  }
+
   .myCates{
     background-color: var(--mainYellow);
-    margin: 1em;
-    padding: 0.8em 1.2em;
+    padding: 0.5em 1em;
     border-radius: 50px;
   }
   .mySays{
@@ -534,4 +538,9 @@
     overflow: auto;
     text-align: center;
     
+  }
+  .pfDateSpace{
+    margin-top: 1em;
+    display: flex;
+    justify-content: space-around;
   }

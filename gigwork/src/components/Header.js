@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Toast from 'react-bootstrap/Toast';
@@ -10,8 +10,20 @@ import alarmOn from '../asset/img/alarmOn.png'
 import alarmOff from '../asset/img/alarmOff.png'
 import user from '../asset/img/user.png'
 import '../css/Header.css'
+import axios from 'axios';
 
 const Header = () => {
+// 성준 시작
+  let mem_id = 'test2'
+  let id = {id:mem_id}
+  const [hasPro,setHasPro] = useState(2)
+    axios
+    .post('/gigwork/profile/hasPro', id)
+    .then(res=>setHasPro(res.data))
+    .catch(e=>console.log(e));
+
+    console.log(hasPro)
+// 성준 끝
 
   function Login(props) {
 
@@ -28,10 +40,15 @@ const Header = () => {
     const goToChat = () => {
       navigate('/chat')
     }
-    const goToPFnone = () => {
-      navigate('/PFnone')
+    // 성준 시작
+    const goToProfile = () => {
+      if(hasPro==0){
+        navigate('/PFnone')
+      }else if(hasPro==1){
+        navigate('/PFmyview?id='+mem_id)
+      }
     }
-
+    // 성준 끝
     if (isLoggedIn == 'true') {
       return <div className='rightSection'>
         <Link to='/login'><button>로그인</button></Link>
@@ -46,7 +63,7 @@ const Header = () => {
           </Dropdown.Toggle>
 
           <Dropdown.Menu>
-            <Dropdown.Item onClick={goToPFnone} eventKey="1">마이페이지</Dropdown.Item>
+            <Dropdown.Item onClick={goToProfile} eventKey="1">마이페이지</Dropdown.Item>
             <Dropdown.Item onClick={goToChat} href='/chat' eventKey="2">채팅방</Dropdown.Item>
             <Dropdown.Item eventKey="3">로그아웃</Dropdown.Item>
           </Dropdown.Menu>

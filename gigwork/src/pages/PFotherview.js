@@ -74,7 +74,7 @@ const PFotherview = () => {
                         자신있는 업무
                     </div>
                     <br />
-                    <div>
+                    <div className='catesContainer'>
                         <span className='myCates'>{viewInfo.data.cate_one}</span>
                         <span className='myCates'>{viewInfo.data.cate_two}</span>
                         <span className='myCates'>{viewInfo.data.cate_three}</span>
