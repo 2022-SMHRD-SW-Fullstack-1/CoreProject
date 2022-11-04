@@ -101,7 +101,7 @@ const Header = () => {
           <img id='searchIcon' src={searchIcon} />
           <input placeholder='어떤 서비스가 필요하세요?'></input>
         </div>
-        <Login isLoggedIn={localStorage.getItem("id")===null?'false':'true'} />
+        <Login isLoggedIn={localStorage.getItem("id")===null?'true':'false'} />
       </div>
       
       <div className='alarmList'>
