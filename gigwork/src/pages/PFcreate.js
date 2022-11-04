@@ -10,11 +10,7 @@ let choiceCate =[];
 
 const PFcreate = () => {
 
-
-    let testId = "test2";
-
-
-
+let testId = localStorage.getItem('id')
 
 let [cateOne,setCateOne] = useState('N');
 let [cateTwo,setCateTwo] = useState('N');
@@ -164,11 +160,7 @@ let [imgSrcInfo,setImgSrcInfo] = useState('N');
 
 useEffect(()=>{
     setProCreInfo({id:testId,say:sayInfo,imgSrc:imgSrcInfo,cOne:cateOne,cTwo:cateTwo,cThree:cateThree,sido:whatSido,gungu:whatGungu,openDate:openInfo,closeDate:closeInfo})
-},[cateOne,cateTwo,cateThree,sayInfo,openInfo,closeInfo,whatSido,whatGungu])
-
-// useEffect(()=>{
-//     setProCreInfo({testId,sayInfo,date:openInfo,closeInfo})
-// },[sayInfo,openInfo,closeInfo])
+},[cateOne,cateTwo,cateThree,sayInfo,openInfo,closeInfo,whatSido,whatGungu,testId])
 
 // 10월 31일
 
@@ -219,21 +211,6 @@ getLocation()
 
 
 
-
-
-// 백엔드에서 정보가져와 저장하기
-// const [message, setMessage] = useState('');
-// useEffect(()=>{
-//     axios
-//     .post('gigwork/profile/select')
-//      .then(res=>setMessage(res.data))
-//     .catch(e=>console.log(e));
-// },[])
-
-
-
-
-
 // 
 
 // 11월 1일
@@ -244,8 +221,9 @@ const saveProfile=(e)=>{
         alert(choiceCate)
         e.preventDefault()
     }else{
+
         axios
-        .post('/gigwork/profile/create', proCreInfo)
+        .post('/gigwork/profile/proCreate', proCreInfo)
         .then(res=>console.log(res))
         .then(choiceCate=[])
         .catch(e=>console.log(e));

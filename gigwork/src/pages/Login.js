@@ -38,32 +38,30 @@ const emailSecond=(e)=>{
 
   // 정보 DB로 전송
   const letsLogin=()=>{
-  axios
-  .post('/gigwork/register/login', loginInfo)
-  .then(res=>setUserId(res.data))
-  .catch(e=>console.log(e));
+      axios
+      .post('/gigwork/register/login', loginInfo)
+      .then(res=>{
+        userId =res.data
+        loginCheck();
+      
+      })
+      .catch(e=>console.log(e));
 
-  console.log(userId)
 }
 // 정보 DB로 전송
 // 로그인 결과 정보
-  const [userId,setUserId] =useState('')
-
+  // const [userId,setUserId] =useState('')
+var userId =''
 const loginCheck=()=>{
 
   if(userId==email){
     alert('로그인 성공')
-    localStorage.setItem('ID',email)
+    localStorage.setItem('id',email)
   }else{
-    alert('로그인 실패')
-    
+    alert('로그인 실패') 
   }
-
 }
 
-useEffect(()=>{
-  loginCheck()
-},[userId])
 
 // 로그인 결과 정보
 
@@ -76,14 +74,14 @@ useEffect(()=>{
           <h1>로그인</h1>
           <br/>
           <p>이메일</p>
-          <input type='text' onChange={emailFirst} ></input>
+          <input type='text' onInput={emailFirst} ></input>
           @
-          <input type='text' placeholder='naver.com' onChange={emailSecond} ></input>
+          <input type='text' placeholder='naver.com' onInput={emailSecond} ></input>
         
         </div>
         <div>
          <p>비밀번호</p>
-         <input type='password' onChange={handlePassword}></input>
+         <input type='password' onInput={handlePassword}></input>
         </div>
         <div>
           <div className='loginBtnContainer'>

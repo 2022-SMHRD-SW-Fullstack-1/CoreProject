@@ -14,7 +14,7 @@ import axios from 'axios';
 
 const Header = () => {
 // 성준 시작
-  let mem_id = 'test2'
+  let mem_id = localStorage.getItem('id')
   let id = {id:mem_id}
   const [hasPro,setHasPro] = useState(2)
     axios
