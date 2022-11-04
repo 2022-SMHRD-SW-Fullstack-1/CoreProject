@@ -107,11 +107,7 @@ const Header = () => {
       <div className='alarmList'>
         <Toast onClose={toggleAlarm} show={alarm} animation={false}>
           <Toast.Header>
-            <img
-              src="holder.js/20x20?text=%20"
-              className="rounded me-2"
-              alt=""
-            />
+            <img className="rounded me-2" alt="" />
             <strong className="me-auto">알림 제목</strong>
             <small>10분 전</small>
           </Toast.Header>
@@ -119,11 +115,7 @@ const Header = () => {
         </Toast>
         <Toast onClose={toggleAlarm} show={alarm} animation={false}>
           <Toast.Header>
-            <img
-              src="holder.js/20x20?text=%20"
-              className="rounded me-2"
-              alt=""
-            />
+            <img className="rounded me-2" alt="" />
             <strong className="me-auto">알림 제목</strong>
             <small>10분 전</small>
           </Toast.Header>
