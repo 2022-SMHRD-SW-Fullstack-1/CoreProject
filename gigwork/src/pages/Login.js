@@ -66,7 +66,7 @@ const loginCheck=()=>{
     localStorage.setItem('id',email)
     localStorage.setItem('nick',userName)
     navigate('/')
-    connect(email);
+    connect(userName);
   }else{
     alert('로그인 실패') 
   }
