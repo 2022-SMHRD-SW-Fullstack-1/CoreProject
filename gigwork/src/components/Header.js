@@ -34,6 +34,7 @@ const Header = ( socket ) => {
 
     const logout = () => {
       localStorage.removeItem("id")
+      localStorage.removeItem("nick")
       if (socket.readyState === 1) { socket.close(); }
       navigate('/')
     }
@@ -75,7 +76,7 @@ const Header = ( socket ) => {
             <Dropdown.ItemText>{localStorage.getItem("id")}</Dropdown.ItemText>
             <Dropdown.Divider />
             <Dropdown.Item onClick={goToProfile} eventKey="1">마이페이지</Dropdown.Item>
-            <Dropdown.Item onClick={goToChat} href='/chat' eventKey="2">채팅방</Dropdown.Item>
+            <Dropdown.Item onClick={goToChat} eventKey="2">채팅방</Dropdown.Item>
             <Dropdown.Item onClick={logout} eventKey="3">로그아웃</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>

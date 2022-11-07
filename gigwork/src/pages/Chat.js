@@ -8,11 +8,7 @@ import axios from 'axios'
 
 import '../css/Chat.css'
 
-// let socket = new WebSocket("ws://localhost:8086/gigwork/replyEcho")
-const Chat = (socket, connect) => {
-
-  // 화면 출력 체크용 임시 데이터
-  localStorage.setItem("id", "test9")
+const Chat = ({socket, connect}) => {
 
   // 채팅 방 정보들을 저장할 변수
   const [chatroomList, setChatroomList] = useState([]);
@@ -21,7 +17,7 @@ const Chat = (socket, connect) => {
   useEffect(() => {
     //화면로딩시 채팅 방 정보를 서버에서 가져온다.
     axios
-      .post('gigwork/chat/roomInfo', { id: localStorage.getItem("id") })
+      .post('gigwork/chat/roomInfo', { id: localStorage.getItem("nick") })
       .then(res => {
         setChatroomList(res.data)
         setCrtChtR(res.data[0].cr_seq)
@@ -73,7 +69,7 @@ const Chat = (socket, connect) => {
     if (socket.readyState !== 1) return;
     console.log(crtChtR)
     //연결된 웹소켓서버에 정보를 전달
-    socket.send(JSON.stringify({ talker: localStorage.getItem("id"), msg: chatMessage, msg_time: now, }));
+    socket.send(JSON.stringify({ talker: localStorage.getItem("id"), msg: chatMessage, msg_time: now, sendto: ""}));
     console.log(chatMessage)
     //서버 저장을 위한 axois
     axios
@@ -84,19 +80,7 @@ const Chat = (socket, connect) => {
     setChatMessage("")
   }
 
-  //현재 접속해있는 유저의 정보를 저장
-  const [userData, setUserData] = useState({
-    username: localStorage.getItem("id"),
-    receivername: '',
-    connected: false,
-    message: ''
-  });
-
-
-
-
-
-
+  
 
   return (
     <div className='top_div' id='chatHead'>
