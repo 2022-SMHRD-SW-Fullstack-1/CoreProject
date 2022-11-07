@@ -53,7 +53,7 @@ const writeSay = (e)=>{
     setSayInfo(e.target.value)
     console.log(sayInfo)
 }
-let [sayInfo,setSayInfo]=useState('')
+const [sayInfo,setSayInfo]=useState('')
 
 const [evlInfo,setEvlInfo] = useState({})
 
@@ -62,15 +62,23 @@ const [evlInfo,setEvlInfo] = useState({})
     return (
     <div className='top_div'>
         <div className='mannerContainer'>
-            <div><h1>00님 매너평가 남기기</h1></div>
+            <div>
+                <h1>00님 매너평가 남기기</h1>
+            </div>
+            <div>
+            <h3>별점 평가</h3>
+            </div>
             <div className='starContainer'>
                 {resStarList}
             </div>
-            <div><h1>00님께 남길 말</h1></div>
-            <div className='mannerCommentContainer'>
-                
-                <textarea  id="say" rows="3" onChange={writeSay}></textarea>
-                
+            <div>
+                <h3>00님께 남길 말</h3>
+            </div>
+            <div className='mannerCommentContainer'> 
+                <textarea  id="say" rows="2" onChange={writeSay}></textarea>
+            </div>
+            <div>
+                <span id='savePF'>평가 남기기</span>
             </div>
         </div>
 

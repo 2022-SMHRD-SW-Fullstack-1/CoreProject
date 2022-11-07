@@ -87,13 +87,12 @@
   }
   /* 하고싶은 말 들어갈 공간 스크롤 만들기 */
   #say{
-    width: 29.5em;
+    width: 19em;
     padding: 1em;
     border-radius: 10px;
     overflow: auto;
     resize:none;
-    font-size: 0.95em;
-   
+    font-size: 1.5em;
   }
   /* 활동내역 들어갈 공간 스크롤 만들기 */
   .pfActive{
@@ -138,7 +137,7 @@
     align-items: center;
   }
   
-  
+
   /*MPmenu*/
   /* 메뉴 고정시키기 */
   .SJmenu{
@@ -220,7 +219,7 @@
     margin-left: 0.5em;
   }
   
-  
+
   /*마우스*/
   /* 카테고리 올렸을 경우 어떻게? */
   #pfCateHover:hover{
@@ -560,6 +559,9 @@
     font-size: 1.2rem;
     font-weight: bold;
   }
+  .mannerContainer div{
+    margin: 1em;
+  }
 
   .starContainer{
     width: 80%;
@@ -568,4 +570,7 @@
   }
   .starContainer img{
     width: 4em;
+  }
+  #savePF:hover{
+    cursor: pointer;
   }
