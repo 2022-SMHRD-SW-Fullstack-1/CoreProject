@@ -98,7 +98,7 @@
   /* 활동내역 들어갈 공간 스크롤 만들기 */
   .pfActive{
     width: 28em;
-    height: 13em;
+    max-height: 13em;
     padding: 20px;
     background-color: white;
     border-radius: 10px;

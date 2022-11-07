@@ -18,6 +18,7 @@ import PFcreate from './pages/PFcreate';
 import JOcreate from './pages/JOcreate';
 import JOdetail from './pages/JOdetail';
 import JOlist from './pages/JOlist';
+import PFcorrection from './pages/PFcorrection';
 
 
 function App() {
@@ -65,6 +66,7 @@ function App() {
         <Route path='/JOlist' element={<JOlist/>}/>
         <Route path='/JOdetail' element={<JOdetail/>}/>
         <Route path='/Register' element={<Register/>}/>
+        <Route path='/PFcorrection' element={<PFcorrection/>}/>
 
       </Routes>
 
