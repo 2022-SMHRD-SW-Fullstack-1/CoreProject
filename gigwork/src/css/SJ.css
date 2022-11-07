@@ -147,7 +147,7 @@
     left: 0px;
     padding: 1.5rem;
     width: 16rem;
-    height: 50rem;
+    height: 80rem;
     background-color: var(--mainNavy);
   }
   /* 메뉴 목록들 간의 공간 띄우기 */
@@ -543,4 +543,29 @@
     margin-top: 1em;
     display: flex;
     justify-content: space-around;
+  }
+
+
+  /* 매너평가 페이지 */
+  .mannerContainer{
+    margin: 3em;
+    /* margin-left: 15em; */
+    border-radius: 50px;
+    padding: 2em;
+    width: 32em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--mainGray);
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  .starContainer{
+    width: 80%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .starContainer img{
+    width: 4em;
   }

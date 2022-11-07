@@ -46,7 +46,8 @@ const emailSecond=(e)=>{
       axios
       .post('/gigwork/register/login', loginInfo)
       .then(res=>{
-        userId =res.data
+        userId =res.data.mem_id
+        userName=res.data.name
         loginCheck();
       
       })
@@ -57,11 +58,13 @@ const emailSecond=(e)=>{
 // 로그인 결과 정보
   // const [userId,setUserId] =useState('')
 var userId =''
+var userName=''
 const loginCheck=()=>{
 
   if(userId==email){
     alert('로그인 성공')
     localStorage.setItem('id',email)
+    localStorage.setItem('nick',userName)
     navigate('/')
     connect(email);
   }else{
