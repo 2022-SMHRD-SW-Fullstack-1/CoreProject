@@ -73,7 +73,7 @@ const Header = ( socket ) => {
           </Dropdown.Toggle>
 
           <Dropdown.Menu>
-            <Dropdown.ItemText>{localStorage.getItem("id")}</Dropdown.ItemText>
+            <Dropdown.ItemText>{localStorage.getItem("nick")}</Dropdown.ItemText>
             <Dropdown.Divider />
             <Dropdown.Item onClick={goToProfile} eventKey="1">마이페이지</Dropdown.Item>
             <Dropdown.Item onClick={goToChat} eventKey="2">채팅방</Dropdown.Item>
