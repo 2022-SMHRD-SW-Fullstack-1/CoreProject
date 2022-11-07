@@ -570,6 +570,7 @@
   }
   .starContainer img{
     width: 4em;
+    cursor: pointer;
   }
   #savePF:hover{
     cursor: pointer;
