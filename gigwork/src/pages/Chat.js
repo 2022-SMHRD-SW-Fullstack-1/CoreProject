@@ -55,6 +55,32 @@ const Chat = () => {
   const enterPress = (e) => {
     e.keyCode == 13 && chatInputSend()
   }
+
+
+  //socket 연결
+  const [socket, setSocket] = useState();
+  
+  function connect () {
+    let ws = new WebSocket("ws://localhost:8086/gigwork/replyEcho")
+    setSocket(ws)
+    ws.onopen = () => {
+      console.log("websocket: connected")
+      // ws.send("sending message from client-server")
+  
+      ws.onmessage = function (event) {
+        console.log(event.data + '\n');
+      };
+    }
+    ws.onclose = function (event) { console.log('Info: connection closed.'); 
+  // setTimeout( function(){connect()}, 1000)
+};
+    ws.onerror = function (event) { console.log('Info: connection closed.'); };
+    setSocket(ws);
+  }
+
+  useEffect(()=>{
+    connect();
+  },[])
   
   let now = new Date();
 
