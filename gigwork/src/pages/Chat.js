@@ -9,7 +9,7 @@ import axios from 'axios'
 import '../css/Chat.css'
 
 // let socket = new WebSocket("ws://localhost:8086/gigwork/replyEcho")
-const Chat = () => {
+const Chat = ({socket, connect}) => {
 
   // 화면 출력 체크용 임시 데이터
   localStorage.setItem("id", "test9")
@@ -57,26 +57,7 @@ const Chat = () => {
   }
 
 
-  //socket 연결
-  const [socket, setSocket] = useState();
   
-  function connect () {
-    let ws = new WebSocket("ws://localhost:8086/gigwork/replyEcho")
-    setSocket(ws)
-    ws.onopen = () => {
-      console.log("websocket: connected")
-      // ws.send("sending message from client-server")
-  
-      ws.onmessage = function (event) {
-        console.log(event.data + '\n');
-      };
-    }
-    ws.onclose = function (event) { console.log('Info: connection closed.'); 
-  // setTimeout( function(){connect()}, 1000)
-};
-    ws.onerror = function (event) { console.log('Info: connection closed.'); };
-    setSocket(ws);
-  }
 
   useEffect(()=>{
     connect();
