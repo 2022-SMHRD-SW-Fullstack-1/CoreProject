@@ -14,20 +14,16 @@ import sidepic from '../asset/imgJY/play.png'
 const JOlist = () => {
 
 
-
-
-
-
-    const [receiveList, setReceiveList] = useState([])
+    const [receiveList, setReceiveList] = useState([{}])
 
 
     useEffect(() => {
         axios
             .post('/gigwork/post/postlist')
             .then((res) => {
-                setReceiveList(res.data)
-                console.log(res.data)
-                    .catch(error => console.log(error))
+                // setReceiveList(res.data)
+                console.log(res)
+            .catch(error => console.log(error))
             })
     }, [])
 
@@ -58,10 +54,10 @@ const JOlist = () => {
     //필터 정보를 저장할 변수
     const [printdata, setPrintdata] = useState('')
 
-    const Ckfilterbtn = () => {
-        setPrintdata(receiveList.filter(v => ((v.post_cate === jobCategory) && (v.post_pay <= pay))))
-        console.log("출력된 값", printdata)
-    }
+    // const Ckfilterbtn = () => {
+    //     setPrintdata(receiveList.filter(v => ((v.post_cate === jobCategory) && (v.post_pay <= pay))))
+    //     console.log("출력된 값", printdata)
+    // }
 
 
 
@@ -89,7 +85,7 @@ const JOlist = () => {
                             <div className='wantedjob'>
                                 <h3>희망 직무</h3>
                                 <select id='wantedcategory' value={jobCategory} onChange={handleJobCategory}><option value="defualt">직무 선택</option>
-                                    {job && job.map((item, idx) => <option key={item + idx}>{item}</option>)}</select></div>
+                                    {job && job.map((item, idx) => <option key={item+idx}>{item}</option>)}</select></div>
 
                             <div className='wantedprice'>
                                 <h3>희망 수당</h3>
@@ -98,7 +94,8 @@ const JOlist = () => {
                             </div>
 
                             <div className='sidebarbtn'>
-                                <button id='filterbtn' onClick={Ckfilterbtn}>필터적용</button>
+                                {/* <button id='filterbtn' onClick={Ckfilterbtn}>필터적용</button> */}
+                                <button id='filterbtn' >필터적용</button>
                             </div>
                         </div>
                     </Offcanvas.Body>
@@ -118,7 +115,7 @@ const JOlist = () => {
                         </select>
                     </div>
                     <div className='boxes'>
-                        <Container>
+                        {/* <Container>
                             <Row className='Row'>
                                 {receiveList && receiveList.map((item, idx) =>
                                     <Col md={6} xs={12} >
@@ -127,7 +124,7 @@ const JOlist = () => {
                                         </div>
                                     </Col>)}
                             </Row>
-                        </Container>
+                        </Container> */}
 
                     </div>
                     <div className='moreviewbtn'>
