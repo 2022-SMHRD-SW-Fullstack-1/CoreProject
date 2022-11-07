@@ -20,6 +20,8 @@ import JOdetail from './pages/JOdetail';
 import JOlist from './pages/JOlist';
 import PFcorrection from './pages/PFcorrection';
 import EVLmanner from './pages/EVLmanner';
+import MyBookmark from './pages/MyBookmark';
+import MyPost from './pages/MyPost';
 
 
 function App() {
@@ -94,7 +96,10 @@ function App() {
         <Route path='/Register' element={<Register />} />
         <Route path='/PFcorrection' element={<PFcorrection />} />
         <Route path='/EVLmanner' element={<EVLmanner />} />
-
+        <Route path='/MyPost' element={<MyPost />} />
+        <Route path='/MyBookmark' element={<MyBookmark />} />
+        
+  
       </Routes>
 
       <Footer />
