@@ -11,16 +11,13 @@ import user from '../asset/img/user.png'
 import '../css/Header.css'
 import axios from 'axios';
 
-const Header = () => {
-// 성준 시작
+const Header = ({ socket }) => {
+  // 성준 시작
   let mem_id = localStorage.getItem('id')
-  let id = {id:mem_id}
-  const [hasPro,setHasPro] = useState(2)
-    axios
-    .post('/gigwork/profile/hasPro', id)
-    .then(res=>setHasPro(res.data))
-    .catch(e=>console.log(e));
-// 성준 끝
+  let id = { id: mem_id }
+
+
+  // 성준 끝
 
   function Login(props) {
 
@@ -28,7 +25,7 @@ const Header = () => {
     const isLoggedIn = props.isLoggedIn;
 
     const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
-      <img style={{marginRight: '8px'}} src={user} ref={ref} onClick={(e) => {
+      <img style={{ marginRight: '8px' }} src={user} ref={ref} onClick={(e) => {
         e.preventDefault();
         onClick(e);
       }} />
@@ -36,6 +33,7 @@ const Header = () => {
 
     const logout = () => {
       localStorage.removeItem("id")
+      socket.close();
       navigate('/')
     }
 
@@ -44,11 +42,19 @@ const Header = () => {
     }
     // 성준 시작
     const goToProfile = () => {
-      if(hasPro==0){
-        navigate('/PFnone')
-      }else if(hasPro==1){
-        navigate('/PFmyview?id='+mem_id)
-      }
+      var hasPro = '';
+      axios
+        .post('/gigwork/profile/hasPro', id)
+        .then(res => {
+          hasPro = (res.data)
+          if (hasPro == 0) {
+            navigate('/PFnone')
+          } else if (hasPro == 1) {
+            navigate('/PFmyview?id=' + mem_id)
+          }
+        })
+        .catch(e => console.log(e));
+
     }
     // 성준 끝
     if (isLoggedIn == 'true') {
@@ -103,9 +109,9 @@ const Header = () => {
           <img id='searchIcon' src={searchIcon} />
           <input placeholder='어떤 서비스가 필요하세요?'></input>
         </div>
-        <Login isLoggedIn={localStorage.getItem("id")===null?'true':'false'} />
+        <Login isLoggedIn={localStorage.getItem("id") === null ? 'true' : 'false'} />
       </div>
-      
+
       <div className='alarmList'>
         <Toast onClose={toggleAlarm} show={alarm} animation={false}>
           <Toast.Header>

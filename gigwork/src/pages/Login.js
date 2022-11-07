@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const Login = () => {
+const Login = ({connect}) => {
   
 
   const navigate = useNavigate();
@@ -63,6 +63,7 @@ const loginCheck=()=>{
     alert('로그인 성공')
     localStorage.setItem('id',email)
     navigate('/')
+    connect();
   }else{
     alert('로그인 실패') 
   }

@@ -29,7 +29,7 @@ function App() {
   //창 크기에 따른 헤더 변환
   const handleResize = () => {
     window.innerWidth > 900
-      ? setHeader(<Header />)
+      ? setHeader(<Header socket={socket}/>)
       : setHeader(<Header_s />)
   }
 
@@ -44,7 +44,7 @@ function App() {
   //url이 변경되면 헤더 크기를 창크기에 맞게 설정해줌
   useEffect(() => {
     window.innerWidth > 900
-      ? setHeader(<Header />)
+      ? setHeader(<Header socket={socket}/>)
       : setHeader(<Header_s />)
   }, [url])
 
@@ -78,7 +78,7 @@ function App() {
       <div style={{ height: '60px' }} />
       <Routes>
         <Route path='/' element={<Main />}></Route>
-        <Route path='/login' element={<Login />} />
+        <Route path='/login' element={<Login connect={connect}/>} />
         <Route path='/register' element={<Register />} />
         <Route path='/chat' element={<Chat socket={socket} connect={connect}/>} />
         <Route path='/PFnone' element={<PFnone />} />

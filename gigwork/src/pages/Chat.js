@@ -59,9 +59,7 @@ const Chat = ({socket, connect}) => {
 
   
 
-  useEffect(()=>{
-    connect();
-  },[])
+  
   
   let now = new Date();
 
@@ -82,19 +80,6 @@ const Chat = ({socket, connect}) => {
       setChatContentList(chatContentList.concat({cc_seq: null, talker: localStorage.getItem("id"), msg: chatMessage, msg_time: timestamp(), cr_seq: crtChtR}))
       setChatMessage("")
   }
-
-
-
-
-  
-
-
-
-
-
-
-
-
 
   //현재 접속해있는 유저의 정보를 저장
   const [userData, setUserData] = useState({
