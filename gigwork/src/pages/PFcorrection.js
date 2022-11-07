@@ -222,7 +222,7 @@ const PFcorrection = () => {
         }else{
     
             axios
-            .post('/gigwork/profile/proCreate', proCreInfo)
+            .post('/gigwork/profile/proCorrection', proCreInfo)
             .then(res=>console.log(res))
             .then(choiceCate=[])
             .catch(e=>console.log(e));

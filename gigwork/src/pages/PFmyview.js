@@ -144,7 +144,7 @@ const PFmyview = () => {
                 </div>
                 <div className='pfSaveDiv'>
                     <br />
-                    <Link to='/PFcreate' id='savePF'>수 정</Link>
+                    <Link to='/PFcorrection' id='savePF'>수 정</Link>
                 </div>
 
             </div>

@@ -1,7 +1,12 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
+  
+
+  const navigate = useNavigate();
+
 
 // 이메일 정보 얻기
 
@@ -57,6 +62,7 @@ const loginCheck=()=>{
   if(userId==email){
     alert('로그인 성공')
     localStorage.setItem('id',email)
+    navigate('/')
   }else{
     alert('로그인 실패') 
   }
