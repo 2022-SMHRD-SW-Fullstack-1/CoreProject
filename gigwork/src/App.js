@@ -19,6 +19,7 @@ import JOcreate from './pages/JOcreate';
 import JOdetail from './pages/JOdetail';
 import JOlist from './pages/JOlist';
 import PFcorrection from './pages/PFcorrection';
+import EVLmanner from './pages/EVLmanner';
 
 
 function App() {
@@ -92,6 +93,7 @@ function App() {
         <Route path='/JOdetail' element={<JOdetail />} />
         <Route path='/Register' element={<Register />} />
         <Route path='/PFcorrection' element={<PFcorrection />} />
+        <Route path='/EVLmanner' element={<EVLmanner />} />
 
       </Routes>
 

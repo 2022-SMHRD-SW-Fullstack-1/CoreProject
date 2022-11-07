@@ -19,8 +19,8 @@ const PFlist = () => {
     
     const navigate = useNavigate()
     const goToProfile = (e) =>{
-        const name = e.target.getAttribute("name")
-        navigate(encodeURI('/PFotherview?name='+name))
+        const id = e.target.getAttribute("name")
+        navigate(encodeURI('/PFotherview?id='+id))
     }
 
 
@@ -203,7 +203,7 @@ const PFlist = () => {
                 </div>
             </div>
             <div className='pfCardBody'>{item.say}</div>
-            <div><span id="savePF" onClick={goToProfile} name={item.name}>프로필 자세히</span></div>
+            <div><span id="savePF" onClick={goToProfile} name={item.mem_id}>프로필 자세히</span></div>
         </div>)
 
     // 더보기 버튼 구현
