@@ -24,6 +24,8 @@ const PostCode = (props)  => {
             ...props.company,
             address:fullAddress,
         })
+
+        props.setzone(data.zonecode)
     }
 
     return (
@@ -32,6 +34,7 @@ const PostCode = (props)  => {
                 className="postmodal"
                 autoClose
                 onComplete={complete} />
+                
         </div>
     );
 };

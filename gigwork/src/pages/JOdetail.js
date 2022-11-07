@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import userPic from '../asset/imgJY/user.png'
 import starpic from '../asset/imgJY/bookmark.png'
 import '../css/JOdetail.css'
+import voidpic from '../asset/imgJY/void.png'
+
 
 const JOdetail = () => {
 
@@ -14,6 +16,9 @@ const JOdetail = () => {
     const [content, setContent] = useState('내용입니다')
     const [price, setPrice] = useState('5000')
 
+    // <label htmlFor='bookmark' key={ idx}>    <input type='checkbox' id='bookmark' onClick={clickbookmark}  style={{ display: "none" }} value={bookMarkIcon} /></label>
+    // const [bookMarkIcon, setbookMarkIcon] = useState(voidpic);
+    // const [bookmark, setBookMark] = useState(false)
 
     return (
         <div> <div className='top'>

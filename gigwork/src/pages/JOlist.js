@@ -1,109 +1,115 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import '../css/JOlist.css'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import axios from 'axios';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import starpic from '../asset/imgJY/bookmark.png'
 import sidepic from '../asset/imgJY/play.png'
-import '../css/JOlist.css'
+
+
+
 
 
 const JOlist = () => {
-    const [dong, setDong] = useState('광천동')
-    const [bookMarkIcon, setbookMarkIcon] = useState(false);
-    const list = [
-        {
-            category: '벌레잡기',
-            title: '벌레잡아주실분ㅠ',
-            price: '10000원'
-        }, {
-            category: '조립',
-            title: '컴퓨터 조립 할 줄 아시는분??',
-            price: '100000원'
-        },
-        {
-            category: '벌레잡기',
-            title: '벌레잡아주실분ㅠ',
-            price: '10000원'
-        }, {
-            category: '조립',
-            title: '컴퓨터 조립 할 줄 아시는분??',
-            price: '100000원'
-        }
-        , {
-            category: '조립',
-            title: '컴퓨터 조립 할 줄 아시는분??',
-            price: '100000원'
-        }, {
-            category: '조립',
-            title: '컴퓨터 조립 할 줄 아시는분??',
-            price: '100000원'
-        }, {
-            category: '조립',
-            title: '컴퓨터 조립 할 줄 아시는분??',
-            price: '100000원'
-        }, {
-            category: '조립',
-            title: '컴퓨터 조립 할 줄 아시는분??',
-            price: '100000원'
-        }, {
-            category: '조립',
-            title: '컴퓨터 조립 할 줄 아시는분??',
-            price: '100000원'
-        }, {
-            category: '조립',
-            title: '컴퓨터 조립 할 줄 아시는분??',
-            price: '100000원'
-        }
-    ]
-    const job = [
-        '배달장보기', '청소집안일', '설치조립운반', '동행돌봄', '벌레쥐잡기', '역할대행', '운전카풀', '기타원격'
-    ]
-    let resList = list.map((item, idx) => <Col md={6} xs={12} key={item + idx}><div id='box'>{item.category}<br />{item.title}<br />{item.price}<a href="#" id='bookmark'><img width='20px' src={starpic} ></img></a></div></Col>)
+
+
+
+
+
+
+    const [receiveList, setReceiveList] = useState([])
+
+
+    useEffect(() => {
+        axios
+            .post('/gigwork/post/postlist')
+            .then((res) => {
+                setReceiveList(res.data)
+                console.log(res.data)
+                    .catch(error => console.log(error))
+            })
+    }, [])
+
+
+
+
+
+
+
+    const job = ['청소/집안일', '동행/돌봄', '벌레/쥐잡기', '배달/장보기', '설치/조립', '팻케어', '대리/카풀', '과외수업', '역할대행', '기타']
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const [urgent, setUrgent] = useState(false)
+    const handleCheckUrgent = (e) => { setUrgent(e.target.checked); console.log(e.target.checked) }
+    const [startDate, setStartDate] = useState('');
+    const handleStartDate = (e) => { setStartDate(e.target.value); console.log(e.target.value) }
+    const [endDate, setEndDate] = useState('');
+    const handleEndDate = (e) => { setEndDate(e.target.value); console.log(e.target.value) }
+    const [jobCategory, setJobCategory] = useState('')
+    const handleJobCategory = (e) => { setJobCategory(e.target.value); console.log(e.target.value) }
+    const [offer, setOffer] = useState(false)
+    const handleOffer = (e) => { setOffer(e.target.checked); console.log(e.target.checked) }
+    const [pay, setPay] = useState(0)
+    const handlePay = (e) => { setPay(e.target.value); console.log(e.target.value) }
+
+
+    //필터 정보를 저장할 변수
+    const [printdata, setPrintdata] = useState('')
+
+    const Ckfilterbtn = () => {
+        setPrintdata(receiveList.filter(v => ((v.post_cate === jobCategory) && (v.post_pay <= pay))))
+        console.log("출력된 값", printdata)
+    }
+
+
+
+
+
 
     return (
         <div className='topdivB'>
+
             <div className='sidebar'>
                 <img src={sidepic} onClick={handleShow} id='sidepic'></img>
-                {/* <Button variant="primary" onClick={handleShow} className='pressbtn'>이거누르세요</Button> */}
                 <Offcanvas show={show} onHide={handleClose}>
                     <Offcanvas.Header closeButton>
                         <Offcanvas.Title></Offcanvas.Title>
                     </Offcanvas.Header>
                     <Offcanvas.Body>
                         <div className='filter'>
-                         
-                                <h3 id='wantedperiod'>희망 기간</h3>
-                                <input type='checkbox' id='checkpart'/>급구만 보기<br />
-                                <div className='period'>
-                                    <input type='date' />{"\u00A0"}부터{"\u00A0"}
-                                    <input type='date' />{"\u00A0"}까지{"\u00A0"}
-                                    <input type='time' />{"\u00A0"}부터{"\u00A0"}
-                                    <input type='time' />{"\u00A0"}까지
-                                </div>
-                                <div className='wantedjob'>
-                                    <h3>희망 직무</h3>
-                                    <select id='wantedcategory'>
-                                        <option value="defualt">직무 선택</option>
-                                        {job && job.map((item, idx) => <option key={item + idx}>{item}</option>)}
-                                    </select>
-                                </div>
-                                <div className='wantedprice'>
-                                    <h3>희망 수당</h3>
-                                    <input type='checkbox' id='checkpart'/>제의받음만 보기<br />
-                                    <input type='number' id='pricenum'></input>
-                                </div>
+
+                            <h3 id='wantedperiod'>희망 기간</h3>
+                            <input type='checkbox' id='checkpart' onChange={handleCheckUrgent} value={urgent} />급구만 보기<br />
+
+                            <div className='period'>
+                                <input type='datetime-local' value={startDate} onChange={handleStartDate} />{"\u00A0"}부터{"\u00A0"}<br /><input type='datetime-local' value={endDate} onChange={handleEndDate} />{"\u00A0"}까지{"\u00A0"}</div>
+
+                            <div className='wantedjob'>
+                                <h3>희망 직무</h3>
+                                <select id='wantedcategory' value={jobCategory} onChange={handleJobCategory}><option value="defualt">직무 선택</option>
+                                    {job && job.map((item, idx) => <option key={item + idx}>{item}</option>)}</select></div>
+
+                            <div className='wantedprice'>
+                                <h3>희망 수당</h3>
+                                <input type='checkbox' id='checkpart' onChange={handleOffer} value={offer} />제의받음만 보기<br />
+                                <input type='number' id='pricenum' min='1000' value={pay} onChange={handlePay}></input>
                             </div>
+
+                            <div className='sidebarbtn'>
+                                <button id='filterbtn' onClick={Ckfilterbtn}>필터적용</button>
+                            </div>
+                        </div>
                     </Offcanvas.Body>
-                </Offcanvas>
-            </div>
+                </Offcanvas></div>
+
+
+
             <div className='previewlist'>
                 <div className="listalignbox">
                     <div className='secondtopdiv'>
-                        <span id='dong'>{dong} 검색결과</span>
+                        <span id='dong'>내주변 검색결과</span>
                         <select id='category_listmain'>
                             <option value="default" >정렬 기준</option>
                             <option>최다 거래순</option>
@@ -114,14 +120,20 @@ const JOlist = () => {
                     <div className='boxes'>
                         <Container>
                             <Row className='Row'>
-                                {resList}
-
+                                {receiveList && receiveList.map((item, idx) =>
+                                    <Col md={6} xs={12} >
+                                        <div id='box' key={item + idx}>
+                                            {item.post_cate}<br />{item.title}<br />{item.post_pay}<br />{item.urgent}
+                                        </div>
+                                    </Col>)}
                             </Row>
                         </Container>
+
                     </div>
                     <div className='moreviewbtn'>
                         <button id='morebtn'>더보기</button>
                     </div>
+
                     <br />
                 </div>
             </div>
