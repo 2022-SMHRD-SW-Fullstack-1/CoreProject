@@ -11,13 +11,14 @@ import user from '../asset/img/user.png'
 import '../css/Header.css'
 import axios from 'axios';
 
-const Header = ({ socket }) => {
+const Header = ( socket ) => {
   // 성준 시작
   let mem_id = localStorage.getItem('id')
   let id = { id: mem_id }
 
 
   // 성준 끝
+
 
   function Login(props) {
 
@@ -33,7 +34,7 @@ const Header = ({ socket }) => {
 
     const logout = () => {
       localStorage.removeItem("id")
-      socket.close();
+      if (socket.readyState === 1) { socket.close(); }
       navigate('/')
     }
 
@@ -71,6 +72,8 @@ const Header = ({ socket }) => {
           </Dropdown.Toggle>
 
           <Dropdown.Menu>
+            <Dropdown.ItemText>{localStorage.getItem("id")}</Dropdown.ItemText>
+            <Dropdown.Divider />
             <Dropdown.Item onClick={goToProfile} eventKey="1">마이페이지</Dropdown.Item>
             <Dropdown.Item onClick={goToChat} href='/chat' eventKey="2">채팅방</Dropdown.Item>
             <Dropdown.Item onClick={logout} eventKey="3">로그아웃</Dropdown.Item>

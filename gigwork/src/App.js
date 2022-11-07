@@ -52,8 +52,8 @@ function App() {
   //socket 연결
   const [socket, setSocket] = useState();
 
-  function connect() {
-    let ws = new WebSocket("ws://localhost:8086/gigwork/replyEcho")
+  function connect(email) {
+    let ws = new WebSocket("ws://localhost:8086/gigwork/replyEcho/"+email)
     setSocket(ws)
     ws.onopen = () => {
       console.log("websocket: connected")

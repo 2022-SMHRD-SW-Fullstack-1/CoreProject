@@ -63,7 +63,7 @@ const loginCheck=()=>{
     alert('로그인 성공')
     localStorage.setItem('id',email)
     navigate('/')
-    connect();
+    connect(email);
   }else{
     alert('로그인 실패') 
   }

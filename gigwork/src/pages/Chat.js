@@ -9,7 +9,7 @@ import axios from 'axios'
 import '../css/Chat.css'
 
 // let socket = new WebSocket("ws://localhost:8086/gigwork/replyEcho")
-const Chat = ({socket, connect}) => {
+const Chat = (socket, connect) => {
 
   // 화면 출력 체크용 임시 데이터
   localStorage.setItem("id", "test9")
@@ -57,28 +57,31 @@ const Chat = ({socket, connect}) => {
   }
 
 
-  
 
-  
-  
+
+
+
   let now = new Date();
 
-  function timestamp(){
+  function timestamp() {
     var today = new Date();
     today.setHours(today.getHours());
     return today.toISOString().replace('T', ' ').substring(0, 19);
-}
+  }
 
   const chatInputSend = (e) => {
     if (socket.readyState !== 1) return;
-      socket.send(JSON.stringify({cc_seq: 0, talker: localStorage.getItem("id"), msg: chatMessage, msg_time: now, cr_seq: crtChtR}));
-      console.log(chatMessage)
-      axios
-        .post('gigwork/chat/inputContent', {cc_seq: 0, talker: localStorage.getItem("id"), msg: chatMessage, msg_time: now, cr_seq: crtChtR})
-        .then(res => console.log(res))
-        .catch(e => console.log(e));
-      setChatContentList(chatContentList.concat({cc_seq: null, talker: localStorage.getItem("id"), msg: chatMessage, msg_time: timestamp(), cr_seq: crtChtR}))
-      setChatMessage("")
+    console.log(crtChtR)
+    //연결된 웹소켓서버에 정보를 전달
+    socket.send(JSON.stringify({ talker: localStorage.getItem("id"), msg: chatMessage, msg_time: now, }));
+    console.log(chatMessage)
+    //서버 저장을 위한 axois
+    axios
+      .post('gigwork/chat/inputContent', { cc_seq: 0, talker: localStorage.getItem("id"), msg: chatMessage, msg_time: now, cr_seq: crtChtR })
+      .then(res => console.log(res))
+      .catch(e => console.log(e));
+    setChatContentList(chatContentList.concat({ cc_seq: null, talker: localStorage.getItem("id"), msg: chatMessage, msg_time: timestamp(), cr_seq: crtChtR }))
+    setChatMessage("")
   }
 
   //현재 접속해있는 유저의 정보를 저장
