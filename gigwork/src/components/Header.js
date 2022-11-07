@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
 import Toast from 'react-bootstrap/Toast';
 import { Link, useNavigate } from 'react-router-dom'
 
@@ -12,18 +11,14 @@ import user from '../asset/img/user.png'
 import '../css/Header.css'
 import axios from 'axios';
 
-const Header = () => {
-// 성준 시작
-  let mem_id = 'test2'
-  let id = {id:mem_id}
-  const [hasPro,setHasPro] = useState(2)
-    axios
-    .post('/gigwork/profile/hasPro', id)
-    .then(res=>setHasPro(res.data))
-    .catch(e=>console.log(e));
+const Header = ( socket ) => {
+  // 성준 시작
+  let mem_id = localStorage.getItem('id')
+  let id = { id: mem_id }
 
-    console.log(hasPro)
-// 성준 끝
+
+  // 성준 끝
+
 
   function Login(props) {
 
@@ -31,22 +26,37 @@ const Header = () => {
     const isLoggedIn = props.isLoggedIn;
 
     const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
-      <img style={{marginRight: '8px'}} src={user} ref={ref} onClick={(e) => {
+      <img style={{ marginRight: '8px' }} src={user} ref={ref} onClick={(e) => {
         e.preventDefault();
         onClick(e);
       }} />
     ));
+
+    const logout = () => {
+      localStorage.removeItem("id")
+      localStorage.removeItem("nick")
+      if (socket.readyState === 1) { socket.close(); }
+      navigate('/')
+    }
 
     const goToChat = () => {
       navigate('/chat')
     }
     // 성준 시작
     const goToProfile = () => {
-      if(hasPro==0){
-        navigate('/PFnone')
-      }else if(hasPro==1){
-        navigate('/PFmyview?id='+mem_id)
-      }
+      var hasPro = '';
+      axios
+        .post('/gigwork/profile/hasPro', id)
+        .then(res => {
+          hasPro = (res.data)
+          if (hasPro == 0) {
+            navigate('/PFnone')
+          } else if (hasPro == 1) {
+            navigate('/PFmyview?id=' + mem_id)
+          }
+        })
+        .catch(e => console.log(e));
+
     }
     // 성준 끝
     if (isLoggedIn == 'true') {
@@ -63,9 +73,11 @@ const Header = () => {
           </Dropdown.Toggle>
 
           <Dropdown.Menu>
+            <Dropdown.ItemText>{localStorage.getItem("id")}</Dropdown.ItemText>
+            <Dropdown.Divider />
             <Dropdown.Item onClick={goToProfile} eventKey="1">마이페이지</Dropdown.Item>
-            <Dropdown.Item onClick={goToChat} href='/chat' eventKey="2">채팅방</Dropdown.Item>
-            <Dropdown.Item eventKey="3">로그아웃</Dropdown.Item>
+            <Dropdown.Item onClick={goToChat} eventKey="2">채팅방</Dropdown.Item>
+            <Dropdown.Item onClick={logout} eventKey="3">로그아웃</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
 
@@ -101,17 +113,13 @@ const Header = () => {
           <img id='searchIcon' src={searchIcon} />
           <input placeholder='어떤 서비스가 필요하세요?'></input>
         </div>
-        <Login isLoggedIn='tue' />
+        <Login isLoggedIn={localStorage.getItem("id") === null ? 'true' : 'false'} />
       </div>
-      
+
       <div className='alarmList'>
         <Toast onClose={toggleAlarm} show={alarm} animation={false}>
           <Toast.Header>
-            <img
-              src="holder.js/20x20?text=%20"
-              className="rounded me-2"
-              alt=""
-            />
+            <img className="rounded me-2" alt="" />
             <strong className="me-auto">알림 제목</strong>
             <small>10분 전</small>
           </Toast.Header>
@@ -119,11 +127,7 @@ const Header = () => {
         </Toast>
         <Toast onClose={toggleAlarm} show={alarm} animation={false}>
           <Toast.Header>
-            <img
-              src="holder.js/20x20?text=%20"
-              className="rounded me-2"
-              alt=""
-            />
+            <img className="rounded me-2" alt="" />
             <strong className="me-auto">알림 제목</strong>
             <small>10분 전</small>
           </Toast.Header>

@@ -18,15 +18,31 @@ const PFotherview = () => {
     
     var str = decodeURI(window.location.search);
     const params = new URLSearchParams(str)
-    const nameInfo = {name : params.get('name')}
+    const idInfo = {id : params.get('id')}
+
     const [viewInfo,setViewInfo] = useState({data:{name:'',cate_one:'',cate_two:'',
     cate_three:'',close_date:'',open_date:'',say:'',mem_trust:50}});
+
+
+    const [activeInfo,setActiveInfo] = useState([])
+
+    const [evlInfo,setEvlInfo]=useState([])
     
     const firstView=()=>{
         axios
-        .post('/gigwork/profile/otherview', nameInfo)
+        .post('gigwork/profile/myview',idInfo)
         .then(res=>setViewInfo(res))
-        .catch(e=>console.log(e));
+        .catch(e=>console.log(e))
+
+        axios
+        .post('gigwork/profile/activeList',idInfo)
+        .then(res=>setActiveInfo(res.data.JsonArray))
+        .catch(e=>console.log(e))
+
+        axios
+        .post('gigwork/profile/evaluation',idInfo)
+        .then(res=>setEvlInfo(res.data.JsonArray))
+        .catch(e=>console.log(e))
     }
     const [faceImg,setFaceImg] = useState(face50)
     useEffect(()=>{
@@ -47,6 +63,21 @@ const PFotherview = () => {
             setFaceImg(down50)
         }
     },[firstView])
+
+
+    let resActiveInfo = activeInfo.map((item,idx)=>
+    <div key={item+idx}>
+        <p>{item.title}</p>
+        <span>{item.post_cate}</span>
+        <span>{item.match_date}</span>
+    </div>)
+
+    let resEvlInfo = evlInfo.map((item,idx)=>
+    <div key={item+idx}>
+        <p>{item.evl_content}</p>
+        <span>{item.evl_point}</span>
+        <span>{item.evl_date}</span>
+    </div>)
     
 
   return (
@@ -95,20 +126,14 @@ const PFotherview = () => {
             <div>
                 활동 내역
                 <div className='pfActive'>
-                <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
+                    {resActiveInfo}
                 </div>
             </div>
             <br/>
             <div>
                 받은 매너 평가
                 <div className='pfActive'>
-                <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
+                    {resEvlInfo}
                 </div>
             </div>
             <div className='pfSaveDiv'>

@@ -87,18 +87,17 @@
   }
   /* 하고싶은 말 들어갈 공간 스크롤 만들기 */
   #say{
-    width: 29.5em;
+    width: 19em;
     padding: 1em;
     border-radius: 10px;
     overflow: auto;
     resize:none;
-    font-size: 0.95em;
-   
+    font-size: 1.5em;
   }
   /* 활동내역 들어갈 공간 스크롤 만들기 */
   .pfActive{
     width: 28em;
-    height: 13em;
+    max-height: 13em;
     padding: 20px;
     background-color: white;
     border-radius: 10px;
@@ -138,7 +137,7 @@
     align-items: center;
   }
   
-  
+
   /*MPmenu*/
   /* 메뉴 고정시키기 */
   .SJmenu{
@@ -147,7 +146,7 @@
     left: 0px;
     padding: 1.5rem;
     width: 16rem;
-    height: 50rem;
+    height: 80rem;
     background-color: var(--mainNavy);
   }
   /* 메뉴 목록들 간의 공간 띄우기 */
@@ -220,7 +219,7 @@
     margin-left: 0.5em;
   }
   
-  
+
   /*마우스*/
   /* 카테고리 올렸을 경우 어떻게? */
   #pfCateHover:hover{
@@ -543,4 +542,35 @@
     margin-top: 1em;
     display: flex;
     justify-content: space-around;
+  }
+
+
+  /* 매너평가 페이지 */
+  .mannerContainer{
+    margin: 3em;
+    /* margin-left: 15em; */
+    border-radius: 50px;
+    padding: 2em;
+    width: 32em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--mainGray);
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  .mannerContainer div{
+    margin: 1em;
+  }
+
+  .starContainer{
+    width: 80%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .starContainer img{
+    width: 4em;
+  }
+  #savePF:hover{
+    cursor: pointer;
   }
