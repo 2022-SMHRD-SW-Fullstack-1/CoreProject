@@ -85,7 +85,7 @@ const PFotherview = () => {
         <MPmenu></MPmenu>
         <div className='pfMyView'>
             <div className="pfImgDiv">
-                <img src={man} height="120px"></img>
+                <img src={viewInfo.data.img_src} height="120px"></img>
                 <h2>닉네임 : {viewInfo.data.name}님</h2>
             </div>
             <div className='pfCategory'>

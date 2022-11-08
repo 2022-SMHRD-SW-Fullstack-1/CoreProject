@@ -196,7 +196,7 @@ const PFlist = () => {
     let resPfs1 = pointPfs.map((item, idx) =>
     <div className='pfCard' key={item+idx}>
             <div className='pfCardHead'>
-                <div><img src={item.imgsrc} style={{ width: '6rem' }}></img></div>
+                <div><img src={item.img_src} style={{ width: '6rem' }}></img></div>
                 <div className='pfNameGen'>
                 <div>{item.name}</div>
                 <div>{item.gender} / {item.age}세</div>

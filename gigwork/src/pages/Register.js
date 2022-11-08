@@ -1,9 +1,11 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import '../css/YS.css'
 
 const Register = () => {
 
+  const navigate = useNavigate();
   // 이메일 정보 얻기
   
   const [emailPartOne,setEmailPartOne]=useState('')
@@ -117,7 +119,8 @@ getLocation();
 const saveRegi=()=>{
   axios
   .post('/gigwork/register/create', allInfo)
-  .then(res=>console.log(res))
+  .then(res=>{console.log(res)
+    navigate('/')})
   .catch(e=>console.log(e));
 }
 // 정보 DB로 전송
@@ -152,8 +155,8 @@ const saveRegi=()=>{
         </div>
         <div className='birthGenderContainer'>
           <div>
-            <p>생년월일</p>
-            <input type='date' onChange={handleBirth}></input>
+            <p>생년월일 8자리(ex 19990101)</p>
+            <input type='text' onChange={handleBirth}></input>
           </div>
           <div>
             <p>성별</p>

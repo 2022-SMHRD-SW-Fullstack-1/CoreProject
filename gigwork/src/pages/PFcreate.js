@@ -11,6 +11,7 @@ let choiceCate =[];
 const PFcreate = () => {
 
 let testId = localStorage.getItem('id')
+let nick = localStorage.getItem('nick')
 
 let [cateOne,setCateOne] = useState('N');
 let [cateTwo,setCateTwo] = useState('N');
@@ -155,7 +156,7 @@ const closeDate=(e)=>{
         e.target.classList.add("selected")
 }
 
-let [imgSrcInfo,setImgSrcInfo] = useState('N');
+let [imgSrcInfo,setImgSrcInfo] = useState('N.png');
 
 
 useEffect(()=>{
@@ -165,8 +166,7 @@ useEffect(()=>{
 // 10월 31일
 
 const handleImg=(e)=>{
-    console.log(e.target.value);
-    console.log(e.target.files[0]);
+    setImgSrcInfo(e.target.files[0].name);
 }
 
 
@@ -235,11 +235,11 @@ const saveProfile=(e)=>{
         <MPmenu></MPmenu>
         <div className='pfCreateDiv'>
             <div className="pfImgDiv">
-                <img src={man} height="120px"/>
+                <img src={imgSrcInfo} height="120px"/>
                 <input type='file' onChange={handleImg}></input>
 
 
-                <h2>닉네임 : {testId}님</h2>
+                <h2>닉네임 : {nick}님</h2>
             </div>
             <div className='pfCategory'>
                 <div>
