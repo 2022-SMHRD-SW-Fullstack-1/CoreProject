@@ -15,8 +15,6 @@ const Header = ( socket ) => {
   // 성준 시작
   let mem_id = localStorage.getItem('id')
   let id = { id: mem_id }
-
-
   // 성준 끝
 
 
@@ -92,7 +90,7 @@ const Header = ( socket ) => {
   // 알람 메세지가 있을때와 없을때 이미지 변환
   function Alarm(props) {
     const isAlarmOn = props.isAlarmOn;
-    return isAlarmOn == 'true'
+    return isAlarmOn === true
       ? <img className='alarmImg' src={alarmOn} onClick={toggleAlarm} />
       : <img className='alarmImg' src={alarmOff} onClick={toggleAlarm} />
   }
@@ -113,7 +111,7 @@ const Header = ( socket ) => {
           <img id='searchIcon' src={searchIcon} />
           <input placeholder='어떤 서비스가 필요하세요?'></input>
         </div>
-        <Login isLoggedIn={localStorage.getItem("id") === null ? 'true' : 'false'} />
+        <Login isLoggedIn={localStorage.getItem("nick") === null ? 'true' : 'false'} />
       </div>
 
       <div className='alarmList'>
