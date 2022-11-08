@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
 // https://stomp-js.github.io/stomp-websocket/codo/class/Client.html#connect-dynamic 참조
 // over 메서드는 사용자가 사용할 WebSocket을 지정할 수 있도록 하는 Stomp.client()의 대안
@@ -20,7 +20,7 @@ const Chat = ({socket, connect}) => {
       .post('gigwork/chat/roomInfo', { nick: localStorage.getItem("nick") })
       .then(res => {
         setChatroomList(res.data)
-        setCrtChtR({roomnum: res.data[0].cr_seq})
+        setCrtChtR({roomnum: res.data[0].cr_seq, partner_nick: res.data[0].partner_nick === localStorage.getItem("nick") ? res.data[0].mem_nick : res.data[0].partner_nick})
       })
       .catch(e => console.log(e));
   }, [])
@@ -52,8 +52,10 @@ const Chat = ({socket, connect}) => {
     e.keyCode == 13 && chatInputSend()
   }
 
-
-
+  const scrollRef = useRef();
+  useEffect(() => {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+  });
 
 
 
@@ -69,17 +71,23 @@ const Chat = ({socket, connect}) => {
     if (socket.readyState !== 1) return;
     console.log(crtChtR)
     //연결된 웹소켓서버에 정보를 전달
-    socket.send(JSON.stringify({ talker: localStorage.getItem("nick"), msg: chatMessage, msg_time: now, sendto: crtChtR.partner_nick}));
-    console.log(chatMessage)
+    socket.send(JSON.stringify({ talker: localStorage.getItem("nick"), msg: chatMessage, msg_time: now, sendto: crtChtR.partner_nick, cr_seq: crtChtR.roomnum}));
     //서버 저장을 위한 axois
     axios
       .post('gigwork/chat/inputContent', { cc_seq: 0, talker: localStorage.getItem("nick"), msg: chatMessage, msg_time: now, cr_seq: crtChtR.roomnum })
       .then(res => console.log(res))
       .catch(e => console.log(e));
-    setChatContentList(chatContentList.concat({ cc_seq: null, talker: localStorage.getItem("nick"), msg: chatMessage, msg_time: timestamp(), cr_seq: crtChtR }))
+    setChatContentList(chatContentList.concat({ cc_seq: null, talker: localStorage.getItem("nick"), msg: chatMessage, msg_time: timestamp(), cr_seq: crtChtR.roomnum }))
     setChatMessage("")
   }
 
+  //소켓에서 오는 메세지를 받는 함수
+  socket.onmessage = function (event) {
+    let message = JSON.parse(event.data);
+    console.log(message);
+    if(message.cr_seq === crtChtR.roomnum)
+      setChatContentList(chatContentList.concat({ cc_seq: 0, talker: message.talker, msg: message.msg, msg_time: message.msg_time, cr_seq: message.cr_seq }))
+  };
   
 
   return (
@@ -98,7 +106,9 @@ const Chat = ({socket, connect}) => {
                                             </div>))}
         </div>
         <div className='rightBox'>
-          {chatroomList !== [] && chatContentList.map((item, idx) => (<div className={item.talker === localStorage.getItem("nick") ? 'me' : 'opp'} key={idx + item.talker}><span>{item.msg}</span><span>{item.msg_time.substr(11, 5)}</span></div>))}
+          <div className='chatContentListBox' ref={scrollRef}>
+            {chatroomList !== [] && chatContentList.map((item, idx) => (<div className={item.talker === localStorage.getItem("nick") ? 'me' : 'opp'} key={idx + item.talker}><span>{item.msg}</span><span>{item.msg_time.substr(11, 5)}</span></div>))}
+          </div>
           <div className='inputBox'>
             <input type='text' onChange={handleMessage} onKeyUp={enterPress} placeholder='메세지 입력...' value={chatMessage} autoFocus></input>
             <button onClick={chatInputSend}>전송</button>

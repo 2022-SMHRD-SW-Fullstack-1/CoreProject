@@ -35,6 +35,14 @@
     background-color: var(--mainGray);
 }
 
+.chatContentListBox {
+    overflow: auto;
+    height: 650px;
+}
+.chatContentListBox::-webkit-scrollbar {
+    width: 6px;
+}
+
 .opp, .me {
     width: 485px;
     height: 30px;
