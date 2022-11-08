@@ -6,11 +6,19 @@ import Col from 'react-bootstrap/Col';
 import axios from 'axios';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import sidepic from '../asset/imgJY/play.png'
+import { useNavigate } from 'react-router-dom';
 
 
 
 
 const JOlist = () => {
+    const navigate = useNavigate()
+    const goToDetail=(e)=>{
+        const post_num = e.target.getAttribute("name")
+        navigate(encodeURI('/JOdetail?num='+post_num))
+    }
+
+
     const date = new Date;
 
 
@@ -66,17 +74,21 @@ const JOlist = () => {
 
 
     //필터 정보를 저장할 변수
-    const [printdata, setPrintdata] = useState('')
+    const [printdata, setPrintdata] = useState([])
+    useEffect(()=>{
+        setPrintdata(receiveList)
+    },[receiveList])
 
-    // const Ckfilterbtn = () => {
-    //     setPrintdata(receiveList.filter(v => ((v.post_cate === jobCategory) && (v.post_pay <= pay))))
-    //     console.log("출력된 값", printdata)
-    // }
+    const Ckfilterbtn = () => {
+        // setPrintdata(receiveList.filter(v =>(v.post_cate==jobCategory)&&(urgent=="N"||v.urgent==urgent)&&(new Date(v.worktime_s)<=startDate)&&(new Date(v.worktime_e)>=endDate)&&(offer=='N'||offer==v.post_offer_yn)&&(v.post_pay>=pay)))
+        setPrintdata(receiveList.filter(v =>(v.post_cate==jobCategory||jobCategory==''||jobCategory=='default')&&(v.post_pay>=pay)&&(v.worktime_s>=startDate||startDate=='')&&(v.worktime_e<=endDate||endDate=='')&&(urgent=="N"||v.urgent==urgent)&&(offer=='N'||offer==v.post_offer_yn)))
+        console.log("출력된 값", printdata)
+    }
 
 
 
 
-const resReceiveList = receiveList.map((item,idx)=>{
+const resReceiveList = printdata.map((item,idx)=>{
 if(((date - new Date(item.reg_date))/1000/60/60/24)>=1){
     
 
@@ -89,7 +101,7 @@ if(((date - new Date(item.reg_date))/1000/60/60/24)>=1){
     *
     (((item.lng)-window.localStorage.getItem('lng'))*111*1000)
     ))>1000){       
-        return <div key={item+idx} className='joCardContainer'>
+        return <div key={item+idx} className='joCardContainer' onClick={goToDetail} name={item.post_num}>
     <div>{Math.floor((date - new Date(item.reg_date))/1000/60/60/24)+"일 전"}</div>
     <div>{item.title}</div>
     <div className='joContent'>{item.content}</div>
@@ -105,7 +117,7 @@ if(((date - new Date(item.reg_date))/1000/60/60/24)>=1){
                     ))/1000)+"km"}</div>
 </div> 
 }else{
-    return <div key={item+idx} className='joCardContainer'>
+    return <div key={item+idx} className='joCardContainer' onClick={goToDetail} name={item.post_num}>
     <div>{Math.floor((date - new Date(item.reg_date))/1000/60/60/24)+"일 전"}</div>
     <div>{item.title}</div>
     <div className='joContent'>{item.content}</div>
@@ -131,7 +143,7 @@ if(((date - new Date(item.reg_date))/1000/60/60/24)>=1){
     *
     (((item.lng)-window.localStorage.getItem('lng'))*111*1000)
     ))>1000){       
-        return <div key={item+idx} className='joCardContainer'>
+        return <div key={item+idx} className='joCardContainer' onClick={goToDetail} name={item.post_num}>
     <div>{Math.floor((date - new Date(item.reg_date)-32400000)/1000/60/60)+"시간 전"}</div>
     <div>{item.title}</div>
     <div className='joContent'>{item.content}</div>
@@ -147,7 +159,7 @@ if(((date - new Date(item.reg_date))/1000/60/60/24)>=1){
                     ))/1000)+"km"}</div>
 </div> 
 }else{
-    return <div key={item+idx} className='joCardContainer'>
+    return <div key={item+idx} className='joCardContainer' onClick={goToDetail} name={item.post_num}>
     <div>{Math.floor((date - new Date(item.reg_date)-32400000)/1000/60/60)+"시간 전"}</div>
     <div>{item.title}</div>
     <div className='joContent'>{item.content}</div>
@@ -174,7 +186,7 @@ if(((date - new Date(item.reg_date))/1000/60/60/24)>=1){
     *
     (((item.lng)-window.localStorage.getItem('lng'))*111*1000)
     ))>1000){       
-        return <div key={item+idx} className='joCardContainer'>
+        return <div key={item+idx} className='joCardContainer' onClick={goToDetail} name={item.post_num}>
     <div>{Math.floor((date - new Date(item.reg_date)-32400000)/1000/60)+"분 전"}</div>
     <div>{item.title}</div>
     <div className='joContent'>{item.content}</div>
@@ -190,7 +202,7 @@ if(((date - new Date(item.reg_date))/1000/60/60/24)>=1){
                     ))/1000)+"km"}</div>
 </div> 
 }else{
-    return <div key={item+idx} className='joCardContainer'>
+    return <div key={item+idx} className='joCardContainer' onClick={goToDetail} name={item.post_num}>
     <div>{Math.floor((date - new Date(item.reg_date)-32400000)/1000/60)+"분 전"}</div>
     <div>{item.title}</div>
     <div className='joContent'>{item.content}</div>
@@ -232,7 +244,7 @@ if(((date - new Date(item.reg_date))/1000/60/60/24)>=1){
 
                             <div className='wantedjob'>
                                 <h3>희망 직무</h3>
-                                <select id='wantedcategory' value={jobCategory} onChange={handleJobCategory}><option value="defualt">직무 선택</option>
+                                <select id='wantedcategory' value={jobCategory} onChange={handleJobCategory}><option value="default">직무 선택</option>
                                     {job && job.map((item, idx) => <option key={item + idx}>{item}</option>)}</select></div>
 
                             <div className='wantedprice'>
@@ -242,8 +254,8 @@ if(((date - new Date(item.reg_date))/1000/60/60/24)>=1){
                             </div>
 
                             <div className='sidebarbtn'>
-                                {/* <button id='filterbtn' onClick={Ckfilterbtn}>필터적용</button> */}
-                                <button id='filterbtn' >필터적용</button>
+                                <button id='filterbtn' onClick={Ckfilterbtn}>필터적용</button>
+                               
                             </div>
                         </div>
                     </Offcanvas.Body>
