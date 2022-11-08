@@ -1,24 +1,106 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import userPic from '../asset/imgJY/user.png'
 import starpic from '../asset/imgJY/bookmark.png'
 import '../css/JOdetail.css'
 import voidpic from '../asset/imgJY/void.png'
+import axios from 'axios'
 
 
 const JOdetail = () => {
+    //path="/JOlist" Link to={`/${num}`}
+    
 
-    const [user, setUser] = useState('user')
-    const [time, setTime] = useState(
-        new Date().toLocaleTimeString()
-    )
-    const [title, setTitle] = useState('바선생 출몰!!@! 잡아주실 분 구해요 ㅠ')
-    const [category, setCategory] = useState('벌레잡기')
-    const [content, setContent] = useState('내용입니다')
-    const [price, setPrice] = useState('5000')
 
-    // <label htmlFor='bookmark' key={ idx}>    <input type='checkbox' id='bookmark' onClick={clickbookmark}  style={{ display: "none" }} value={bookMarkIcon} /></label>
-    // const [bookMarkIcon, setbookMarkIcon] = useState(voidpic);
-    // const [bookmark, setBookMark] = useState(false)
+
+    
+    // const [user, setUser] = useState('user')
+    // const [time, setTime] = useState(
+        //     new Date().toLocaleTimeString()
+        // )
+        // const [title, setTitle] = useState('바선생 출몰!!@! 잡아주실 분 구해요 ㅠ')
+        // const [category, setCategory] = useState('벌레잡기')
+        // const [content, setContent] = useState('내용입니다')
+        // const [price, setPrice] = useState('5000')
+        
+        const [bookMarkIcon, setbookMarkIcon] = useState(voidpic);
+  
+        
+    
+    
+    
+    
+    var str = decodeURI(window.location.search);
+    const params = new URLSearchParams(str);
+    const proDetail = { post_num: params.get('post_num') }
+    console.log("값", proDetail)
+    
+    
+    
+
+    console.log(localStorage.id)
+    const [postdetail, setPostdetail] = useState({})
+    const [bookmark, setBookmark] = useState(false)
+
+   useEffect(()=>{
+
+       axios
+       .post('gigwork/my/mypost',proDetail)
+       .then(res=>setPostdetail(res.data))
+       .catch(e=>console.log(e))
+    },[])
+
+
+    const [getNick, setGetNick] = useState([])
+   
+    // useEffect(()=>{
+    //     axios
+    //     .post('gigwork/my/member', proDetail)
+    //     .then((res)=>
+    //     {setGetNick(res.data.name)
+    //     console.log("받아온 닉네임", res.data[0].name)
+    //     .catch(e=>console.log(e))
+    // })
+    // }, [])
+
+
+     const urgentmark = <span> {postdetail.urgent}</span>
+    
+    const clickBookmark = (e) => {
+        if (e.target.checked === false) {
+            setbookMarkIcon(starpic)
+        }else{
+            setbookMarkIcon(voidpic)
+        }
+
+        //===========================북마크저장기능==============================
+        // axios
+        // .post('', {nick: localStorage.getItem("nick"), post_num: post_num})
+        // .then(res => console.log(res))
+        // .catch(e => console.log(e))
+    }
+    const [bookmartinfo, setBookmarkInfo] = useState([])
+
+    
+    
+   
+   
+    //==============[북마크저장기능]  
+    // useEffect(()=>{
+    //     // setBookmarkInfo({memId:'N', postCate:category, postPay:pay,
+    //     //         postOffer:offer, workStart:startdate, workEnd:enddate, lat:locY,
+    //     //         lng:locX, urgent:urgent, title:title, content:content,imgSrc:'N',regDate:'N'})
+    //     console.log(bookmartinfo)
+    //   },[bookmark])
+    //   const createPost=()=>{
+    //     console.log(postInfo)s
+    //     axios
+    //     .post('/gigwork/my/wishlist', bookmarkinfo)
+    //     .then(res=>console.log(res))
+    //     .catch(e=>console.log(e));
+    //   }
+
+    
+    
 
     return (
         <div> <div className='top'>
@@ -30,11 +112,14 @@ const JOdetail = () => {
                             <div className='picandnick'>
                                 <div className='nickpart'>
                                     <img src={userPic} width='20px' id='userpic'></img>
+                                     
                                 </div>
-                                <div className='user'> <span>{user}</span> </div>
+                                <div className='user'> 
+                                <span>{postdetail.name}</span>
+                                </div>
                             </div>
                             <div className='trustpart'>
-                                <span>신뢰도</span>
+                               {/* <span>신뢰도</span> */}
                             </div>
                         </div>
                     </div>
@@ -42,15 +127,21 @@ const JOdetail = () => {
 
                     <div className='contentpart'>
                         <div className='titlepart'>
-                            <p id='title'>{title}</p>
+                                { postdetail.title}
                             <br />
                             <div className='subtitle'>
-                                <span id='category'>{category}</span>
-                                <span id='time'>{time}</span>
+                                <span id='category'> 
+                              { postdetail.post_cate} 
+                                </span>
+                                <span id='time'>
+                                { postdetail.reg_date}                                     
+                                </span>
                                 <span id='write'>작성</span>
                             </div>
                             <div className='contentpart'>
-                                <p id='content'>{content}<br /></p>
+                                <p id='content'>
+                                     { postdetail.content} 
+                                     <br /></p>
                             </div>
                         </div>
                     </div>
@@ -58,10 +149,19 @@ const JOdetail = () => {
 
                     <div className='tradepart'>
                         <div className='tradebtn'>
-                            <img width='20px' src={starpic} id='bookmark'></img>
+                           
+                        <label htmlFor='bookmark' >     
+                        <img width='30px' src={bookMarkIcon}/> 
+                        <input type='checkbox' id='bookmark' onClick={clickBookmark} style={{ display: "none" }} />
+                        </label>
+                        </div>
+                    
+                        <div>
+                    <span>{ postdetail.urgent}</span>
+                        { urgentmark  === 1 ? <span></span> : <div className='urgentmark'>급구</div> }
                         </div>
                         <div className='price'>
-                            <span>{price}원</span>
+                        <span> { postdetail.post_pay } 원</span>
                         </div>
 
 
