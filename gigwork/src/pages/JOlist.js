@@ -23,6 +23,7 @@ const JOlist = () => {
             .post('/gigwork/post/postlist')
             .then((res) => {
                 setReceiveList(res.data.JasonArray)
+                console.log(res.data.JasonArray)
             })
             .catch(error => console.log(error))
     }, [])
@@ -146,7 +147,8 @@ if(((date - new Date(item.reg_date))/1000/60/60/24)>=1){
                     )))+"m"}</div>
 </div> 
 }
-}else if(((date - new Date(item.reg_date)-32400000)/1000/60)>=1){
+// }else if(((date - new Date(item.reg_date)-32400000)/1000/60)>=1){
+}else{
     if(Math.floor(Math.sqrt(
         (((item.lat)-window.localStorage.getItem('lat'))*111*1000)
     *
