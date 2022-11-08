@@ -10,9 +10,9 @@ import sidepic from '../asset/imgJY/play.png'
 
 
 
-
 const JOlist = () => {
-
+    const date = new Date;
+    var agoTime = ''
 
     const [receiveList, setReceiveList] = useState([{}])
 
@@ -21,16 +21,25 @@ const JOlist = () => {
         axios
             .post('/gigwork/post/postlist')
             .then((res) => {
-                // setReceiveList(res.data)
-                console.log(res)
-            .catch(error => console.log(error))
+                setReceiveList(res.data.JasonArray)
+                // console.log((date - new Date(res.data.JasonArray[0].reg_date))/1000/60/60/24)   -- 날짜
+                // console.log((date - new Date(res.data.JasonArray[0].reg_date))/1000/60/60)   -- 시간
+                // console.log((date - new Date(res.data.JasonArray[0].reg_date))/1000/60)   -- 분
+                if(((date - new Date(res.data.JasonArray[0].reg_date))/1000/60/60/24)>0){
+                    agoTime = Math.floor((date - new Date(res.data.JasonArray[0].reg_date))/1000/60/60/24)+"일 전"
+                    console.log(agoTime)
+                }else if(((date - new Date(res.data.JasonArray[0].reg_date))/1000/60/60)>0){
+                    agoTime = Math.floor((date - new Date(res.data.JasonArray[0].reg_date))/1000/60/60)+"시간 전"
+                    console.log(agoTime)
+                }else if(((date - new Date(res.data.JasonArray[0].reg_date))/1000/60)>0){
+                    agoTime= Math.floor((date - new Date(res.data.JasonArray[0].reg_date))/1000/60)+"분 전"
+                    console.log(agoTime)
+                }
             })
+            .catch(error => console.log(error))
     }, [])
 
-
-
-
-
+    
 
 
     const job = ['청소/집안일', '동행/돌봄', '벌레/쥐잡기', '배달/장보기', '설치/조립', '팻케어', '대리/카풀', '과외수업', '역할대행', '기타']
@@ -61,7 +70,16 @@ const JOlist = () => {
 
 
 
+const resReceiveList = receiveList.map((item,idx)=>{if(((date - new Date(item.reg_date))/1000/60/60/24)>0){
+    return Math.floor((date - new Date(item.reg_date))/1000/60/60/24)+"일 전"
+}else if(((date - new Date(item.reg_date))/1000/60/60)>0){
+    return Math.floor((date - new Date(item.reg_date))/1000/60/60)+"시간 전"
+}else if(((date - new Date(item.reg_date))/1000/60)>0){
+    return Math.floor((date - new Date(item.reg_date))/1000/60)+"분 전"
+}
 
+}
+)
 
 
     return (
@@ -115,16 +133,7 @@ const JOlist = () => {
                         </select>
                     </div>
                     <div className='boxes'>
-                        {/* <Container>
-                            <Row className='Row'>
-                                {receiveList && receiveList.map((item, idx) =>
-                                    <Col md={6} xs={12} >
-                                        <div id='box' key={item + idx}>
-                                            {item.post_cate}<br />{item.title}<br />{item.post_pay}<br />{item.urgent}
-                                        </div>
-                                    </Col>)}
-                            </Row>
-                        </Container> */}
+                        {resReceiveList}
 
                     </div>
                     <div className='moreviewbtn'>
