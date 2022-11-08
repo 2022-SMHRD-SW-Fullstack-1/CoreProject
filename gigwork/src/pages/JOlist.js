@@ -15,7 +15,7 @@ const JOlist = () => {
     const navigate = useNavigate()
     const goToDetail=(e)=>{
         const post_num = e.target.getAttribute("name")
-        navigate(encodeURI('/JOdetail?num='+post_num))
+        navigate(encodeURI('/JOdetail?post_num='+post_num))
     }
 
 

@@ -30,35 +30,35 @@ const EVLmanner = () => {
 const changeStar=(e)=>{
 
     if(e.target.id==5){
+        document.querySelectorAll('img')[4].setAttribute('src',star)
+        document.querySelectorAll('img')[5].setAttribute('src',star)
         document.querySelectorAll('img')[6].setAttribute('src',star)
         document.querySelectorAll('img')[7].setAttribute('src',star)
         document.querySelectorAll('img')[8].setAttribute('src',star)
-        document.querySelectorAll('img')[9].setAttribute('src',star)
-        document.querySelectorAll('img')[10].setAttribute('src',star)
     }else if(e.target.id==4){
-        document.querySelectorAll('img')[6].setAttribute('src',star)
-        document.querySelectorAll('img')[7].setAttribute('src',star)
-        document.querySelectorAll('img')[8].setAttribute('src',star)
-        document.querySelectorAll('img')[9].setAttribute('src',star)
-        document.querySelectorAll('img')[10].setAttribute('src',bStar)
-    }else if(e.target.id==3){
-        document.querySelectorAll('img')[6].setAttribute('src',star)
-        document.querySelectorAll('img')[7].setAttribute('src',star)
-        document.querySelectorAll('img')[8].setAttribute('src',star)
-        document.querySelectorAll('img')[9].setAttribute('src',bStar)
-        document.querySelectorAll('img')[10].setAttribute('src',bStar)
-    }else if(e.target.id==2){
+        document.querySelectorAll('img')[4].setAttribute('src',star)
+        document.querySelectorAll('img')[5].setAttribute('src',star)
         document.querySelectorAll('img')[6].setAttribute('src',star)
         document.querySelectorAll('img')[7].setAttribute('src',star)
         document.querySelectorAll('img')[8].setAttribute('src',bStar)
-        document.querySelectorAll('img')[9].setAttribute('src',bStar)
-        document.querySelectorAll('img')[10].setAttribute('src',bStar)
-    }else{
+    }else if(e.target.id==3){
+        document.querySelectorAll('img')[4].setAttribute('src',star)
+        document.querySelectorAll('img')[5].setAttribute('src',star)
         document.querySelectorAll('img')[6].setAttribute('src',star)
         document.querySelectorAll('img')[7].setAttribute('src',bStar)
         document.querySelectorAll('img')[8].setAttribute('src',bStar)
-        document.querySelectorAll('img')[9].setAttribute('src',bStar)
-        document.querySelectorAll('img')[10].setAttribute('src',bStar)
+    }else if(e.target.id==2){
+        document.querySelectorAll('img')[4].setAttribute('src',star)
+        document.querySelectorAll('img')[5].setAttribute('src',star)
+        document.querySelectorAll('img')[6].setAttribute('src',bStar)
+        document.querySelectorAll('img')[7].setAttribute('src',bStar)
+        document.querySelectorAll('img')[8].setAttribute('src',bStar)
+    }else{
+        document.querySelectorAll('img')[4].setAttribute('src',star)
+        document.querySelectorAll('img')[5].setAttribute('src',bStar)
+        document.querySelectorAll('img')[6].setAttribute('src',bStar)
+        document.querySelectorAll('img')[7].setAttribute('src',bStar)
+        document.querySelectorAll('img')[8].setAttribute('src',bStar)
     }
 
     
