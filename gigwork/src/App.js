@@ -51,6 +51,11 @@ function App() {
   const [header, setHeader] = useState(<Header_logout/>)
   const url = useLocation()
 
+  useEffect(() => {
+    localStorage.getItem("nick") !== null
+    && setHeader(<Header_login socket={socket}/>)
+  }, [url])
+
   //창 크기에 따른 헤더 변환
   // const handleResize = () => {
   //   window.innerWidth > 900
@@ -76,12 +81,12 @@ function App() {
   return (
     <div>
 
-      {header}
+      {localStorage.getItem("nick") === null?<Header_logout/>:<Header_login socket={socket}/>}
 
       <div style={{ height: '60px' }} />
       <Routes>
         <Route path='/' element={<Main />}></Route>
-        <Route path='/login' element={<Login connect={connect} setHeader={setHeader}/>} />
+        <Route path='/login' element={<Login connect={connect} socket={socket} setHeader={setHeader}/>} />
         <Route path='/register' element={<Register />} />
         <Route path='/chat' element={<Chat socket={socket} connect={connect}/>} />
         <Route path='/PFnone' element={<PFnone />} />
