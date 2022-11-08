@@ -82,7 +82,7 @@
   .alarmList {
     position: absolute;
     top: 3.75rem;
-    width: 60rem;
+    width: 70rem;
     display: flex;
     flex-direction: column;
     align-items: flex-end;

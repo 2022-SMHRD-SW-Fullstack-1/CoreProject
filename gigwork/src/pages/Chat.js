@@ -81,6 +81,8 @@ const Chat = ({socket, connect}) => {
     setChatMessage("")
   }
 
+
+  console.log('chat socket : ',socket)
   //소켓에서 오는 메세지를 받는 함수
   socket.onmessage = function (event) {
     let message = JSON.parse(event.data);

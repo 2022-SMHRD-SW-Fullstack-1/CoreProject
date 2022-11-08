@@ -1,8 +1,8 @@
 import './css/App.css';
 import { Routes, Route, useLocation } from 'react-router-dom'
 
-import Header from './components/Header'
-import Header_s from './components/Header_s';
+import Header_logout from './components/Header_logout'
+import Header_login from './components/Header_login.js'
 import Chat from './pages/Chat'
 import Footer from './components/Footer'
 import Main from './pages/Main'
@@ -25,53 +25,53 @@ import MyPost from './pages/MyPost';
 
 
 function App() {
+  
+    //socket 연결
+    const [socket, setSocket] = useState();
+  
+    function connect(userName) {
+      let ws = new WebSocket("ws://localhost:8086/gigwork/replyEcho/"+userName)
+      setSocket(ws)
+      ws.onopen = () => {
+        console.log("websocket: connected")
+        // ws.send("sending message from client-server")
+  
+        ws.onmessage = function (event) {
+          console.log(event.data + '\n');
+        };
+      }
+      ws.onclose = function (event) {
+        console.log('Info: connection closed.');
+        // setTimeout( function(){connect()}, 1000)
+      };
+      ws.onerror = function (event) { console.log('Info: connection closed.'); };
+      setSocket(ws);
+    }
 
-  const [header, setHeader] = useState()
+  const [header, setHeader] = useState(<Header_logout/>)
   const url = useLocation()
 
   //창 크기에 따른 헤더 변환
-  const handleResize = () => {
-    window.innerWidth > 900
-      ? setHeader(<Header socket={socket}/>)
-      : setHeader(<Header_s />)
-  }
+  // const handleResize = () => {
+  //   window.innerWidth > 900
+  //     ? setHeader(<Header socket={socket}/>)
+  //     : setHeader(<Header_s />)
+  // }
 
   //창 크기가 변화하는지 지속적으로 체크함
-  useEffect(() => {
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    }
-  }, []);
+  // useEffect(() => {
+  //   window.addEventListener('resize', handleResize);
+  //   return () => {
+  //     window.removeEventListener('resize', handleResize);
+  //   }
+  // }, []);
 
   //url이 변경되면 헤더 크기를 창크기에 맞게 설정해줌
-  useEffect(() => {
-    window.innerWidth > 900
-      ? setHeader(<Header socket={socket}/>)
-      : setHeader(<Header_s />)
-  }, [url])
-
-  //socket 연결
-  const [socket, setSocket] = useState();
-
-  function connect(userName) {
-    let ws = new WebSocket("ws://localhost:8086/gigwork/replyEcho/"+userName)
-    setSocket(ws)
-    ws.onopen = () => {
-      console.log("websocket: connected")
-      // ws.send("sending message from client-server")
-
-      ws.onmessage = function (event) {
-        console.log(event.data + '\n');
-      };
-    }
-    ws.onclose = function (event) {
-      console.log('Info: connection closed.');
-      // setTimeout( function(){connect()}, 1000)
-    };
-    ws.onerror = function (event) { console.log('Info: connection closed.'); };
-    setSocket(ws);
-  }
+  // useEffect(() => {
+  //   window.innerWidth > 900
+  //     ? setHeader(<Header socket={socket}/>)
+  //     : setHeader(<Header_s />)
+  // }, [url])
 
   return (
     <div>
@@ -81,7 +81,7 @@ function App() {
       <div style={{ height: '60px' }} />
       <Routes>
         <Route path='/' element={<Main />}></Route>
-        <Route path='/login' element={<Login connect={connect}/>} />
+        <Route path='/login' element={<Login connect={connect} setHeader={setHeader}/>} />
         <Route path='/register' element={<Register />} />
         <Route path='/chat' element={<Chat socket={socket} connect={connect}/>} />
         <Route path='/PFnone' element={<PFnone />} />
