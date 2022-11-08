@@ -59,12 +59,30 @@ const emailSecond=(e)=>{
   // const [userId,setUserId] =useState('')
 var userId =''
 var userName=''
+var lat = 0
+var lng = 0
+if(navigator.geolocation){
+  navigator.geolocation.getCurrentPosition(function(position){
+      lat = (position.coords.latitude)
+      lng = (position.coords.longitude)
+  },function(error){
+      console.error(error);
+  },{
+      enableHighAccuracy:false,
+      maximumAge:0,
+      timeout:Infinity
+  });
+}else{
+  alert('GPS를 지원하지 않습니다')
+}
 const loginCheck=()=>{
 
   if(userId==email){
     alert('로그인 성공')
     localStorage.setItem('id',email)
     localStorage.setItem('nick',userName)
+    localStorage.setItem('lat',lat)
+    localStorage.setItem('lng',lng)
     navigate('/')
     connect(userName);
   }else{

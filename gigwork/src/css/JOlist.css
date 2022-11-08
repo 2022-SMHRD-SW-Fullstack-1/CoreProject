@@ -1,9 +1,9 @@
-.topdivB {
+/* .topdivB {
     display: flex;
     margin-top: 72px;
     flex-direction: row;
     justify-content: center;
-}
+} */
 
 
  #sidepic{
@@ -93,10 +93,10 @@
 .boxes {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    flex-wrap: wrap;
     /* border: 1px solid black; */
 }
+
 #itembox{
     justify-content: center;
 }
@@ -164,3 +164,32 @@
     color:white;
     background-color: var(--mainNavy);
 }
+
+
+/* 성준 시작 */
+.joListAllContainer{
+    margin:1rem
+}
+
+
+.boxes div{ 
+    width: 40%;
+   
+}
+
+.joContent{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-break: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; 
+    -webkit-box-orient: vertical
+}
+
+.joCardContainer{
+    margin: 1em;
+    height: 12em;
+    background-color: var(--mainGray);
+}
+
+/* 성준 끝 */

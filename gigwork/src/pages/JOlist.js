@@ -12,7 +12,7 @@ import sidepic from '../asset/imgJY/play.png'
 
 const JOlist = () => {
     const date = new Date;
-    var agoTime = ''
+
 
     const [receiveList, setReceiveList] = useState([{}])
 
@@ -22,19 +22,7 @@ const JOlist = () => {
             .post('/gigwork/post/postlist')
             .then((res) => {
                 setReceiveList(res.data.JasonArray)
-                // console.log((date - new Date(res.data.JasonArray[0].reg_date))/1000/60/60/24)   -- 날짜
-                // console.log((date - new Date(res.data.JasonArray[0].reg_date))/1000/60/60)   -- 시간
-                // console.log((date - new Date(res.data.JasonArray[0].reg_date))/1000/60)   -- 분
-                if(((date - new Date(res.data.JasonArray[0].reg_date))/1000/60/60/24)>0){
-                    agoTime = Math.floor((date - new Date(res.data.JasonArray[0].reg_date))/1000/60/60/24)+"일 전"
-                    console.log(agoTime)
-                }else if(((date - new Date(res.data.JasonArray[0].reg_date))/1000/60/60)>0){
-                    agoTime = Math.floor((date - new Date(res.data.JasonArray[0].reg_date))/1000/60/60)+"시간 전"
-                    console.log(agoTime)
-                }else if(((date - new Date(res.data.JasonArray[0].reg_date))/1000/60)>0){
-                    agoTime= Math.floor((date - new Date(res.data.JasonArray[0].reg_date))/1000/60)+"분 전"
-                    console.log(agoTime)
-                }
+                console.log(res.data.JasonArray)
             })
             .catch(error => console.log(error))
     }, [])
@@ -70,20 +58,36 @@ const JOlist = () => {
 
 
 
-const resReceiveList = receiveList.map((item,idx)=>{if(((date - new Date(item.reg_date))/1000/60/60/24)>0){
-    return Math.floor((date - new Date(item.reg_date))/1000/60/60/24)+"일 전"
-}else if(((date - new Date(item.reg_date))/1000/60/60)>0){
-    return Math.floor((date - new Date(item.reg_date))/1000/60/60)+"시간 전"
-}else if(((date - new Date(item.reg_date))/1000/60)>0){
-    return Math.floor((date - new Date(item.reg_date))/1000/60)+"분 전"
+const resReceiveList = receiveList.map((item,idx)=>{
+if(((date - new Date(item.reg_date))/1000/60/60/24)>=1){
+    return <div key={item+idx} className='joCardContainer'>
+    <div>{Math.floor((date - new Date(item.reg_date))/1000/60/60/24)+"일 전"}</div>
+    <div>{item.title}</div>
+    <div className='joContent'>{item.content}</div>
+    <div><span>{item.post_cate}</span><span>{item.post_pay}</span></div>
+</div> 
+}else if(((date - new Date(item.reg_date)-32400000)/1000/60/60)>=1){
+    return <div key={item+idx} className='joCardContainer'>
+    <div>{Math.floor((date - new Date(item.reg_date)-32400000)/1000/60/60)+"시간 전"}</div>
+    <div>{item.title}</div>
+    <div className='joContent'>{item.content}</div>
+    <div><span>{item.post_cate}</span><span>{item.post_pay}</span></div>
+</div> 
+}else if(((date - new Date(item.reg_date)-32400000)/1000/60)>=1){
+    return <div key={item+idx} className='joCardContainer'>
+    <div>{Math.floor((date - new Date(item.reg_date)-32400000)/1000/60)+"분 전"}</div>
+    <div>{item.title}</div>
+    <div className='joContent'>{item.content}</div>
+    <div><span>{item.post_cate}</span><span>{item.post_pay}</span></div>
+</div> 
 }
 
 }
 )
 
-
     return (
-        <div className='topdivB'>
+        <div className='top_div'>
+            <div className='joListAllContainer'>
 
             <div className='sidebar'>
                 <img src={sidepic} onClick={handleShow} id='sidepic'></img>
@@ -103,7 +107,7 @@ const resReceiveList = receiveList.map((item,idx)=>{if(((date - new Date(item.re
                             <div className='wantedjob'>
                                 <h3>희망 직무</h3>
                                 <select id='wantedcategory' value={jobCategory} onChange={handleJobCategory}><option value="defualt">직무 선택</option>
-                                    {job && job.map((item, idx) => <option key={item+idx}>{item}</option>)}</select></div>
+                                    {job && job.map((item, idx) => <option key={item + idx}>{item}</option>)}</select></div>
 
                             <div className='wantedprice'>
                                 <h3>희망 수당</h3>
@@ -117,7 +121,8 @@ const resReceiveList = receiveList.map((item,idx)=>{if(((date - new Date(item.re
                             </div>
                         </div>
                     </Offcanvas.Body>
-                </Offcanvas></div>
+                </Offcanvas>
+            </div>
 
 
 
@@ -133,6 +138,7 @@ const resReceiveList = receiveList.map((item,idx)=>{if(((date - new Date(item.re
                         </select>
                     </div>
                     <div className='boxes'>
+
                         {resReceiveList}
 
                     </div>
@@ -142,6 +148,7 @@ const resReceiveList = receiveList.map((item,idx)=>{if(((date - new Date(item.re
 
                     <br />
                 </div>
+            </div>
             </div>
         </div>
     )

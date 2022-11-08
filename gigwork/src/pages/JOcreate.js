@@ -7,6 +7,10 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const JOcreate = () => {
+
+  let testId = localStorage.getItem('id')
+
+
   const job = ['청소/집안일', '동행/돌봄','벌레/쥐잡기', '배달/장보기', '설치/조립', '팻케어', '대리/카풀', '과외수업', '역할대행', '기타']
   const [zonecode, setZonecode] = useState('')
   const [enroll_company, setEnroll_company] = useState({
@@ -72,6 +76,7 @@ const[timeAllEnd,setTimeAllEnd]=useState('')
 //   setTimeAllStart(startdate+"/"+starttime)
 //   setTimeAllEnd(enddate+"/"+endtime)
 // },[setStartTime,setStartdate,setEnddate,setEndtime])
+
 // 주소를 좌표로 바꾸기
 
 
@@ -82,22 +87,20 @@ useEffect(()=>{
       , {
         headers: { Authorization: `KakaoAK 60d5d81294704ed44ae5c3954751b412` }
       }
-
       )
-
       .then(res => {
         setLocX(res.data.documents[0].road_address.x)
         setLocY(res.data.documents[0].road_address.y)
       }
       ).catch(e => console.log(e))
 
-  },[setEnroll_company])
+  },[setEnroll_company,handleInput])
 // db로 값 보내주기
 const [postInfo,setPostInfo] = useState('')
 
 
 useEffect(()=>{
-  setPostInfo({memId:'N',postCate:category, postPay:pay,
+  setPostInfo({memId:testId,postCate:category, postPay:pay,
           postOffer:offer, workStart:startdate, workEnd:enddate, lat:locY,
           lng:locX, urgent:urgent, title:title, content:content,imgSrc:'N',regDate:'N'})
   console.log(postInfo)
