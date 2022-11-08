@@ -69,7 +69,6 @@ const Chat = ({socket, connect}) => {
 
   const chatInputSend = (e) => {
     if (socket.readyState !== 1) return;
-    console.log(crtChtR)
     //연결된 웹소켓서버에 정보를 전달
     socket.send(JSON.stringify({ talker: localStorage.getItem("nick"), msg: chatMessage, msg_time: now, sendto: crtChtR.partner_nick, cr_seq: crtChtR.roomnum}));
     //서버 저장을 위한 axois
@@ -81,14 +80,11 @@ const Chat = ({socket, connect}) => {
     setChatMessage("")
   }
 
-
-  console.log('chat socket : ',socket)
   //소켓에서 오는 메세지를 받는 함수
   socket.onmessage = function (event) {
     let message = JSON.parse(event.data);
     console.log(message);
-    if(message.cr_seq === crtChtR.roomnum)
-      setChatContentList(chatContentList.concat({ cc_seq: 0, talker: message.talker, msg: message.msg, msg_time: message.msg_time, cr_seq: message.cr_seq }))
+    setChatContentList(chatContentList.concat({ cc_seq: 0, talker: message.talker, msg: message.msg, msg_time: message.msg_time, cr_seq: message.cr_seq }))
   };
   
 

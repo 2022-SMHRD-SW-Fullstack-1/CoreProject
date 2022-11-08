@@ -119,7 +119,7 @@ const Header_login = ({socket}) => {
           {alertList.map((item) => (
             <Toast onClose={toggleAlarm} show={alarm} animation={false}>
               <Toast.Header ref={closeBtnRef}>
-                <img src={chat} className="rounded me-2" alt="" />
+                <img style={{height: '20px'}} src={chat} className="rounded me-2" alt="" />
                 <strong className="me-auto">{item.sendfrom}님이 채팅을 보냈습니다.</strong>
                 <small>{item.alert_time}</small>
               </Toast.Header>
