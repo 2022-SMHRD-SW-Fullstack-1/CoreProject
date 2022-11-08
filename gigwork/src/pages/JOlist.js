@@ -35,16 +35,32 @@ const JOlist = () => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const [urgent, setUrgent] = useState(false)
-    const handleCheckUrgent = (e) => { setUrgent(e.target.checked); console.log(e.target.checked) }
+    const [urgent, setUrgent] = useState('N')
+    const handleCheckUrgent = (e) => { 
+        if (urgent === 'N') {
+            setUrgent('Y')
+        
+        } else {
+            setUrgent('N')
+         
+        } 
+       
+    }
+
     const [startDate, setStartDate] = useState('');
     const handleStartDate = (e) => { setStartDate(e.target.value); console.log(e.target.value) }
     const [endDate, setEndDate] = useState('');
     const handleEndDate = (e) => { setEndDate(e.target.value); console.log(e.target.value) }
     const [jobCategory, setJobCategory] = useState('')
     const handleJobCategory = (e) => { setJobCategory(e.target.value); console.log(e.target.value) }
-    const [offer, setOffer] = useState(false)
-    const handleOffer = (e) => { setOffer(e.target.checked); console.log(e.target.checked) }
+    const [offer, setOffer] = useState('N')
+    const handleOffer = (e) => {
+        if (offer === 'N') {
+            setOffer('Y')            
+          } else if (offer === 'Y') {
+            setOffer('N')          
+          }           
+        }
     const [pay, setPay] = useState(0)
     const handlePay = (e) => { setPay(e.target.value); console.log(e.target.value) }
 
