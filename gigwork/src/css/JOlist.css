@@ -192,5 +192,10 @@
     height: 12em;
     background-color: var(--mainGray);
 }
+.urgentMark{
+    width: 2em;
+    height: 2em;
+}
+
 
 /* 성준 끝 */

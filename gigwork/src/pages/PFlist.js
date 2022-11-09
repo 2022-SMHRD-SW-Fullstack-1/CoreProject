@@ -178,6 +178,9 @@ const PFlist = () => {
 
 
     const [pointPfs, setPointPfs] = useState(pfs.filter(v => v.age < 100 && v.age > 0))
+    useEffect(()=>{
+        setPointPfs(pfs)
+    },[pfs])
 
     // 각 카드 map
     // let resPfs = pointPfs.map((item, idx) =>
@@ -199,6 +202,7 @@ const PFlist = () => {
                 <div><img src={item.img_src} style={{ width: '6rem' }}></img></div>
                 <div className='pfNameGen'>
                 <div>{item.name}</div>
+                <div>{item.sido} {item.gungu}</div>
                 <div>{item.gender} / {item.age}세</div>
                 </div>
             </div>
