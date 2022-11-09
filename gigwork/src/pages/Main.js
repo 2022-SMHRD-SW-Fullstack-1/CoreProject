@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import MapContainer from '../components/MapContainer'
 import SearchPlace from '../components/SearchPlace'
 
@@ -20,6 +20,8 @@ import delivery from '../asset/img/mainCategory_delivery.png'
 import '../css/Main.css'
 
 const Main = () => {
+
+    const navigate = useNavigate()
 
     const [myloc, setMyLoc] = useState({lat: 35.14987499845749, lng: 126.91981851928963})
     const [makerloc, setMakerLoc] = useState(myloc)
@@ -92,6 +94,18 @@ const Main = () => {
         setBtnToggle(!btnToggle)
     }
 
+    // 페이지 이동
+    const goToJOlist = () => {
+        navigate('/JOlist')
+    }
+    const goToJOcreate = () => {
+        localStorage.getItem('nick') === null
+        ?navigate('/login')
+        :navigate('/JOcreate')
+    }
+    const goToPFlist = () => {
+        navigate('/PFlist')
+    }
     
 
 
@@ -116,9 +130,9 @@ const Main = () => {
             </div>
             <div className='buttonBox' id={btnId}>
                 <button className='buttonHelp' id={btnToggle ? 'showBtn' : 'hideBtn'} onClick={changeBtn}><img src={help} /><div><p>도움 요청하기</p></div></button>
-                <button className='buttonNote' id={btnToggle ? 'hideBtn' : 'showBtn'}><img src={note} /><div><p>의뢰글</p><p>작성하기</p></div></button>
-                <button className='buttonMagnif' id={btnToggle ? 'hideBtn' : 'showBtn'}><img src={magnif} /><div><p>해결사</p><p>찾아보기</p></div></button>
-                <button className='buttonSolver'><img src={solver} /><div><p>해결사</p><p>지원하기</p></div></button>
+                <button onClick={goToJOcreate} className='buttonNote' id={btnToggle ? 'hideBtn' : 'showBtn'}><img src={note} /><div><p>의뢰글</p><p>작성하기</p></div></button>
+                <button onClick={goToPFlist} className='buttonMagnif' id={btnToggle ? 'hideBtn' : 'showBtn'}><img src={magnif} /><div><p>해결사</p><p>찾아보기</p></div></button>
+                <button onClick={goToJOlist} className='buttonSolver'><img src={solver} /><div><p>해결사</p><p>지원하기</p></div></button>
             </div>
             <div className='hurry'>
                 <div className='hurryTitle'>
