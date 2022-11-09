@@ -97,7 +97,10 @@
   }
 
 
-
+  
+  .closeAnimation {
+    display: none;
+  }
 
 
 

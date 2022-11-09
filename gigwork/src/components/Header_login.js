@@ -13,7 +13,7 @@ import chat from '../asset/img/chat.png'
 import '../css/Header.css'
 import axios from 'axios';
 
-const Header_login = ({socket}) => {
+const Header_login = ({ socket }) => {
 
   const navigate = useNavigate()
 
@@ -52,24 +52,27 @@ const Header_login = ({socket}) => {
   }
   // 성준 끝
 
-
-
   // 알림 메세지를 껏다켯다 할 조건
   const [alarm, setAlarm] = useState(false);
-  const toggleAlarm = () => setAlarm(!alarm);
+  const toggleAlarm = () => {
+    setAlarm(!alarm)
+    localStorage.getItem("nick") !== null
+      && axios
+        .post('gigwork/alert/getList', { mem_nick: localStorage.getItem("nick") })
+        .then(res => setAlertList(res.data))
+        .catch(e => console.log(e));
+  };
 
-  // 알림 메세지가 있을때와 없을때 이미지 변환
-  const [isAlarmOn, setIsAlarmOn] = useState(false);
-  function Alarm(props) {
-    return props.isAlarmOn
-      ? <img className='alarmImg' src={alarmOn} onClick={toggleAlarm} />
-      : <img className='alarmImg' src={alarmOff} onClick={toggleAlarm} />
+  const toastHeaderClick = (e) => {
+    if (e.target.tagName === 'BUTTON') {  // 클릭된 요소의 태그 이름이 BUTTON인지 확인
+      axios
+        .post('gigwork/alert/deleteAlert', { alert_seq: e.currentTarget.getAttribute("seq") })
+        .then(res => console.log(res))
+        .catch(e => console.log(e));
+      setAlertList(alertList.filter(v => v.alert_seq != e.currentTarget.getAttribute("seq")))
+
+    }
   }
-
-  const closeBtnRef = useRef()
-  useEffect(() => {
-    console.log(closeBtnRef)
-  }, [])
 
   //로그인 시 알림 목록을 가져옴
   const [alertList, setAlertList] = useState([])
@@ -79,7 +82,38 @@ const Header_login = ({socket}) => {
         .post('gigwork/alert/getList', { mem_nick: localStorage.getItem("nick") })
         .then(res => setAlertList(res.data))
         .catch(e => console.log(e));
+    setAlarm(false)
   }, [useLocation()])
+
+  // 알림 메세지가 있을때와 없을때 이미지 변환
+  const [isAlarmOn, setIsAlarmOn] = useState(false);
+  useEffect(() => {
+    alertList.length === 0
+      ? setIsAlarmOn(false)
+      : setIsAlarmOn(true)
+  }, [alertList])
+  function Alarm(props) {
+    return props.isAlarmOn
+      ? <img className='alarmImg' src={alarmOn} onClick={toggleAlarm} />
+      : <img className='alarmImg' src={alarmOff} onClick={toggleAlarm} />
+  }
+
+//알림 메세지 실시간으로 띄우기
+socket.onmessage = function (event) {
+  let message = JSON.parse(event.data);
+  console.log(message);
+  let newAlert = {
+    alert_cnt: message.msg, alert_seq: 0,
+    alert_time: message.msg_time, ckecking: 't', mem_nick: message.sendto,
+    sendfrom: message.talker
+  }
+  setAlertList(alertList.concat(newAlert))
+  axios
+    .post('gigwork/alert/addChatAlert', newAlert)
+    .then(res => console.log(res))
+    .catch(e => console.log(e));
+} 
+
 
   return (
     <div className='top_div' id='header'>
@@ -117,9 +151,9 @@ const Header_login = ({socket}) => {
       <div className='alarmList'>
         <ToastContainer position="top-end" className="p-3">
           {alertList.map((item) => (
-            <Toast onClose={toggleAlarm} show={alarm} animation={false}>
-              <Toast.Header ref={closeBtnRef}>
-                <img style={{height: '20px'}} src={chat} className="rounded me-2" alt="" />
+            <Toast show={alarm} animation={false} key={item.alert_seq}>
+              <Toast.Header onClick={toastHeaderClick} seq={item.alert_seq}>
+                <img style={{ height: '20px' }} src={chat} className="rounded me-2" alt="" />
                 <strong className="me-auto">{item.sendfrom}님이 채팅을 보냈습니다.</strong>
                 <small>{item.alert_time}</small>
               </Toast.Header>

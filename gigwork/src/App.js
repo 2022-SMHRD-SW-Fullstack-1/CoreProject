@@ -35,10 +35,6 @@ function App() {
       ws.onopen = () => {
         console.log("websocket: connected")
         // ws.send("sending message from client-server")
-  
-        ws.onmessage = function (event) {
-          console.log(event.data + '\n');
-        };
       }
       ws.onclose = function (event) {
         console.log('Info: connection closed.');
