@@ -9,6 +9,10 @@ import { Link } from 'react-router-dom';
 
 const JOcreate = () => {
 
+  const [pic, setPic] = useState('')
+  const handleFile = () => {
+
+  }
   const date = new Date
   const time = new Date(+date + 3240 * 10000).toISOString().substring(0, 16);
 
@@ -35,10 +39,8 @@ const JOcreate = () => {
   }
   const [category, setCategory] = useState('')
 
-  const handleCategory = (e) => {
-    setCategory(e.target.value)
-    console.log(e.target.value)
-  }
+
+
   const [pay, setPay] = useState('')
   const jobpay = (e) => {
     setPay(e.target.value)
@@ -96,7 +98,7 @@ const JOcreate = () => {
     setEnddate(e.target.value)
     console.log(e.target.value)
   }
-  const [starttime, setStartTime] = useState('')
+
   const [locX, setLocX] = useState(126.91981851928963)
   const [locY, setLocY] = useState(35.14987499845749)
   const [addUrl, setAddUrl] = useState('https://dapi.kakao.com/v2/local/search/address.json?query=서울')
@@ -125,15 +127,6 @@ const JOcreate = () => {
   const [postInfo, setPostInfo] = useState('')
 
 
-  useEffect(() => {
-    setPostInfo({
-      memId: localStorage.getItem("id"), postCate: category, postPay: pay,
-      postOffer: offer, workStart: startdate, workEnd: enddate, lat: locY,
-      lng: locX, urgent: urgent, title: title, content: content, imgSrc: 'N', regDate: time
-    })
-    console.log(postInfo)
-  }, [category, pay, offer, startdate, enddate, locX, locY, urgent, title, content])
-
 
 
   const createPost = () => {
@@ -143,6 +136,54 @@ const JOcreate = () => {
       .then(res => console.log(res))
       .catch(e => console.log(e));
   }
+
+
+
+  let [imgSrcInfo, setImgSrcInfo] = useState(pic);
+
+  const handleImg = (e) => {
+    setImgSrcInfo(e.target.files[0].name);
+  }
+
+   let handleCategory = (e) => {
+    setCategory(e.target.value)
+    console.log(e.target.value)
+    if (e.target.value == '청소/집안일') {
+      setImgSrcInfo('mainClean.png')
+      console.log(category(e.target.value))
+    } else if (e.target.value == '동행/돌봄') {
+      setImgSrcInfo('together.png')
+    } else if (e.target.value == '벌레/쥐잡기') {
+      setImgSrcInfo('hunt.png')
+    } else if (e.target.value == '배달/장보기') {
+      setImgSrcInfo('delivery.png')
+    } else if (e.target.value == '설치/조립') {
+      setImgSrcInfo('install.png')
+    } else if (e.target.value == '팻케어') {
+      setImgSrcInfo('pet.png')
+    } else if (e.target.value == '대리/카풀') {
+      setImgSrcInfo('car.png')
+    } else if (e.target.value == '과외수업') {
+      setImgSrcInfo('class.png')
+    } else if (e.target.value == '역할대행') {
+      setImgSrcInfo('role.png')
+    }
+
+  }
+
+
+
+  useEffect(() => {
+    setPostInfo({
+      memId: localStorage.getItem("id"), postCate: category, postPay: pay,
+      postOffer: offer, workStart: startdate, workEnd: enddate, lat: locY,
+      lng: locX, urgent: urgent, title: title, content: content, imgSrc: imgSrcInfo, regDate: time
+    })
+    console.log(postInfo)
+  }, [category, pay, offer, startdate, enddate, locX, locY, urgent, title, content, imgSrcInfo])
+
+
+
   return (
     <div>
       <div className='topdivB'>
@@ -153,7 +194,7 @@ const JOcreate = () => {
               <span id='categoryinput' >
                 <select id='selectbox' value={category} onChange={handleCategory}>
                   <option value="default">직무를 선택하세요</option>
-                  {job && job.map((item, idx) => <option key={item + idx} value={item} ref={jobRef} >{item}</option>)}
+                  {job && job.map((item, idx) => <option key={item + idx} value={item.value} ref={jobRef} >{item}</option>)}
                 </select>
               </span>
             </div>
@@ -162,9 +203,7 @@ const JOcreate = () => {
                 <span>수당{"\u00A0"}{"\u00A0"}</span>
                 <input type="text" id='salarybox' placeholder='수당을 입력해주세요' value={pay} onChange={jobpay}></input>
               </div>
-              {/* <div>
-                {"\u00A0"}{"\u00A0"}
-              </div> */}
+
               <div>
                 <input type='checkbox' id='offerYesNo' onChange={offerYN} value={offer} />
                 <span>제의받기</span>
@@ -177,7 +216,7 @@ const JOcreate = () => {
               <div className='urgentbox'>
                 <div className='datepart'>
                   <input type='datetime-local' border="none" onChange={startDate} value={startdate} disabled={disable} id='startdate' /> {"\u00A0"}부터
-                  
+
                   <input type='datetime-local' onChange={endDate} value={enddate} id='enddate' /> {"\u00A0"}까지
                 </div>
                 <div className='timebox'>
@@ -204,10 +243,11 @@ const JOcreate = () => {
                 <textarea id='textArea' placeholder='직무내용을 입력하세요' onChange={handle_content_input_change} value={content}></textarea>
               </div>
               <div className='pic'>
-                {/*
-                  <label htmlFor='uploadpic'><img src={pic} id='pic'></img></label>
-                  <input type="file" multiple accept="image/*" id='uploadpic' style={{ display: "none" }} onChange={(e) => handleFile(e)} onClick={preview} /> */}
+  
+                {/* <label htmlFor='uploadpic'>  </label> style={{ display: "none" }} */}
+                <input type="file" accept="image/*" id='uploadpic'  onChange={handleImg}  />
                 {/* onChange이벤트로 파일 객체에 대한 정보 불러옴*/}
+             {/* onClick={preview} */}
                 {/* <span>{files && <img src={files} alt="preview-img" width='70px' height='70px' />}</span> */}
               </div>
               <div className='postbtn'>
