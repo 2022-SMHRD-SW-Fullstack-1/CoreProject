@@ -134,7 +134,7 @@ const Chat = ({ socket, connect }) => {
         .post('gigwork/chat/updateCR2', { roomnum: crtChtR.roomnum, post_num: crtChtR.post_num })
         .then(res => setPostInfo(res.data))
         .catch(e => console.log(e));
-      navigate('/EVLmanner?nick=' + localStorage.getItem("id")===crtChtR.mem_nick?crtChtR.mem_nick:crtChtR.partner_nick)
+      navigate('/EVLmanner?nick=' + (localStorage.getItem("id")===crtChtR.mem_nick?crtChtR.mem_nick:crtChtR.partner_nick))
     }
   }
 
