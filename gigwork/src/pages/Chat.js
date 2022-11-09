@@ -44,7 +44,7 @@ const Chat = ({ socket, connect }) => {
         setCrtChtR({
           cr_status: res.data.find(d => d.post_num == pn).cr_status,
           roomnum: res.data.find(d => d.post_num == pn).cr_seq,
-          partner_nick: res.data.find(d => d.post_num == pn).partner_nick === localStorage.getItem("nick") ? res.data[0].mem_nick : res.data[0].partner_nick,
+          partner_nick: res.data.find(d => d.post_num == pn).partner_nick === localStorage.getItem("nick") ? res.data.find(d => d.post_num == pn).mem_nick : res.data.find(d => d.post_num == pn).partner_nick,
           post_num: res.data.find(d => d.post_num == pn).post_num
         })
       })
@@ -134,10 +134,11 @@ const Chat = ({ socket, connect }) => {
         .post('gigwork/chat/updateCR2', { roomnum: crtChtR.roomnum, post_num: crtChtR.post_num })
         .then(res => setPostInfo(res.data))
         .catch(e => console.log(e));
-      navigate('/EVLmanner?nick=' + (localStorage.getItem("id")===crtChtR.mem_nick?crtChtR.mem_nick:crtChtR.partner_nick))
+      
+      navigate('/EVLmanner?nick=' + (localStorage.getItem("nick")===crtChtR.mem_nick?crtChtR.mem_nick:crtChtR.partner_nick))
     }
   }
-
+  console.log(crtChtR)
 
   return (
     <div className='top_div' id='chatHead'>
