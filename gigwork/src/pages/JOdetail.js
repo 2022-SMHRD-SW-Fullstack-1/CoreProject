@@ -4,9 +4,26 @@ import starpic from '../asset/imgJY/bookmark.png'
 import '../css/JOdetail.css'
 import voidpic from '../asset/imgJY/void.png'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 
 const JOdetail = () => {
+
+    // 페이지 이동을 위한 navigate 생성
+    const navigate = useNavigate()
+    // 채팅 페이지 연결
+    const goToChat = () => {
+        if(localStorage.getItem('nick') === null) {
+            navigate('/login')
+        } else {
+            axios
+            .post('gigwork/chat/createCR', { mem_nick: localStorage.getItem('nick'), partner_nick: postdetail.name, post_num: params.get('post_num')})
+            .then(res => console.log(res))
+            .catch(e => console.log(e));
+            navigate('/chat')
+        }
+    }
+
     //path="/JOlist" Link to={`/${num}`}
 
     
@@ -182,7 +199,7 @@ const JOdetail = () => {
 
 
                         <div className='chat'>
-                            <button id='chatbtn'>채팅으로 거래하기</button>
+                            <button onClick={goToChat} id='chatbtn'>채팅으로 거래하기</button>
                         </div>
 
 
