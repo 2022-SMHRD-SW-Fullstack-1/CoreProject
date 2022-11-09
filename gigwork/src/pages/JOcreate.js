@@ -9,6 +9,11 @@ import { Link } from 'react-router-dom';
 
 const JOcreate = () => {
 
+  const date = new Date
+  const time = new Date(+date + 3240 * 10000).toISOString().substring(0, 16);
+
+  console.log(time)
+
   let testId = localStorage.getItem('id')
 
 
@@ -46,9 +51,12 @@ const JOcreate = () => {
     if (urgent == 'urgentN.png') {
       setUrgent('urgentY.png')
       console.log(urgent)
+      setStartdate(new Date(+date + 3240 * 10000).toISOString().substring(0, 16))
+      setDisable(true)
     } else {
       setUrgent('urgentN.png')
       console.log(urgent)
+      setDisable(false)
     }
   }
 
@@ -65,14 +73,13 @@ const JOcreate = () => {
   }
   const jobRef = useRef()
 
-  const time = new Date().toLocaleTimeString()
-  const [disabled, setDisabled] = useState(false)
+
+  const [disable, setDisable] = useState(false)
   const [offer, setOffer] = useState('offerN.png')
   const offerYN = () => {
     if (offer == 'offerN.png') {
       setOffer('offerY.png')
-      setStartdate(new Date().toLocaleTimeString())
-      setDisabled(true)
+
     } else {
       setOffer('offerN.png')
     }
@@ -94,12 +101,7 @@ const JOcreate = () => {
   const [locY, setLocY] = useState(35.14987499845749)
   const [addUrl, setAddUrl] = useState('https://dapi.kakao.com/v2/local/search/address.json?query=서울')
   // 시간구하기
-  // const [timeAllStart, setTimeAllStart] = useState('')
-  // const [timeAllEnd, setTimeAllEnd] = useState('')
-  // useEffect(()=>{
-  //   setTimeAllStart(startdate+"/"+starttime)
-  //   setTimeAllEnd(enddate+"/"+endtime)
-  // },[setStartTime,setStartdate,setEnddate,setEndtime])
+
 
   // 주소를 좌표로 바꾸기
 
@@ -125,9 +127,9 @@ const JOcreate = () => {
 
   useEffect(() => {
     setPostInfo({
-      memId: testId, postCate: category, postPay: pay,
+      memId: localStorage.getItem("id"), postCate: category, postPay: pay,
       postOffer: offer, workStart: startdate, workEnd: enddate, lat: locY,
-      lng: locX, urgent: urgent, title: title, content: content, imgSrc: 'N', regDate:time
+      lng: locX, urgent: urgent, title: title, content: content, imgSrc: 'N', regDate: time
     })
     console.log(postInfo)
   }, [category, pay, offer, startdate, enddate, locX, locY, urgent, title, content])
@@ -160,11 +162,11 @@ const JOcreate = () => {
                 <span>수당{"\u00A0"}{"\u00A0"}</span>
                 <input type="text" id='salarybox' placeholder='수당을 입력해주세요' value={pay} onChange={jobpay}></input>
               </div>
-              <div>
+              {/* <div>
                 {"\u00A0"}{"\u00A0"}
-              </div>
+              </div> */}
               <div>
-                <input type='checkbox' id='offerYesNo' onChange={offerYN} value={offer} />{"\u00A0"}
+                <input type='checkbox' id='offerYesNo' onChange={offerYN} value={offer} />
                 <span>제의받기</span>
 
               </div>
@@ -172,13 +174,15 @@ const JOcreate = () => {
             </div>
 
             <div className='datebox'>
-              <div className='datepart'>
-                <input type='datetime-local' border="none" onChange={startDate} value={startdate} disabled={disabled}/> {"\u00A0"}부터
-                {"\u00A0"}{"\u00A0"}
-                <input type='datetime-local' onChange={endDate} value={enddate} disabled={disabled} /> {"\u00A0"}까지<br />
-              </div>
-              <div className='timebox'>
-                <input type='checkbox' onChange={urgentYN} value={urgent} />{"\u00A0"}<span>급구</span>
+              <div className='urgentbox'>
+                <div className='datepart'>
+                  <input type='datetime-local' border="none" onChange={startDate} value={startdate} disabled={disable} id='startdate' /> {"\u00A0"}부터
+                  
+                  <input type='datetime-local' onChange={endDate} value={enddate} id='enddate' /> {"\u00A0"}까지
+                </div>
+                <div className='timebox'>
+                  <input type='checkbox' onChange={urgentYN} value={urgent} /><span>급구</span>
+                </div>
               </div>
               <div className='postcode'>
                 <span />근무장소

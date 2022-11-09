@@ -59,12 +59,20 @@
 
 .datebox{
     
-
+    
     padding-bottom: 0.5rem;
+}
+
+.urgentbox{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .datepart{
     margin-bottom: 0.5rem;
+    width: 18rem;
+    
     
 }   
 
@@ -76,7 +84,7 @@
 .timebox{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    /* justify-content: space-between; */
 }
 
 .timepart>input {
@@ -99,10 +107,11 @@
 }
 
 #salarybox{
-    width: 16rem;
+    width: 15rem;
     border: none;
     background-color: var( --mainGray);;
 }
+
 
 .user_enroll_text{
     margin-right: 0.5rem;
