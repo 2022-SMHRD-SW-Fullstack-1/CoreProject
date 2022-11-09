@@ -15,14 +15,21 @@ const Chat = ({socket, connect}) => {
   // 현재 접속할 채팅 방 정보를 저장할 변수
   const [crtChtR, setCrtChtR] = useState({})
   useEffect(() => {
+    let roomPostNum
     //화면로딩시 채팅 방 정보를 서버에서 가져온다.
     axios
       .post('gigwork/chat/roomInfo', { nick: localStorage.getItem("nick") })
       .then(res => {
         setChatroomList(res.data)
-        setCrtChtR({roomnum: res.data[0].cr_seq, partner_nick: res.data[0].partner_nick === localStorage.getItem("nick") ? res.data[0].mem_nick : res.data[0].partner_nick})
+        setCrtChtR({roomnum: res.data[0].cr_seq, partner_nick: res.data[0].partner_nick === localStorage.getItem("nick") ? res.data[0].mem_nick : res.data[0].partner_nick, post_num: res.data[0].post_num})
+        roomPostNum = res.data[0].post_num
       })
       .catch(e => console.log(e));
+    //채팅방이 연결된 게시물 정보를 가져온다.
+    // axios
+    //   .post('gigwork/chat/getPostInfo', {post_num: roomPostNum})
+    //   .then(res => console.log(res.data))
+    //   .catch(e => console.log(e));
   }, [])
   // 채팅방 정보를 바꿔줄 onClick 이벤트리스너
   const changeChtR = (e) => {
@@ -104,6 +111,10 @@ const Chat = ({socket, connect}) => {
                                             </div>))}
         </div>
         <div className='rightBox'>
+          <div className='topRightBox'>
+            <button>거래 시작하기</button>
+            <span></span>
+          </div>
           <div className='chatContentListBox' ref={scrollRef}>
             {chatroomList !== [] && chatContentList.map((item, idx) => (<div className={item.talker === localStorage.getItem("nick") ? 'me' : 'opp'} key={idx + item.talker}><span>{item.msg}</span><span>{item.msg_time.substr(11, 5)}</span></div>))}
           </div>

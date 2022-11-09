@@ -35,9 +35,15 @@
     background-color: var(--mainGray);
 }
 
+.topRightBox{
+    height: 65px;
+    width: 100%;
+    background-color: var(--mainYellow);
+}
+
 .chatContentListBox {
     overflow: auto;
-    height: 650px;
+    height: 585px;
 }
 .chatContentListBox::-webkit-scrollbar {
     width: 6px;
