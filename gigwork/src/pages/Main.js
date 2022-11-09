@@ -95,8 +95,10 @@ const Main = () => {
     }
 
     // 페이지 이동
-    const goToJOlist = () => {
-        navigate('/JOlist')
+    const goToJOlist = (e) => {
+        e.currentTarget.getAttribute('category') === null
+        ?navigate('/JOlist')
+        :navigate('/JOlist?category='+e.currentTarget.getAttribute('category'))
     }
     const goToJOcreate = () => {
         localStorage.getItem('nick') === null
@@ -107,25 +109,26 @@ const Main = () => {
         navigate('/PFlist')
     }
     
-
+    const job = ['청소/집안일', '동행/돌봄', '벌레/쥐잡기', '배달/장보기', '설치/조립', '팻케어', '대리/카풀', '과외수업', '역할대행', '기타']
+    
 
     return (
         <div className='top_div'>
             <div className={topDivClass} id='main'>
             <div className='category' onMouseOver={() => { setBtnToggle(true) }}>
                 <div className='categoryRow'>
-                    <div className='categoryBox'><img src={clean}/><span>청소, 집안일</span></div>
-                    <div className='categoryBox'><img src={care}/><span>동행, 돌봄</span></div>
-                    <div className='categoryBox'><img src={bug}/><span>벌레, 쥐잡기</span></div>
-                    <div className='categoryBox'><img src={delivery}/><span>배달, 장보기</span></div>
-                    <div className='categoryBox'><img src={install}/><span>설치, 조립</span></div>
+                    <div category={'청소/집안일'} onClick={goToJOlist} className='categoryBox'><img src={clean}/><span>청소, 집안일</span></div>
+                    <div category={'동행/돌봄'} onClick={goToJOlist} className='categoryBox'><img src={care}/><span>동행, 돌봄</span></div>
+                    <div category={'벌레/쥐잡기'} onClick={goToJOlist} className='categoryBox'><img src={bug}/><span>벌레, 쥐잡기</span></div>
+                    <div category={'배달/장보기'} onClick={goToJOlist} className='categoryBox'><img src={delivery}/><span>배달, 장보기</span></div>
+                    <div category={'설치/조립'} onClick={goToJOlist} className='categoryBox'><img src={install}/><span>설치, 조립</span></div>
                 </div>
                 <div className='categoryRow'>
-                    <div className='categoryBox'><img src={stroll}/><span>펫 케어</span></div>
-                    <div className='categoryBox'><img src={drive}/><span>대리, 카풀</span></div>
-                    <div className='categoryBox'><img src={teach}/><span>과외 수업</span></div>
-                    <div className='categoryBox'><img src={lineUp}/><span>역할 대행</span></div>
-                    <div className='categoryBox'><img src={etc}/><span>기타 등등</span></div>
+                    <div category={'팻케어'} onClick={goToJOlist} className='categoryBox'><img src={stroll}/><span>펫 케어</span></div>
+                    <div category={'대리/카풀'} onClick={goToJOlist} className='categoryBox'><img src={drive}/><span>대리, 카풀</span></div>
+                    <div category={'과외수업'} onClick={goToJOlist} className='categoryBox'><img src={teach}/><span>과외 수업</span></div>
+                    <div category={'역할대행'} onClick={goToJOlist} className='categoryBox'><img src={lineUp}/><span>역할 대행</span></div>
+                    <div onClick={goToJOlist} className='categoryBox'><img src={etc}/><span>기타 등등</span></div>
                 </div>
             </div>
             <div className='buttonBox' id={btnId}>
