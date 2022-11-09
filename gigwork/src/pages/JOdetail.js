@@ -9,6 +9,20 @@ import { useNavigate } from 'react-router-dom'
 
 const JOdetail = () => {
 
+   
+    //post_num 받고 proDetail에 저장하기
+    var str = decodeURI(window.location.search);
+    const params = new URLSearchParams(str);
+    const proDetail = { post_num: params.get('post_num') }
+    const [postdetail, setPostdetail] = useState({})
+    
+    
+    
+    const [bookMarkIcon, setbookMarkIcon] = useState(voidpic);
+    const urgentmark = <span> {postdetail.urgent}</span>
+    const [bookmarkcount, setBookmarkcount] = useState()       
+    const [bookmark, setBookmark] = useState(false)
+
     // 페이지 이동을 위한 navigate 생성
     const navigate = useNavigate()
     // 채팅 페이지 연결
@@ -23,120 +37,67 @@ const JOdetail = () => {
             navigate('/chat')
         }
     }
-
-    //path="/JOlist" Link to={`/${num}`}
-
     
     
-
-
-
-    
-    // const [user, setUser] = useState('user')
-    // const [time, setTime] = useState(
-        //     new Date().toLocaleTimeString()
-        // )
-        // const [title, setTitle] = useState('바선생 출몰!!@! 잡아주실 분 구해요 ㅠ')
-        // const [category, setCategory] = useState('벌레잡기')
-        // const [content, setContent] = useState('내용입니다')
-        // const [price, setPrice] = useState('5000')
+    useEffect(()=>{
         
-        const [bookMarkIcon, setbookMarkIcon] = useState(voidpic);
-  
-        
-    
-    
-    
-    
-    var str = decodeURI(window.location.search);
-    const params = new URLSearchParams(str);
-    const proDetail = { post_num: params.get('post_num') }
-    console.log("값", proDetail)
-    
-    
-    
-
-    console.log(localStorage.id)
-    const [postdetail, setPostdetail] = useState({})
-    const [bookmark, setBookmark] = useState(false)
-
-   useEffect(()=>{
-
-       axios
-       .post('gigwork/my/mypost',proDetail)
-       .then(res=>setPostdetail(res.data))
-       .catch(e=>console.log(e))
+        axios
+        .post('gigwork/my/mypost',proDetail)
+        .then(res=>setPostdetail(res.data))
+        .catch(e=>console.log(e))
+      
+        // bookmark 여부 가져오기
+        axios
+        .post('gigwork/my/searchBookmark', {mem_id: localStorage.getItem("id"), post_num: proDetail.post_num} )
+        .then(res=>{
+            setBookmarkcount(res.data)
+            console.log('넘어온 값?', res.data)})
+            .catch(e=>console.log('오류?', e))
     },[])
+    
+  
+    
+    useEffect(()=>{
+        const config = {"Content-Type": 'application/json'};
 
+        axios
+        .post('gigwork/my/mybookmark', 
+        {mem_id: localStorage.getItem("id"), post_num: proDetail.post_num}, config)
+        .then(res=>{console.log(res.data)})
+        .catch(e=>console.log(e))
 
-    const [getNick, setGetNick] = useState([])
+    },[bookMarkIcon])
+    
    
-    // useEffect(()=>{
-    //     axios
-    //     .post('gigwork/my/member', proDetail)
-    //     .then((res)=>
-    //     {setGetNick(res.data.name)
-    //     console.log("받아온 닉네임", res.data[0].name)
-    //     .catch(e=>console.log(e))
-    // })
-    // }, [])
-
-
-
-     const urgentmark = <span> {postdetail.urgent}</span>
-     const [bookmarkcount, setBookmarkcount] = useState()
-     
-    //  axios
-    //  .post('gigwork/my/searchBookmark', {mem_id: localStorage.getItem("id"), post_num: proDetail.post_num} )
-    //  .then(res=>setBookmarkcount(res.data))
-    //  .catch(e=>console.log(e))
     
-    
-     const clickBookmark = (e) => {
-        if (e.target.checked === false) {
+                
+    const clickBookmark = (e) => {
+        if (bookMarkIcon == starpic) {
+           setbookMarkIcon(voidpic)
+         }else if(bookMarkIcon == voidpic){
             setbookMarkIcon(starpic)
-        }else{
-            setbookMarkIcon(voidpic)
-        }
-        axios
-        .post('gigwork/my/mybookmark', {mem_id: localStorage.getItem("id"), post_num: proDetail.post_num})
-        .then(res => console.log(res))
-        .catch(e => console.log(e))
-    }
 
-    if (bookmarkcount === 1) {
-        axios
-        .post('gigwork/my/')
-    }
+        }         
+    } 
 
-// ===========================북마크저장기능==============================
-    
-    const [bookmartinfo, setBookmarkInfo] = useState([])
+    //콘솔 출력을 위한 값
+    console.log("값", proDetail)
+    console.log(localStorage.id)
+         
+
+
+                    
 
     
     
-   
-   
-    //==============[북마크저장기능]  
-    // useEffect(()=>{
-    //     // setBookmarkInfo({memId:'N', postCate:category, postPay:pay,
-    //     //         postOffer:offer, workStart:startdate, workEnd:enddate, lat:locY,
-    //     //         lng:locX, urgent:urgent, title:title, content:content,imgSrc:'N',regDate:'N'})
-    //     console.log(bookmartinfo)
-    //   },[bookmark])
-    //   const createPost=()=>{
-    //     console.log(postInfo)s
-    //     axios
-    //     .post('/gigwork/my/wishlist', bookmarkinfo)
-    //     .then(res=>console.log(res))
-    //     .catch(e=>console.log(e));
-    //   }
-
     
     
-
-    return (
-        <div> <div className='top'>
+    
+    
+ 
+                
+        return (
+            <div> <div className='top'>
             <div>
 
                 <div className='containerB'>
@@ -160,7 +121,7 @@ const JOdetail = () => {
 
                     <div className='contentpart'>
                         <div className='titlepart'>
-                                { postdetail.title}
+                                <span id='titlepart'>{ postdetail.title} </span>
                             <br />
                             <div className='subtitle'>
                                 <span id='category'> 
@@ -172,9 +133,12 @@ const JOdetail = () => {
                                 <span id='write'>작성</span>
                             </div>
                             <div className='contentpart'>
-                                <p id='content'>
+                                    
+                                    <p id='content'>
                                      { postdetail.content} 
-                                     <br /></p>
+                                     <img src={ postdetail.img_src} id='imgcontent'/> 
+                                     
+                                <br/></p>
                             </div>
                         </div>
                     </div>
@@ -190,8 +154,8 @@ const JOdetail = () => {
                         </div>
                     
                         <div>
-                    <span>{ postdetail.urgent}</span>
-                        { urgentmark  === 1 ? <span></span> : <div className='urgentmark'>급구</div> }
+                    
+                        { urgentmark  === 1 ? <span>''</span> : <div className='urgentmark'>급구</div> }
                         </div>
                         <div className='price'>
                         <span> { postdetail.post_pay } 원</span>
