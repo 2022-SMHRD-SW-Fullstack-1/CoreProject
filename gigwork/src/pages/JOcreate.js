@@ -38,15 +38,15 @@ const JOcreate = () => {
     setPay(e.target.value)
     console.log(e.target.value)
   }
-  const [urgent, setUrgent] = useState('N')
+  const [urgent, setUrgent] = useState(urgentN.png)
 
 
   const urgentYN = () => {
-    if (urgent === 'N') {
-      setUrgent('Y')
+    if (urgent == urgentN.png) {
+      setUrgent(urgentY.png)
       console.log(urgent)
     } else {
-      setUrgent('N')
+      setUrgent(urgentN.png)
       console.log(urgent)
     }
   }
@@ -65,12 +65,12 @@ const JOcreate = () => {
   const jobRef = useRef()
 
 
-  const [offer, setOffer] = useState('N')
+  const [offer, setOffer] = useState(offerN.png)
   const offerYN = () => {
-    if (offer === 'N') {
-      setOffer('Y')
+    if (offer == offerN.png) {
+      setOffer(offerY.png)
     } else {
-      setOffer('N')
+      setOffer(offerN.png)
     }
   }
 
