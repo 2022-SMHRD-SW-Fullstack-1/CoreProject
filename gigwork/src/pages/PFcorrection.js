@@ -235,10 +235,11 @@ const PFcorrection = () => {
             <div className='pfCreateDiv'>
                 <div className="pfImgDiv">
                     <img src={imgSrcInfo} height="120px"/>
-                    <input type='file' onChange={handleImg}></input>
+                    <label for="ex_file"><img src='pfplus.png' className='pfPlus'></img></label> 
+                    <input type='file' id='ex_file' onChange={handleImg}></input>
     
     
-                    <h2>닉네임 : {nick}님</h2>
+                    <h1>{nick}</h1>
                 </div>
                 <div className='pfCategory'>
                     <div>

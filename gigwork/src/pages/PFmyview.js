@@ -84,7 +84,7 @@ const PFmyview = () => {
             <div className='pfMyView'>
                 <div className="pfImgDiv">
                     <img src={viewInfo.data.img_src} height="120px"></img>
-                    <h2>닉네임 : {viewInfo.data.name}님</h2>
+                    <h1> {viewInfo.data.name}</h1>
                 </div>
                 <div className='pfCategory'>
                     <div >

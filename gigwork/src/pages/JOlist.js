@@ -42,9 +42,9 @@ const JOlist = () => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const [urgent, setUrgent] = useState('urgentN.png')
+    const [urgent, setUrgent] = useState('N')
     const handleCheckUrgent = (e) => { 
-        if (urgent === 'urgentN.png') {
+        if (urgent === 'urgentN.png' || urgent === 'N') {
             setUrgent('urgentY.png')
         } else {
             setUrgent('urgentN.png')
@@ -59,9 +59,9 @@ const JOlist = () => {
     const handleEndDate = (e) => { setEndDate(e.target.value); console.log(e.target.value) }
     const [jobCategory, setJobCategory] = useState('')
     const handleJobCategory = (e) => { setJobCategory(e.target.value); console.log(e.target.value) }
-    const [offer, setOffer] = useState('offerN.png')
+    const [offer, setOffer] = useState('N')
     const handleOffer = (e) => {
-        if (offer === 'offerN.png') {
+        if (offer == 'offerN.png' ||offer == 'N') {
             setOffer('offerY.png')            
           } else if (offer === 'offerY.png') {
             setOffer('offerN.png')          
@@ -79,7 +79,13 @@ const JOlist = () => {
     const Ckfilterbtn = () => {
         // setPrintdata(receiveList.filter(v =>(v.post_cate==jobCategory)&&(urgent=="N"||v.urgent==urgent)&&(new Date(v.worktime_s)<=startDate)&&(new Date(v.worktime_e)>=endDate)&&(offer=='N'||offer==v.post_offer_yn)&&(v.post_pay>=pay)))
         setPrintdata(receiveList.filter(v =>(v.post_cate==jobCategory||jobCategory==''||jobCategory=='default')&&(v.post_pay>=pay)&&(v.worktime_s>=startDate||startDate=='')&&(v.worktime_e<=endDate||endDate=='')&&(urgent=="N"||v.urgent==urgent)&&(offer=='N'||offer==v.post_offer_yn)))
-        console.log("출력된 값", printdata)
+        setJobCategory('')
+        setPay(0)
+        setStartDate('')
+        setEndDate('')
+        setUrgent('N')
+        setOffer('N')
+        handleClose();
     }
     
     const [printdata, setPrintdata] = useState(receiveList.filter(v=>(v.post_pay>=0)))
@@ -100,11 +106,10 @@ if(((date - new Date(item.reg_date))/1000/60/60/24)>=1){
     (((item.lng)-window.localStorage.getItem('lng'))*111*1000)
     ))>1000){       
         return <div key={item+idx} className='joCardContainer' onClick={goToDetail} name={item.post_num}>
-    <div>{Math.floor((date - new Date(item.reg_date))/1000/60/60/24)+"일 전"}</div>
-    <div>{item.title}<img className='urgentMark' src={item.urgent}></img></div>
-    <div className='joContent'>{item.content}</div>
-    <div><span>{item.post_cate}</span><span>{item.post_pay}</span></div>
-    <div>{Math.floor((Math.sqrt(
+    <div name={item.post_num} className='joCardItem1'><img className='urgentMark' src={item.urgent}></img><img src={item.post_offer_yn} className='offerMark'></img><span/><span/><span/><span/>{Math.floor((date - new Date(item.reg_date))/1000/60/60/24)+"일 전"}</div>
+    <div name={item.post_num} className='joTitle'><h4 name={item.post_num}>{item.title}</h4></div>
+    <div name={item.post_num} className='joContent'>{item.content}</div>
+    <div name={item.post_num} className='joCardItem3'>{Math.floor((Math.sqrt(
                         (((item.lat)-window.localStorage.getItem('lat'))*111*1000)
                     *
                     (((item.lat)-window.localStorage.getItem('lat'))*111*1000)
@@ -112,15 +117,14 @@ if(((date - new Date(item.reg_date))/1000/60/60/24)>=1){
                     (((item.lng)-window.localStorage.getItem('lng'))*111*1000)
                     *
                     (((item.lng)-window.localStorage.getItem('lng'))*111*1000)
-                    ))/1000)+"km"}</div>
+                    ))/1000)+"km"}<span>{item.post_cate}</span><span>{item.post_pay}원</span></div>
 </div> 
 }else{
     return <div key={item+idx} className='joCardContainer' onClick={goToDetail} name={item.post_num}>
-    <div>{Math.floor((date - new Date(item.reg_date))/1000/60/60/24)+"일 전"}</div>
-    <div>{item.title}</div>
-    <div className='joContent'>{item.content}</div>
-    <div><span>{item.post_cate}</span><span>{item.post_pay}</span></div>
-    <div>{Math.floor((Math.sqrt(
+    <div name={item.post_num} className='joCardItem1'><img className='urgentMark' src={item.urgent}></img><img src={item.post_offer_yn} className='offerMark'></img><span/><span/><span/><span/>{Math.floor((date - new Date(item.reg_date))/1000/60/60/24)+"일 전"}</div>
+    <div name={item.post_num} className='joTitle'><h4 name={item.post_num}>{item.title}</h4></div>
+    <div name={item.post_num} className='joContent'>{item.content}</div>
+    <div name={item.post_num} className='joCardItem3'><span  className='greenTextColor'>{Math.floor((Math.sqrt(
                         (((item.lat)-window.localStorage.getItem('lat'))*111*1000)
                     *
                     (((item.lat)-window.localStorage.getItem('lat'))*111*1000)
@@ -128,7 +132,7 @@ if(((date - new Date(item.reg_date))/1000/60/60/24)>=1){
                     (((item.lng)-window.localStorage.getItem('lng'))*111*1000)
                     *
                     (((item.lng)-window.localStorage.getItem('lng'))*111*1000)
-                    )))+"m"}</div>
+                    )))+"m"}</span><span>{item.post_cate}</span><span>{item.post_pay}원</span></div>
 </div> 
 }
 }else if(((date - new Date(item.reg_date)-32400000)/1000/60/60)>=1){
@@ -142,11 +146,10 @@ if(((date - new Date(item.reg_date))/1000/60/60/24)>=1){
     (((item.lng)-window.localStorage.getItem('lng'))*111*1000)
     ))>1000){       
         return <div key={item+idx} className='joCardContainer' onClick={goToDetail} name={item.post_num}>
-    <div>{Math.floor((date - new Date(item.reg_date)-32400000)/1000/60/60)+"시간 전"}</div>
-    <div>{item.title}</div>
-    <div className='joContent'>{item.content}</div>
-    <div><span>{item.post_cate}</span><span>{item.post_pay}</span></div>
-    <div>{Math.floor((Math.sqrt(
+    <div name={item.post_num} className='joCardItem1'><img className='urgentMark' src={item.urgent}></img><img src={item.post_offer_yn} className='offerMark'></img><span/><span/><span/><span/>{Math.floor((date - new Date(item.reg_date)-32400000)/1000/60/60)+"시간 전"}</div>
+    <div name={item.post_num} className='joTitle'><h4 name={item.post_num}>{item.title}</h4></div>
+    <div name={item.post_num} className='joContent'>{item.content}</div>
+    <div name={item.post_num} className='joCardItem3'>{Math.floor((Math.sqrt(
                         (((item.lat)-window.localStorage.getItem('lat'))*111*1000)
                     *
                     (((item.lat)-window.localStorage.getItem('lat'))*111*1000)
@@ -154,15 +157,14 @@ if(((date - new Date(item.reg_date))/1000/60/60/24)>=1){
                     (((item.lng)-window.localStorage.getItem('lng'))*111*1000)
                     *
                     (((item.lng)-window.localStorage.getItem('lng'))*111*1000)
-                    ))/1000)+"km"}</div>
+                    ))/1000)+"km"}<span>{item.post_cate}</span><span>{item.post_pay}원</span></div>
 </div> 
 }else{
     return <div key={item+idx} className='joCardContainer' onClick={goToDetail} name={item.post_num}>
-    <div>{Math.floor((date - new Date(item.reg_date)-32400000)/1000/60/60)+"시간 전"}</div>
-    <div>{item.title}</div>
-    <div className='joContent'>{item.content}</div>
-    <div><span>{item.post_cate}</span><span>{item.post_pay}</span></div>
-    <div>{Math.floor((Math.sqrt(
+    <div name={item.post_num} className='joCardItem1'><img className='urgentMark' src={item.urgent}></img><img src={item.post_offer_yn} className='offerMark'></img><span/><span/><span/><span/>{Math.floor((date - new Date(item.reg_date)-32400000)/1000/60/60)+"시간 전"}</div>
+    <div name={item.post_num} className='joTitle'><h4 name={item.post_num}>{item.title}</h4></div>
+    <div name={item.post_num} className='joContent'>{item.content}</div>
+    <div name={item.post_num} className='joCardItem3'><span  className='greenTextColor'>{Math.floor((Math.sqrt(
                         (((item.lat)-window.localStorage.getItem('lat'))*111*1000)
                     *
                     (((item.lat)-window.localStorage.getItem('lat'))*111*1000)
@@ -170,7 +172,7 @@ if(((date - new Date(item.reg_date))/1000/60/60/24)>=1){
                     (((item.lng)-window.localStorage.getItem('lng'))*111*1000)
                     *
                     (((item.lng)-window.localStorage.getItem('lng'))*111*1000)
-                    )))+"m"}</div>
+                    )))+"m"}</span><span>{item.post_cate}</span><span>{item.post_pay}원</span></div>
 </div> 
 }
 // }else if(((date - new Date(item.reg_date)-32400000)/1000/60)>=1){
@@ -185,11 +187,10 @@ if(((date - new Date(item.reg_date))/1000/60/60/24)>=1){
     (((item.lng)-window.localStorage.getItem('lng'))*111*1000)
     ))>1000){       
         return <div key={item+idx} className='joCardContainer' onClick={goToDetail} name={item.post_num}>
-    <div>{Math.floor((date - new Date(item.reg_date)-32400000)/1000/60)+"분 전"}</div>
-    <div>{item.title}</div>
-    <div className='joContent'>{item.content}</div>
-    <div><span>{item.post_cate}</span><span>{item.post_pay}</span></div>
-    <div>{Math.floor((Math.sqrt(
+    <div name={item.post_num} className='joCardItem1'><img className='urgentMark' src={item.urgent}></img><img src={item.post_offer_yn} className='offerMark'></img><span/><span/><span/><span/><span className='greenTextColor'>{Math.floor((date - new Date(item.reg_date)-32400000)/1000/60)+"분 전"}</span></div>
+    <div name={item.post_num} className='joTitle'><h4 name={item.post_num}>{item.title}</h4></div>
+    <div name={item.post_num} className='joContent'>{item.content}</div>
+    <div name={item.post_num} className='joCardItem3'>{Math.floor((Math.sqrt(
                         (((item.lat)-window.localStorage.getItem('lat'))*111*1000)
                     *
                     (((item.lat)-window.localStorage.getItem('lat'))*111*1000)
@@ -197,15 +198,14 @@ if(((date - new Date(item.reg_date))/1000/60/60/24)>=1){
                     (((item.lng)-window.localStorage.getItem('lng'))*111*1000)
                     *
                     (((item.lng)-window.localStorage.getItem('lng'))*111*1000)
-                    ))/1000)+"km"}</div>
+                    ))/1000)+"km"}<span>{item.post_cate}</span><span>{item.post_pay}원</span></div>
 </div> 
 }else{
     return <div key={item+idx} className='joCardContainer' onClick={goToDetail} name={item.post_num}>
-    <div>{Math.floor((date - new Date(item.reg_date)-32400000)/1000/60)+"분 전"}</div>
-    <div>{item.title}</div>
-    <div className='joContent'>{item.content}</div>
-    <div><span>{item.post_cate}</span><span>{item.post_pay}</span></div>
-    <div>{Math.floor((Math.sqrt(
+    <div name={item.post_num}  className='joCardItem1'><img className='urgentMark' src={item.urgent}></img><img src={item.post_offer_yn} className='offerMark'></img><span/><span/><span/><span/><span className='greenTextColor'>{Math.floor((date - new Date(item.reg_date)-32400000)/1000/60)+"분 전"}</span></div>
+    <div name={item.post_num} className='joTitle'><h4 name={item.post_num}>{item.title}</h4></div>
+    <div name={item.post_num} className='joContent'>{item.content}</div>
+    <div name={item.post_num} className='joCardItem3'><span  className='greenTextColor'>{Math.floor((Math.sqrt(
                         (((item.lat)-window.localStorage.getItem('lat'))*111*1000)
                     *
                     (((item.lat)-window.localStorage.getItem('lat'))*111*1000)
@@ -213,7 +213,7 @@ if(((date - new Date(item.reg_date))/1000/60/60/24)>=1){
                     (((item.lng)-window.localStorage.getItem('lng'))*111*1000)
                     *
                     (((item.lng)-window.localStorage.getItem('lng'))*111*1000)
-                    )))+"m"}</div>
+                    )))+"m"}</span><span>{item.post_cate}</span><span>{item.post_pay}원</span></div>
 </div> 
 }
 }
@@ -221,71 +221,64 @@ if(((date - new Date(item.reg_date))/1000/60/60/24)>=1){
 }
 )
 
+
+
+
+
+
+
+
     return (
         <div className='top_div'>
-            <div className='joListAllContainer'>
+            <div className='joListTopDiv'>
+                <div className='joListFirstDiv'>
+                    <img src='arrowRight.png' onClick={handleShow} id='sidePic'></img>
+                    <Offcanvas show={show} onHide={handleClose}>
+                        <Offcanvas.Header closeButton>
+                            <Offcanvas.Title></Offcanvas.Title>
+                        </Offcanvas.Header>
+                        <Offcanvas.Body>
+                            <div >
 
-            <div className='sidebar'>
-                <img src={sidepic} onClick={handleShow} id='sidepic'></img>
-                <Offcanvas show={show} onHide={handleClose}>
-                    <Offcanvas.Header closeButton>
-                        <Offcanvas.Title></Offcanvas.Title>
-                    </Offcanvas.Header>
-                    <Offcanvas.Body>
-                        <div className='filter'>
+                                <h3 id='wantedperiod'>희망 기간</h3>
+                                <input type='checkbox' id='checkpart' onChange={handleCheckUrgent} value={urgent} />급구만 보기<br />
 
-                            <h3 id='wantedperiod'>희망 기간</h3>
-                            <input type='checkbox' id='checkpart' onChange={handleCheckUrgent} value={urgent} />급구만 보기<br />
+                                <div >
+                                    <input type='datetime-local' value={startDate} onChange={handleStartDate} />{"\u00A0"}부터{"\u00A0"}<br /><input type='datetime-local' value={endDate} onChange={handleEndDate} />{"\u00A0"}까지{"\u00A0"}</div>
 
-                            <div className='period'>
-                                <input type='datetime-local' value={startDate} onChange={handleStartDate} />{"\u00A0"}부터{"\u00A0"}<br /><input type='datetime-local' value={endDate} onChange={handleEndDate} />{"\u00A0"}까지{"\u00A0"}</div>
+                                <div >
+                                    <h3>희망 직무</h3>
+                                    <select id='wantedcategory' value={jobCategory} onChange={handleJobCategory}><option value="default">직무 선택</option>
+                                        {job && job.map((item, idx) => <option key={item + idx}>{item}</option>)}</select></div>
 
-                            <div className='wantedjob'>
-                                <h3>희망 직무</h3>
-                                <select id='wantedcategory' value={jobCategory} onChange={handleJobCategory}><option value="default">직무 선택</option>
-                                    {job && job.map((item, idx) => <option key={item + idx}>{item}</option>)}</select></div>
+                                <div>
+                                    <h3>희망 수당</h3>
+                                    <input type='checkbox' id='checkpart' onChange={handleOffer} value={offer} />제의받음만 보기<br />
+                                    <input type='text' id='pricenum'  value={pay} onChange={handlePay}></input> 원 이상
+                                </div>
 
-                            <div className='wantedprice'>
-                                <h3>희망 수당</h3>
-                                <input type='checkbox' id='checkpart' onChange={handleOffer} value={offer} />제의받음만 보기<br />
-                                <input type='number' id='pricenum' min='1000' value={pay} onChange={handlePay}></input>
+                                <div className='listFilterContainer'>
+                                    <button id='filterbtn' onClick={Ckfilterbtn}>필터적용 ▶▶</button><span></span>
+
+                                </div>
                             </div>
-
-                            <div className='sidebarbtn'>
-                                <button id='filterbtn' onClick={Ckfilterbtn}>필터적용</button>
-                               
-                            </div>
-                        </div>
-                    </Offcanvas.Body>
-                </Offcanvas>
-            </div>
-
-
-
-            <div className='previewlist'>
-                <div className="listalignbox">
-                    <div className='secondtopdiv'>
-                        <span id='dong'>내주변 검색결과</span>
-                        <select id='category_listmain'>
+                        </Offcanvas.Body>
+                    </Offcanvas>
+                </div>
+                <div className='joListSecondDiv'>
+                    <div className='joCateDiv'>
+                        <span id='dong'>내주변 검색결과</span> <span><select id='category_listmain'>
                             <option value="default" >정렬 기준</option>
                             <option>최다 거래순</option>
                             <option>인기순</option>
                             <option>오래된 순서순</option>
-                        </select>
+                        </select></span>
                     </div>
-                    <div className='boxes'>
-
-                        {resReceiveList}
-
-                    </div>
-                    <div className='moreviewbtn'>
-                        <button id='morebtn'>더보기</button>
-                    </div>
-
-                    <br />
+                    <div className='joListDiv'>{resReceiveList}</div>
                 </div>
+
             </div>
-            </div>
+
         </div>
     )
 }

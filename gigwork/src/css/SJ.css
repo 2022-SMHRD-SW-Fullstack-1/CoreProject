@@ -63,8 +63,20 @@
     align-items: center;
   }
   /* 이미지와 닉네임 공간 띄우기 */
-  .pfImgDiv h2{
-    margin: 1em;
+  .pfImgDiv h1{
+    margin-left: 2em;
+  }
+  #ex_file{
+    display: none;
+  }
+ .pfPlus{
+  margin-top: 0.5em !important;
+  width: 2.5em !important;
+  border-radius: 0px !important;
+  cursor: pointer;
+ }
+  .pfImgDiv #file-upload-button{
+    height: 10em;
   }
   /* 카테고리 사이드 띄우기 */
   .pfCategory{
