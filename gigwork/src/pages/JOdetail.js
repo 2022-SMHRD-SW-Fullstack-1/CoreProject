@@ -8,6 +8,8 @@ import axios from 'axios'
 
 const JOdetail = () => {
     //path="/JOlist" Link to={`/${num}`}
+
+    
     
 
 
@@ -63,21 +65,35 @@ const JOdetail = () => {
     // }, [])
 
 
+
      const urgentmark = <span> {postdetail.urgent}</span>
+     const [bookmarkcount, setBookmarkcount] = useState()
+     
+     axios
+     .post('gigwork/my/searchBookmark', {mem_id: localStorage.getItem("id"), post_num: proDetail.post_num} )
+     .then(res=>setBookmarkcount(res.data))
+     .catch(e=>console.log(e))
     
-    const clickBookmark = (e) => {
+    
+     const clickBookmark = (e) => {
         if (e.target.checked === false) {
             setbookMarkIcon(starpic)
         }else{
             setbookMarkIcon(voidpic)
         }
-
-        //===========================북마크저장기능==============================
-        // axios
-        // .post('', {nick: localStorage.getItem("nick"), post_num: post_num})
-        // .then(res => console.log(res))
-        // .catch(e => console.log(e))
+        axios
+        .post('gigwork/my/mybookmark', {mem_id: localStorage.getItem("id"), post_num: proDetail.post_num})
+        .then(res => console.log(res))
+        .catch(e => console.log(e))
     }
+
+    if (bookmarkcount === 1) {
+        axios
+        .post('gigwork/my/')
+    }
+
+// ===========================북마크저장기능==============================
+    
     const [bookmartinfo, setBookmarkInfo] = useState([])
 
     
