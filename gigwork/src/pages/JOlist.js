@@ -107,6 +107,7 @@ if(((date - new Date(item.reg_date))/1000/60/60/24)>=1){
     ))>1000){       
         return <div key={item+idx} className='joCardContainer' onClick={goToDetail} name={item.post_num}>
     <div name={item.post_num} className='joCardItem1'><img className='urgentMark' src={item.urgent}></img><img src={item.post_offer_yn} className='offerMark'></img><span/><span/><span/><span/>{Math.floor((date - new Date(item.reg_date))/1000/60/60/24)+"일 전"}</div>
+            <div className='joCardItem2'><img src={item.img_src}></img></div>
     <div name={item.post_num} className='joTitle'><h4 name={item.post_num}>{item.title}</h4></div>
     <div name={item.post_num} className='joContent'>{item.content}</div>
     <div name={item.post_num} className='joCardItem3'>{Math.floor((Math.sqrt(
@@ -122,6 +123,7 @@ if(((date - new Date(item.reg_date))/1000/60/60/24)>=1){
 }else{
     return <div key={item+idx} className='joCardContainer' onClick={goToDetail} name={item.post_num}>
     <div name={item.post_num} className='joCardItem1'><img className='urgentMark' src={item.urgent}></img><img src={item.post_offer_yn} className='offerMark'></img><span/><span/><span/><span/>{Math.floor((date - new Date(item.reg_date))/1000/60/60/24)+"일 전"}</div>
+            <div className='joCardItem2'><img src={item.img_src}></img></div>
     <div name={item.post_num} className='joTitle'><h4 name={item.post_num}>{item.title}</h4></div>
     <div name={item.post_num} className='joContent'>{item.content}</div>
     <div name={item.post_num} className='joCardItem3'><span  className='greenTextColor'>{Math.floor((Math.sqrt(
@@ -147,6 +149,7 @@ if(((date - new Date(item.reg_date))/1000/60/60/24)>=1){
     ))>1000){       
         return <div key={item+idx} className='joCardContainer' onClick={goToDetail} name={item.post_num}>
     <div name={item.post_num} className='joCardItem1'><img className='urgentMark' src={item.urgent}></img><img src={item.post_offer_yn} className='offerMark'></img><span/><span/><span/><span/>{Math.floor((date - new Date(item.reg_date)-32400000)/1000/60/60)+"시간 전"}</div>
+            <div className='joCardItem2'><img src={item.img_src}></img></div>
     <div name={item.post_num} className='joTitle'><h4 name={item.post_num}>{item.title}</h4></div>
     <div name={item.post_num} className='joContent'>{item.content}</div>
     <div name={item.post_num} className='joCardItem3'>{Math.floor((Math.sqrt(
@@ -162,6 +165,7 @@ if(((date - new Date(item.reg_date))/1000/60/60/24)>=1){
 }else{
     return <div key={item+idx} className='joCardContainer' onClick={goToDetail} name={item.post_num}>
     <div name={item.post_num} className='joCardItem1'><img className='urgentMark' src={item.urgent}></img><img src={item.post_offer_yn} className='offerMark'></img><span/><span/><span/><span/>{Math.floor((date - new Date(item.reg_date)-32400000)/1000/60/60)+"시간 전"}</div>
+            <div className='joCardItem2'><img src={item.img_src}></img></div>
     <div name={item.post_num} className='joTitle'><h4 name={item.post_num}>{item.title}</h4></div>
     <div name={item.post_num} className='joContent'>{item.content}</div>
     <div name={item.post_num} className='joCardItem3'><span  className='greenTextColor'>{Math.floor((Math.sqrt(
@@ -188,6 +192,7 @@ if(((date - new Date(item.reg_date))/1000/60/60/24)>=1){
     ))>1000){       
         return <div key={item+idx} className='joCardContainer' onClick={goToDetail} name={item.post_num}>
     <div name={item.post_num} className='joCardItem1'><img className='urgentMark' src={item.urgent}></img><img src={item.post_offer_yn} className='offerMark'></img><span/><span/><span/><span/><span className='greenTextColor'>{Math.floor((date - new Date(item.reg_date)-32400000)/1000/60)+"분 전"}</span></div>
+            <div className='joCardItem2'><img src={item.img_src}></img></div>
     <div name={item.post_num} className='joTitle'><h4 name={item.post_num}>{item.title}</h4></div>
     <div name={item.post_num} className='joContent'>{item.content}</div>
     <div name={item.post_num} className='joCardItem3'>{Math.floor((Math.sqrt(
@@ -203,6 +208,7 @@ if(((date - new Date(item.reg_date))/1000/60/60/24)>=1){
 }else{
     return <div key={item+idx} className='joCardContainer' onClick={goToDetail} name={item.post_num}>
     <div name={item.post_num}  className='joCardItem1'><img className='urgentMark' src={item.urgent}></img><img src={item.post_offer_yn} className='offerMark'></img><span/><span/><span/><span/><span className='greenTextColor'>{Math.floor((date - new Date(item.reg_date)-32400000)/1000/60)+"분 전"}</span></div>
+            <div className='joCardItem2'><img src={item.img_src}></img></div>
     <div name={item.post_num} className='joTitle'><h4 name={item.post_num}>{item.title}</h4></div>
     <div name={item.post_num} className='joContent'>{item.content}</div>
     <div name={item.post_num} className='joCardItem3'><span  className='greenTextColor'>{Math.floor((Math.sqrt(

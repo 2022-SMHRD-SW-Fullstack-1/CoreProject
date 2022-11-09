@@ -315,4 +315,12 @@
 #filterbtn:hover{
     background-color: gainsboro;
 }
+.joCardItem2{
+    display: flex;
+    justify-content: center;
+    margin: 1em 0em;
+}
+.joCardItem2 img{
+    width: 13em;
+}
 /* 필터div */
