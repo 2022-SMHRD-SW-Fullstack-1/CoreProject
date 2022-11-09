@@ -28,6 +28,8 @@ const Header_login = ({ socket }) => {
   const logout = () => {
     localStorage.removeItem("id")
     localStorage.removeItem("nick")
+    localStorage.removeItem("lat")
+    localStorage.removeItem("lng")
     if (socket.readyState === 1) { socket.close(); }
     navigate('/')
   }
