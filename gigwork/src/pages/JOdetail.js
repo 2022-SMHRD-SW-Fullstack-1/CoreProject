@@ -69,10 +69,10 @@ const JOdetail = () => {
      const urgentmark = <span> {postdetail.urgent}</span>
      const [bookmarkcount, setBookmarkcount] = useState()
      
-     axios
-     .post('gigwork/my/searchBookmark', {mem_id: localStorage.getItem("id"), post_num: proDetail.post_num} )
-     .then(res=>setBookmarkcount(res.data))
-     .catch(e=>console.log(e))
+    //  axios
+    //  .post('gigwork/my/searchBookmark', {mem_id: localStorage.getItem("id"), post_num: proDetail.post_num} )
+    //  .then(res=>setBookmarkcount(res.data))
+    //  .catch(e=>console.log(e))
     
     
      const clickBookmark = (e) => {
