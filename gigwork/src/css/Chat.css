@@ -36,9 +36,29 @@
 }
 
 .topRightBox{
-    height: 65px;
+    height: 50px;
     width: 100%;
-    background-color: var(--mainYellow);
+    padding: 0 10px;
+    background-color: var(--mainNavy);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.topRightBox button {
+    border: none;
+    border-radius: 10px;
+    padding: 2px 9px;
+    background-color: #ffffff64;
+    color: white;
+    border: 1px solid white;
+    /* box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.194); */
+}
+.topRightBox span {
+    font-size: 1.1rem;
+}
+.topRightBox span:hover {
+    cursor: pointer;
 }
 
 .chatContentListBox {
