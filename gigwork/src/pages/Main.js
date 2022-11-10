@@ -106,6 +106,10 @@ const Main = () => {
     const goToPFlist = () => {
         navigate('/PFlist')
     }
+    const goToDetail=(e)=>{
+        const post_num = e.currentTarget.getAttribute("post_num")
+        navigate(encodeURI('/JOdetail?post_num='+post_num))
+    }
 
     return (
         <div className='top_div'>
@@ -139,7 +143,7 @@ const Main = () => {
                     </div>
                     <div className='realTimePost' onMouseOver={() => { setBtnToggle(true) }}>
                         <div className='postListBox'>
-                            {urgetPost.map((item, idx) => (<div key={idx + item.title} onMouseOver={placeMarker} lat={item.lat} lng={item.lng} >
+                            {urgetPost.map((item, idx) => (<div post_num={item.post_num} onClick={goToDetail} key={idx + item.title} onMouseOver={placeMarker} lat={item.lat} lng={item.lng} >
                                 <span>{item.title}</span>
                                 {brTag}
                                 <button className={item.post_offer_yn === 'offerY.png' ? 'payOfferT' : 'payOfferF'}>제의받음</button>

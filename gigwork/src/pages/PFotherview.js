@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import MPmenu from '../components/MPmenu';
 import man from '../asset/imgSJ/검정색사람.png'
 import { Link } from 'react-router-dom'
@@ -14,90 +15,106 @@ import down50 from '../asset/imgSJ/face50down.png';
 
 const PFotherview = () => {
 
-    
-    
+    const navigate = useNavigate()
+
     var str = decodeURI(window.location.search);
     const params = new URLSearchParams(str)
-    const idInfo = {id : params.get('id')}
+    const idInfo = { id: params.get('id') }
 
-    const [viewInfo,setViewInfo] = useState({data:{name:'',cate_one:'',cate_two:'',
-    cate_three:'',close_date:'',open_date:'',say:'',mem_trust:50}});
+    const [viewInfo, setViewInfo] = useState({
+        data: {
+            name: '', cate_one: '', cate_two: '',
+            cate_three: '', close_date: '', open_date: '', say: '', mem_trust: 50
+        }
+    });
 
 
-    const [activeInfo,setActiveInfo] = useState([])
+    const [activeInfo, setActiveInfo] = useState([])
 
-    const [evlInfo,setEvlInfo]=useState([])
-    
-    const firstView=()=>{
+    const [evlInfo, setEvlInfo] = useState([])
+
+    const firstView = () => {
         axios
-        .post('gigwork/profile/myview',idInfo)
-        .then(res=>setViewInfo(res))
-        .catch(e=>console.log(e))
+            .post('gigwork/profile/myview', idInfo)
+            .then(res => setViewInfo(res))
+            .catch(e => console.log(e))
 
         axios
-        .post('gigwork/profile/activeList',idInfo)
-        .then(res=>setActiveInfo(res.data.JsonArray))
-        .catch(e=>console.log(e))
+            .post('gigwork/profile/activeList', idInfo)
+            .then(res => setActiveInfo(res.data.JsonArray))
+            .catch(e => console.log(e))
 
         axios
-        .post('gigwork/profile/evaluation',idInfo)
-        .then(res=>setEvlInfo(res.data.JsonArray))
-        .catch(e=>console.log(e))
+            .post('gigwork/profile/evaluation', idInfo)
+            .then(res => setEvlInfo(res.data.JsonArray))
+            .catch(e => console.log(e))
     }
-    const [faceImg,setFaceImg] = useState(face50)
-    useEffect(()=>{
+    const [faceImg, setFaceImg] = useState(face50)
+    useEffect(() => {
         firstView();
-        
-    },[setViewInfo])
 
-    useEffect(()=>{
-        if(viewInfo.data.mem_trust==50){
+    }, [setViewInfo])
+
+    useEffect(() => {
+        if (viewInfo.data.mem_trust == 50) {
             setFaceImg(face50)
-        }else if(viewInfo.data.mem_trust>50){
+        } else if (viewInfo.data.mem_trust > 50) {
             setFaceImg(up50)
-        }else if(viewInfo.data.mem_trust>70){
+        } else if (viewInfo.data.mem_trust > 70) {
             setFaceImg(up70)
-        }else if(viewInfo.data.mem_trust<30){
+        } else if (viewInfo.data.mem_trust < 30) {
             setFaceImg(down30)
-        }else if(viewInfo.data.mem_trust<50){
+        } else if (viewInfo.data.mem_trust < 50) {
             setFaceImg(down50)
         }
-    },[firstView])
+    }, [firstView])
 
 
-    let resActiveInfo = activeInfo.map((item,idx)=>
-    <div key={item+idx} className='activeFirstDiv'>
-        <div>
-            <p>{item.title}</p>
-        </div>
-        <div className='activeSecondSmallDiv'>
-
-        <span>{item.post_cate}</span>
-        <span>{item.match_date}</span>
-        </div>
-    </div>)
-
-    let resEvlInfo = evlInfo.map((item,idx)=>
-    <div key={item+idx} className='activeFirstDiv'>
-        <div>
-        <p>{item.evl_content}</p>
-        </div>
-        <div className='activeSecondSmallDiv'>
-        <span><img src={item.evl_point}></img></span>
-        <span>{item.evl_date.substr(0,10)}</span>
-        </div>
-    </div>)
-    
-
-  return (
-      <div className='top_div'>
-        
-        <div className='pfMyView'>
-            <div className="pfImgDiv">
-                <img src={viewInfo.data.img_src} height="120px"></img>
-                <h1> {viewInfo.data.name}</h1>
+    let resActiveInfo = activeInfo.map((item, idx) =>
+        <div key={item + idx} className='activeFirstDiv'>
+            <div>
+                <p>{item.title}</p>
             </div>
-            <div className='pfCategory'>
+            <div className='activeSecondSmallDiv'>
+
+                <span>{item.post_cate}</span>
+                <span>{item.match_date}</span>
+            </div>
+        </div>)
+
+    let resEvlInfo = evlInfo.map((item, idx) =>
+        <div key={item + idx} className='activeFirstDiv'>
+            <div>
+                <p>{item.evl_content}</p>
+            </div>
+            <div className='activeSecondSmallDiv'>
+                <span><img src={item.evl_point}></img></span>
+                <span>{item.evl_date.substr(0, 10)}</span>
+            </div>
+        </div>)
+
+    const goToChat = () => {
+        if (localStorage.getItem('nick') === null) {
+            navigate('/login')
+        } else {
+            // axios
+            //     .post('gigwork/chat/createCR', { mem_nick: localStorage.getItem('nick'), partner_nick: postdetail.name, post_num: params.get('post_num') })
+            //     .then(res => console.log(res))
+            //     .catch(e => console.log(e));
+            navigate('/chat')
+        }
+    }
+
+
+    return (
+        <div className='top_div'>
+
+            <div className='pfMyView'>
+                <div className="pfImgDiv">
+                    <img src={viewInfo.data.img_src} height="120px"></img>
+                    <h1> {viewInfo.data.name}</h1>
+                </div>
+                <div className='pfCategory'>
                     <div >
                         <div className='faceImg'>
                             <span>신뢰도 {viewInfo.data.mem_trust}</span>
@@ -119,40 +136,40 @@ const PFotherview = () => {
                         <span className='myCates'>{viewInfo.data.cate_two}</span>
                         <span className='myCates'>{viewInfo.data.cate_three}</span>
                     </div>
-                    <br/>
-                </div>
-            <div>
-                <div>
-                    하고싶은 말
+                    <br />
                 </div>
                 <div>
-                    <br></br>
-                    <div className='mySays'>{viewInfo.data.say}</div>
-                    
-                </div>
-            </div>
-            <br/>
-            <div>
-                활동 내역
-                <div className='pfActive'>
-                    {resActiveInfo}
-                </div>
-            </div>
-            <br/>
-            <div>
-                받은 매너 평가
-                <div className='pfActive'>
-                    {resEvlInfo}
-                </div>
-            </div>
-            <div className='pfSaveDiv'>
-                <br/>
-            <Link to='#' id='savePF'>채팅하기</Link>
-            </div>
+                    <div>
+                        하고싶은 말
+                    </div>
+                    <div>
+                        <br></br>
+                        <div className='mySays'>{viewInfo.data.say}</div>
 
+                    </div>
+                </div>
+                <br />
+                <div>
+                    활동 내역
+                    <div className='pfActive'>
+                        {resActiveInfo}
+                    </div>
+                </div>
+                <br />
+                <div>
+                    받은 매너 평가
+                    <div className='pfActive'>
+                        {resEvlInfo}
+                    </div>
+                </div>
+                <div className='pfSaveDiv'>
+                    <br />
+                    <button onClick={goToChat} id='savePF'>채팅하기</button>
+                </div>
+
+            </div>
         </div>
-    </div>
-  )
+    )
 }
 
 export default PFotherview
