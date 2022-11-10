@@ -13,6 +13,10 @@
     background-color: var(--mainGray);
     padding: 10px 10px;
     margin-right: 5px;
+    overflow: auto;
+}
+.leftBox::-webkit-scrollbar {
+    width: 1px;
 }
 
 .chatroomTab {
@@ -63,7 +67,7 @@
 
 .chatContentListBox {
     overflow: auto;
-    height: 585px;
+    height: 570px;
 }
 .chatContentListBox::-webkit-scrollbar {
     width: 6px;
@@ -71,7 +75,6 @@
 
 .opp, .me {
     width: 485px;
-    height: 30px;
     display: flex;
     align-items: center;
     justify-content: flex-start;

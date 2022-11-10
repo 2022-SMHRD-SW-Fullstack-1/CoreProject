@@ -136,11 +136,26 @@
     background-color: #ffef7946;
   }
   /* 활동내역 들어갈 공간 */
-  .pfActive div{
+  .activeFirstDiv{
     width: 24.85em;
-    height: 4.5em;
+    height: 5.5em;
     margin: 10px 0px;
-    background-color: var(--mainYellow);
+    border: 0.3em solid var(--mainYellow);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2em;
+  }
+  .activeSecondSmallDiv{
+    display: flex;
+    justify-content: space-between;
+  }
+  .activeSecondSmallDiv img{
+    height: 2em;
+  }
+  .pfActive div span{
+    font-size: 0.8em;
   }
   /* 저장하기 버튼 가운데로 옮기기 */
   .pfSaveDiv{

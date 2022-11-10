@@ -5,22 +5,24 @@ import '../css/JOdetail.css'
 import voidpic from '../asset/imgJY/void.png'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 
 const JOdetail = () => {
 
-   
+
     //post_num 받고 proDetail에 저장하기
     var str = decodeURI(window.location.search);
     const params = new URLSearchParams(str);
     const proDetail = { post_num: params.get('post_num') }
     const [postdetail, setPostdetail] = useState({})
-    
-    
-    
+
+
+
     const [bookMarkIcon, setbookMarkIcon] = useState(voidpic);
     const urgentmark = <span> {postdetail.urgent}</span>
-    const [bookmarkcount, setBookmarkcount] = useState()       
+    const [bookmarkcount, setBookmarkcount] = useState()
     const [bookmark, setBookmark] = useState(false)
     const date = new Date
 
@@ -28,77 +30,131 @@ const JOdetail = () => {
     const navigate = useNavigate()
     // 채팅 페이지 연결
     const goToChat = () => {
-        if(localStorage.getItem('nick') === null) {
+        if (localStorage.getItem('nick') === null) {
             navigate('/login')
         } else {
             axios
-            .post('gigwork/chat/createCR', { mem_nick: localStorage.getItem('nick'), partner_nick: postdetail.name, post_num: params.get('post_num')})
-            .then(res => console.log(res))
-            .catch(e => console.log(e));
+                .post('gigwork/chat/createCR', { mem_nick: localStorage.getItem('nick'), partner_nick: postdetail.name, post_num: params.get('post_num') })
+                .then(res => console.log(res))
+                .catch(e => console.log(e));
             navigate('/chat')
         }
     }
-    
-    
-    useEffect(()=>{
-        
+
+
+    useEffect(() => {
+
         axios
-        .post('gigwork/my/mypost',proDetail)
-        .then(res=>setPostdetail(res.data))
-        .catch(e=>console.log(e))
-      
+            .post('gigwork/my/mypost', proDetail)
+            .then(res => setPostdetail(res.data))
+            .catch(e => console.log(e))
+
         // bookmark 여부 가져오기
         axios
-        .post('gigwork/my/searchBookmark', {mem_id: localStorage.getItem("id"), post_num: proDetail.post_num} )
-        .then(res=>{
-            setBookmarkcount(res.data)
-            console.log('넘어온 값?', res.data)})
-            .catch(e=>console.log('오류?', e))
-    },[])
-    
-  
-    
-    useEffect(()=>{
-        const config = {"Content-Type": 'application/json'};
+            .post('gigwork/my/searchBookmark', { mem_id: localStorage.getItem("id"), post_num: proDetail.post_num })
+            .then(res => {
+                setBookmarkcount(res.data)
+                console.log('넘어온 값?', res.data)
+            })
+            .catch(e => console.log('오류?', e))
+    }, [])
+
+
+
+    useEffect(() => {
+        const config = { "Content-Type": 'application/json' };
 
         axios
-        .post('gigwork/my/mybookmark', 
-        {mem_id: localStorage.getItem("id"), post_num: proDetail.post_num}, config)
-        .then(res=>{console.log(res.data)})
-        .catch(e=>console.log(e))
+            .post('gigwork/my/mybookmark',
+                { mem_id: localStorage.getItem("id"), post_num: proDetail.post_num }, config)
+            .then(res => { console.log(res.data) })
+            .catch(e => console.log(e))
 
-    },[bookMarkIcon])
-    
-   
-    
-                
+    }, [bookMarkIcon])
+
+
+
+
     const clickBookmark = (e) => {
         if (bookMarkIcon == starpic) {
-           setbookMarkIcon(voidpic)
-         }else if(bookMarkIcon == voidpic){
+            setbookMarkIcon(voidpic)
+        } else if (bookMarkIcon == voidpic) {
             setbookMarkIcon(starpic)
 
-        }         
-    } 
+        }
+    }
 
     //콘솔 출력을 위한 값
     console.log("값", proDetail)
     console.log(localStorage.id)
-         
 
 
-                    
 
-    
-    
-    
-    
-    
-    
- 
-                
+
+
+    // 모달 창
+
+    function MyVerticallyCenteredModal(props) {
+
+        
+        const [wantPay, setWantPay] = useState(0)
+        // input창에 가격 입력하면 가격 저장
+        const handlePay = (e) => {
+            setWantPay(e.target.value)
+        }
+        // 제의하기 버튼 누르면 모달창 끄고 원하는 가격 콘솔에 띄우기
+        const deal = () => {
+            let now = new Date();
+            console.log("원하는 가격 : ", wantPay)
+            // 채팅 방 생성
+            axios
+                .post('gigwork/chat/makeOffer', { mem_nick: localStorage.getItem('nick'), partner_nick: props.partner_nick, post_num: props.post_num, post_title: props.post_title, wantPay: wantPay })
+                .then(res => console.log(res.data))
+                .catch(e => console.log(e));
+            // 연결된 웹소켓서버에 정보를 전달
+            // socket.send(JSON.stringify({ talker: localStorage.getItem("nick"), msg: localStorage.getItem("nick")+'님이 '+props.post_title+' 글에 가격 제안을 보냈어요!', msg_time: now, sendto: props.partner_nick, cr_seq: "" }));
+            // 창 끄기
+            props.onHide()
+            navigate('/chat')
+        }
         return (
-            <div> <div className='top'>
+            <Modal
+                {...props}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title id="contained-modal-title-vcenter">
+                        가격 제의하기
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <h4>원하는 가격을 입력해 주세요</h4>
+                    <input type='number' onChange={handlePay}></input>원
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={deal}>제의하기</Button>
+                </Modal.Footer>
+            </Modal>
+        );
+    }
+
+    const [modalShow, setModalShow] = React.useState(false);
+    // 모달 창
+
+    const offerBtnClick = () => {
+        localStorage.getItem('nick') === null
+        ? navigate('/login')
+        : setModalShow(true)
+    }
+
+
+
+
+
+    return (
+        <div> <div className='top'>
             <div>
 
                 <div className='containerB'>
@@ -107,14 +163,14 @@ const JOdetail = () => {
                             <div className='picandnick'>
                                 <div className='nickpart'>
                                     <img src={userPic} width='20px' id='userpic'></img>
-                                     
+
                                 </div>
-                                <div className='user'> 
-                                <span>{postdetail.name}</span>
+                                <div className='user'>
+                                    <span>{postdetail.name}</span>
                                 </div>
                             </div>
                             <div className='trustpart'>
-                               {/* <span>신뢰도</span> */}
+                                {/* <span>신뢰도</span> */}
                             </div>
                         </div>
                     </div>
@@ -122,24 +178,24 @@ const JOdetail = () => {
 
                     <div className='contentpart'>
                         <div className='titlepart'>
-                                <span id='titlepart'>{ postdetail.title} </span>
+                            <span id='titlepart'>{postdetail.title} </span>
                             <br />
                             <div className='subtitle'>
-                                <span id='category'> 
-                              { postdetail.post_cate} 
+                                <span id='category'>
+                                    {postdetail.post_cate}
                                 </span>
                                 <span id='time'>
-                                {new Date(+date + 3240 * 10000).toISOString().replace('T', ' ').replace(/\..*/, '')}                                     
+                                    {new Date(+date + 3240 * 10000).toISOString().replace('T', ' ').replace(/\..*/, '')}
                                 </span>
                                 <span id='write'>작성</span>
                             </div>
                             <div className='contentpart'>
-                                    
-                                    <p id='content'>
-                                     { postdetail.content} 
-                                     <img src={ postdetail.img_src} id='imgcontent'/> 
-                                     
-                                <br/></p>
+
+                                <p id='content'>
+                                    {postdetail.content}
+                                    <img src={postdetail.img_src} id='imgcontent' />
+
+                                    <br /></p>
                             </div>
                         </div>
                     </div>
@@ -147,22 +203,29 @@ const JOdetail = () => {
 
                     <div className='tradepart'>
                         <div className='tradebtn'>
-                           
-                        <label htmlFor='bookmark' >     
-                        <img width='30px' src={bookMarkIcon}/> 
-                        <input type='checkbox' id='bookmark' onClick={clickBookmark} style={{ display: "none" }} />
-                        </label>
+
+                            <label htmlFor='bookmark' >
+                                <img width='30px' src={bookMarkIcon} />
+                                <input type='checkbox' id='bookmark' onClick={clickBookmark} style={{ display: "none" }} />
+                            </label>
                         </div>
-                    
+
                         <div>
 
-                        { urgentmark  === 1 ? <span>''</span> : <div className='urgentmark'>급구</div> }
+                            {urgentmark === 1 ? <span>''</span> : <div className='urgentmark'>급구</div>}
                         </div>
                         <div className='offerbtnpart'>
-                        <button id='offerbtn'>제의하기</button>
+                            <button id='offerbtn' onClick={offerBtnClick}>제의하기</button>
+                            <MyVerticallyCenteredModal
+                                partner_nick={postdetail.name}
+                                post_num= {params.get('post_num')}
+                                post_title= {postdetail.title}
+                                show={modalShow}
+                                onHide={() => setModalShow(false)}
+                            />
                         </div>
                         <div className='price'>
-                        <span> { postdetail.post_pay } 원</span>
+                            <span> {postdetail.post_pay} 원</span>
                         </div>
 
 
