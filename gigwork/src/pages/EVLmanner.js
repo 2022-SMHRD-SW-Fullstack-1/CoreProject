@@ -90,6 +90,18 @@ useEffect(()=>{
     .post('/gigwork/profile/nameToId',oppNick)
     .then(res=>setOppId(res.data))
     .catch(e=>console.log(e))
+    
+},[oppNick,sayInfo])
+
+useEffect(()=>{
+    setEvlInfo({targetId:oppId,oppId:myId,evlPoint:point,evlContent:sayInfo,evlDate:today})
+},[oppId,myId,point,sayInfo,setPoint])
+
+const saveEvl=()=>{
+    axios
+    .post('/gigwork/profile/evl',evlInfo)
+    .then(res=>console.log(res))
+    .catch(e=>console.log(e))
     if(point == 'star5.png'){
         axios
         .post('/gigwork/profile/evl5',oppNick)
@@ -111,18 +123,6 @@ useEffect(()=>{
         .then(res=>console.log(res))
         .catch(e=>console.log(e))
     }
-},[oppNick,sayInfo])
-
-useEffect(()=>{
-    setEvlInfo({targetId:oppId,oppId:myId,evlPoint:point,evlContent:sayInfo,evlDate:today})
-},[oppId,myId,point,sayInfo,setPoint])
-
-const saveEvl=()=>{
-    axios
-    .post('/gigwork/profile/evl',evlInfo)
-    .then(res=>console.log(res))
-    .catch(e=>console.log(e))
-
     navigate('/')
 }
 
