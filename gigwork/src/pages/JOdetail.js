@@ -120,7 +120,7 @@ const JOdetail = () => {
         return (
             <Modal
                 {...props}
-                size="lg"
+                size="5em"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
             >
@@ -130,8 +130,11 @@ const JOdetail = () => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                <br/>
                     <h4>원하는 가격을 입력해 주세요</h4>
-                    <input type='number' onChange={handlePay}></input>원
+                    <br/>
+                    <input id='wantPayInput' type='number' onChange={handlePay}></input>원
+                    <br/>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button onClick={deal}>제의하기</Button>

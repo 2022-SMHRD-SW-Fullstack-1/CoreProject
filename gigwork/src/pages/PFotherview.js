@@ -91,7 +91,7 @@ const PFotherview = () => {
 
   return (
       <div className='top_div'>
-        <MPmenu></MPmenu>
+        
         <div className='pfMyView'>
             <div className="pfImgDiv">
                 <img src={viewInfo.data.img_src} height="120px"></img>

@@ -184,3 +184,14 @@ hr{
     
 }
 
+#wantPayInput{
+    width: 10em;
+}
+.btn-primary{
+    --bs-btn-color:black;
+    --bs-btn-bg:var(--mainYellow);
+    --bs-btn-border-color:white;
+    --bs-btn-hover-color:black;
+    --bs-btn-hover-bg : #ffef7963;
+    --bs-btn-hover-border-color:white;
+}
