@@ -21,7 +21,7 @@ const MyPost = () => {
   const resPostList = postList.map((item,idx)=>
       <tr key={item+idx}>
         <td align='left'>{item.post_num}</td>
-        <td><img src={item.urgent}></img></td>
+        <td><img src={item.urgent} className='juImg'></img></td>
         <td>{item.title}</td>
         <td><img src={item.post_offer_yn} className='jeImg'></img></td>
         <td>{item.post_pay} 원</td>

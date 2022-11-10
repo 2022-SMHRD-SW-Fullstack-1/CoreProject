@@ -4,6 +4,9 @@
     margin-bottom: 10rem;
   overflow: hidden;
 }
+.juImg{
+    height: 2.2em !important;
+}
 .jeImg{
     height: 1.5em !important;
 }
