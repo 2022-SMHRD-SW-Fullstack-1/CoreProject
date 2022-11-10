@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import MPmenu from '../components/MPmenu'
 
 const MyPost = () => {
 
@@ -17,7 +18,8 @@ const MyPost = () => {
 
 
   return (
-    <div>
+    <div className='top_div'>
+        <MPmenu></MPmenu>
         <div>
             <span>찜목록</span>
             <div>

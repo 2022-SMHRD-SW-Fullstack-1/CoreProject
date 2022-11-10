@@ -22,11 +22,11 @@ const MPmenu = () => {
         <div>
             
             <div className='SJmenu'>
-            <div><Link to="/MPprivacy" className='menuBtn'>개인정보 관리</Link></div>
-            <div><Link to="/" className='menuBtn'>프로필 관리</Link></div>
-            <div><Link to="/" className='menuBtn'>내 의뢰글 관리</Link></div>
-            <div><Link to="/mybookmark" className='menuBtn'>최근 본 공고 / 찜 목록</Link></div>
-            <div><Link to="/PFlist" className='menuBtn'>리스트로이동</Link></div>
+                <div></div>
+            <div><Link to="/MPprivacy" className='menuBtn'>아이디 관리</Link></div>
+            <div><Link to="/PFmyview" className='menuBtn'>프로필 관리</Link></div>
+            <div><Link to="/MyPost" className='menuBtn'>의뢰글 관리</Link></div>
+            <div><Link to="/MyBookmark" className='menuBtn'>찜 목록</Link></div>
             </div>
             <img src={arrow} className='menuNone menuArrow'></img>
         </div>
