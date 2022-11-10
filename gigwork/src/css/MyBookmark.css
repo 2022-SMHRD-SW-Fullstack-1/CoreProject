@@ -2,9 +2,11 @@
     margin-top: 10rem;
     width: 50rem;
     margin-bottom: 10rem;
-  
+  overflow: hidden;
 }
-
+.jeImg{
+    height: 1.5em !important;
+}
 
 
 
@@ -45,6 +47,11 @@
    width: 50rem;
    /* border: 1px solid gray; */
    margin-left: -1rem;
+   text-align: center;
+   
+}
+#tablepart td{
+    text-align: right;
 }
 
 .contentHeader{
@@ -53,3 +60,6 @@
     justify-content: space-evenly
 }
 
+#tablepart img{
+    height: 2em;
+}
