@@ -65,17 +65,26 @@ const PFmyview = () => {
     
 
     let resActiveInfo = activeInfo.map((item,idx)=>
-    <div key={item+idx}>
-        <p>{item.title}</p>
+    <div key={item+idx} className='activeFirstDiv'>
+        <div>
+            <p>{item.title}</p>
+        </div>
+        <div className='activeSecondSmallDiv'>
+
         <span>{item.post_cate}</span>
         <span>{item.match_date}</span>
+        </div>
     </div>)
 
     let resEvlInfo = evlInfo.map((item,idx)=>
-    <div key={item+idx}>
+    <div key={item+idx} className='activeFirstDiv'>
+        <div>
         <p>{item.evl_content}</p>
-        <span>{item.evl_point}</span>
-        <span>{item.evl_date}</span>
+        </div>
+        <div className='activeSecondSmallDiv'>
+        <span><img src={item.evl_point}></img></span>
+        <span>{item.evl_date.substr(0,10)}</span>
+        </div>
     </div>)
 
     return (

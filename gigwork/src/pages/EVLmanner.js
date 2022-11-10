@@ -36,34 +36,54 @@ const changeStar=(e)=>{
         document.querySelectorAll('img')[6].setAttribute('src',star)
         document.querySelectorAll('img')[7].setAttribute('src',star)
         document.querySelectorAll('img')[8].setAttribute('src',star)
+        setPoint('star5.png')
+        axios
+        .post('/gigwork/profile/evl5',oppNick)
+        .then(res=>console.log(res))
+        .catch(e=>console.log(e))
+
     }else if(e.target.id==4){
         document.querySelectorAll('img')[4].setAttribute('src',star)
         document.querySelectorAll('img')[5].setAttribute('src',star)
         document.querySelectorAll('img')[6].setAttribute('src',star)
         document.querySelectorAll('img')[7].setAttribute('src',star)
         document.querySelectorAll('img')[8].setAttribute('src',bStar)
+        setPoint('star4.png')
+        axios
+        .post('/gigwork/profile/evl4',oppNick)
+        .then(res=>console.log(res))
+        .catch(e=>console.log(e))
     }else if(e.target.id==3){
         document.querySelectorAll('img')[4].setAttribute('src',star)
         document.querySelectorAll('img')[5].setAttribute('src',star)
         document.querySelectorAll('img')[6].setAttribute('src',star)
         document.querySelectorAll('img')[7].setAttribute('src',bStar)
         document.querySelectorAll('img')[8].setAttribute('src',bStar)
+        setPoint('star3.png')
     }else if(e.target.id==2){
         document.querySelectorAll('img')[4].setAttribute('src',star)
         document.querySelectorAll('img')[5].setAttribute('src',star)
         document.querySelectorAll('img')[6].setAttribute('src',bStar)
         document.querySelectorAll('img')[7].setAttribute('src',bStar)
         document.querySelectorAll('img')[8].setAttribute('src',bStar)
+        setPoint('star2.png')
+        axios
+        .post('/gigwork/profile/evl2',oppNick)
+        .then(res=>console.log(res))
+        .catch(e=>console.log(e))
     }else{
         document.querySelectorAll('img')[4].setAttribute('src',star)
         document.querySelectorAll('img')[5].setAttribute('src',bStar)
         document.querySelectorAll('img')[6].setAttribute('src',bStar)
         document.querySelectorAll('img')[7].setAttribute('src',bStar)
         document.querySelectorAll('img')[8].setAttribute('src',bStar)
+        setPoint('star1.png')
+        axios
+        .post('/gigwork/profile/evl1',oppNick)
+        .then(res=>console.log(res))
+        .catch(e=>console.log(e))
     }
 
-    
-    setPoint(e.target.id)
 }
 
 const resStarList = starList.map((item,idx)=><img src={star} key={item+idx} onClick={changeStar} id={idx+1}></img>)

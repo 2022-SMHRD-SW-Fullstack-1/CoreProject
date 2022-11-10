@@ -12,6 +12,15 @@ import { useNavigate } from 'react-router-dom';
 
 
 const JOlist = () => {
+
+    //post_num 받고 proDetail에 저장하기
+    var str = decodeURI(window.location.search);
+    const params = new URLSearchParams(str);
+    const proDetail = { post_num: params.get('post_num') }
+
+
+
+
     const navigate = useNavigate()
     const goToDetail=(e)=>{
         const post_num = e.target.getAttribute("name")
