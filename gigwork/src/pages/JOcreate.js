@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 
 const JOcreate = () => {
 
+  
   const [pic, setPic] = useState('')
   const handleFile = () => {
 
