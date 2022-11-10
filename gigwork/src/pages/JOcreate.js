@@ -1,7 +1,6 @@
 import React, { useEffect, useState, ChangeEvent, useRef, Component } from 'react'
 import PostCode from '../components/PostCode'
 import DaumPostcode from 'react-daum-postcode';
-import pic from '../asset/imgJY/pic.png'
 import '../css/JOcreate.css'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -139,7 +138,7 @@ const JOcreate = () => {
 
 
 
-  let [imgSrcInfo, setImgSrcInfo] = useState(pic);
+  let [imgSrcInfo, setImgSrcInfo] = useState('camera.png');
 
   const handleImg = (e) => {
     setImgSrcInfo(e.target.files[0].name);
@@ -245,7 +244,9 @@ const JOcreate = () => {
               <div className='pic'>
   
                 {/* <label htmlFor='uploadpic'>  </label> style={{ display: "none" }} */}
-                <input type="file" accept="image/*" id='uploadpic'  onChange={handleImg}  />
+                <label htmlFor='uploadpic'>
+                <img src={imgSrcInfo} id='pic'/>
+                <input type="file" accept="image/*" id='uploadpic'  onChange={handleImg} style={{ display: "none" }}  /></label>
                 {/* onChange이벤트로 파일 객체에 대한 정보 불러옴*/}
              {/* onClick={preview} */}
                 {/* <span>{files && <img src={files} alt="preview-img" width='70px' height='70px' />}</span> */}
