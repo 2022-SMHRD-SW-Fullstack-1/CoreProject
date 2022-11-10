@@ -52,16 +52,12 @@ const Main = () => {
         .catch(e => console.log(e));
     },[])
 
-
-
     const placeMarker = (e) => {
         setMakerLoc({
             lat: e.currentTarget.getAttribute('lat'),
             lng: e.currentTarget.getAttribute('lng')
         })
     }
-
-
 
     const url = useLocation()
     const [topDivClass, setTopDivClass] = useState('')
@@ -110,9 +106,6 @@ const Main = () => {
     const goToPFlist = () => {
         navigate('/PFlist')
     }
-
-    const job = ['청소/집안일', '동행/돌봄', '벌레/쥐잡기', '배달/장보기', '설치/조립', '팻케어', '대리/카풀', '과외수업', '역할대행', '기타']
-
 
     return (
         <div className='top_div'>

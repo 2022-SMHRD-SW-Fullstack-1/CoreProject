@@ -104,16 +104,18 @@ const Header_login = ({ socket }) => {
 socket.onmessage = function (event) {
   let message = JSON.parse(event.data);
   console.log(message);
+  if (message.talker !== undefined) {
   let newAlert = {
     alert_cnt: message.msg, alert_seq: 0,
     alert_time: message.msg_time, ckecking: 't', mem_nick: message.sendto,
     sendfrom: message.talker
   }
-  setAlertList(alertList.concat(newAlert))
-  axios
-    .post('gigwork/alert/addChatAlert', newAlert)
-    .then(res => console.log(res))
-    .catch(e => console.log(e));
+    setAlertList(alertList.concat(newAlert))
+    axios
+      .post('gigwork/alert/addChatAlert', newAlert)
+      .then(res => console.log(res))
+      .catch(e => console.log(e));
+  }
 } 
 
 

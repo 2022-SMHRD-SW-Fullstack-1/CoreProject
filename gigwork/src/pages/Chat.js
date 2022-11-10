@@ -110,6 +110,7 @@ const Chat = ({ socket, connect }) => {
   socket.onmessage = function (event) {
     let message = JSON.parse(event.data);
     console.log(message);
+    message.talker !== undefined &&
     setChatContentList(chatContentList.concat({ cc_seq: 0, talker: message.talker, msg: message.msg, msg_time: message.msg_time, cr_seq: message.cr_seq }))
   };
 
@@ -119,7 +120,7 @@ const Chat = ({ socket, connect }) => {
     navigate('/JOdetail?post_num=' + crtChtR.post_num)
   }
 
-  // 거래 시작 버튼
+  // 거래 시작, 완료 버튼
   const commissionStart = () => {
     //chattingroom의 cr_status를 변경, post도 거래전->거래중 변경
     if (postInfo.status === '거래전' && crtChtR.cr_status === 'c') {
@@ -131,14 +132,13 @@ const Chat = ({ socket, connect }) => {
       setCrtChtR(crtChtR)
     } else if (postInfo.status === '거래중' && postInfo.mem_id === localStorage.getItem("id")) {
       axios
-        .post('gigwork/chat/updateCR2', { roomnum: crtChtR.roomnum, post_num: crtChtR.post_num })
+        .post('gigwork/chat/updateCR2', { roomnum: crtChtR.roomnum, post_num: crtChtR.post_num, partner_nick: localStorage.getItem("nick")===crtChtR.mem_nick?crtChtR.mem_nick:crtChtR.partner_nick})
         .then(res => setPostInfo(res.data))
         .catch(e => console.log(e));
       
       navigate('/EVLmanner?nick=' + (localStorage.getItem("nick")===crtChtR.mem_nick?crtChtR.mem_nick:crtChtR.partner_nick))
     }
   }
-  console.log(crtChtR)
 
   return (
     <div className='top_div' id='chatHead'>
