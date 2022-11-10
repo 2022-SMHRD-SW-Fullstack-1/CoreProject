@@ -251,8 +251,8 @@ const JOcreate = () => {
                 {/* <span>{files && <img src={files} alt="preview-img" width='70px' height='70px' />}</span> */}
               </div>
               <div className='postbtn'>
-                <button type='submit' id='submitbtn' onClick={createPost}>게시</button>
-                <button id='submitbtn'>취소</button>
+                <Link to="/JOlist"><button type='submit' id='submitbtn' onClick={createPost}>게시</button></Link>
+                <Link to="/"><button id='submitbtn'>취소</button></Link>
               </div>
 
             </div>
