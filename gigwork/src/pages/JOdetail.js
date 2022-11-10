@@ -22,6 +22,7 @@ const JOdetail = () => {
     const urgentmark = <span> {postdetail.urgent}</span>
     const [bookmarkcount, setBookmarkcount] = useState()       
     const [bookmark, setBookmark] = useState(false)
+    const date = new Date
 
     // 페이지 이동을 위한 navigate 생성
     const navigate = useNavigate()
@@ -128,7 +129,7 @@ const JOdetail = () => {
                               { postdetail.post_cate} 
                                 </span>
                                 <span id='time'>
-                                { postdetail.reg_date}                                     
+                                {new Date(+date + 3240 * 10000).toISOString().replace('T', ' ').replace(/\..*/, '')}                                     
                                 </span>
                                 <span id='write'>작성</span>
                             </div>
@@ -154,8 +155,11 @@ const JOdetail = () => {
                         </div>
                     
                         <div>
-                    
+
                         { urgentmark  === 1 ? <span>''</span> : <div className='urgentmark'>급구</div> }
+                        </div>
+                        <div className='offerbtnpart'>
+                        <button id='offerbtn'>제의하기</button>
                         </div>
                         <div className='price'>
                         <span> { postdetail.post_pay } 원</span>
