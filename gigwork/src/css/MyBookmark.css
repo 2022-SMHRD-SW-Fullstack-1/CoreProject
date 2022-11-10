@@ -39,19 +39,20 @@
     
 }
 
-#trpart{
-    margin-bottom: 5rem;
+#tablepart tr{
+   margin: 3rem 0 !important;
 }
 
 #tablepart{
    width: 50rem;
    /* border: 1px solid gray; */
-   margin-left: -1rem;
+
    text-align: center;
-   
+   border-collapse: separate;
+	border-spacing: 0 20px;
 }
-#tablepart td{
-    text-align: right;
+#tablepart span {
+   margin-bottom: 2rem;
 }
 
 .contentHeader{
@@ -60,6 +61,21 @@
     justify-content: space-evenly
 }
 
-#tablepart img{
-    height: 2em;
+.contentPart{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  
 }
+
+.bottompart{
+    height: 0.7rem;
+    background-color: var(--mainGray);
+    margin-top: 0.7rem;
+}
+
+.footpart{
+    height: 0.15rem;
+    background-color: rgb(80, 77, 73);
+}
+
