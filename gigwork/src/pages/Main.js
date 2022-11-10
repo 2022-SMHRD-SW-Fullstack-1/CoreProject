@@ -25,7 +25,7 @@ const Main = () => {
     const navigate = useNavigate()
 
     //메인 페이지에 접속하면 현재 위치를 가져온다
-    const [myloc, setMyLoc] = useState({})
+    const [myloc, setMyLoc] = useState({lat: 35.1469568, lng:126.9202944})
     const [makerloc, setMakerLoc] = useState(myloc)
     const [urgetPost, setUrgetPost] = useState([])
     console.log(myloc)
