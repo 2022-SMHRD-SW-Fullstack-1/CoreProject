@@ -187,6 +187,7 @@ const JOcreate = () => {
   return (
     <div>
       <div className='topdivB'>
+        <div id='wananaDiv'><span>게 시 물  작 성</span></div>
         <div className='postbox'>
           <div className='contentBox'>
             <div className='firstbox'>
