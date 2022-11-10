@@ -5,6 +5,8 @@ import '../css/JOdetail.css'
 import voidpic from '../asset/imgJY/void.png'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 
 const JOdetail = () => {
@@ -89,7 +91,45 @@ const JOdetail = () => {
 
                     
 
+    // 모달 창
     
+    function MyVerticallyCenteredModal(props) {
+
+        const [wantPay,setWantPay] = useState(0)
+        // input창에 가격 입력하면 가격 저장
+        const handlePay=(e)=>{
+            setWantPay(e.target.value)
+        }
+        // 제의하기 버튼 누르면 모달창 끄고 원하는 가격 콘솔에 띄우기
+        const deal=()=>{
+            props.onHide()
+            console.log("원하는 가격 : ",wantPay)
+        }
+        return (
+          <Modal
+            {...props}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+          >
+            <Modal.Header closeButton>
+              <Modal.Title id="contained-modal-title-vcenter">
+                가격 제의하기
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <h4>원하는 가격을 입력해 주세요</h4>
+              <input type='number' onChange={handlePay}></input>원
+            </Modal.Body>
+            <Modal.Footer>
+              <Button onClick={deal}>제의하기</Button>
+            </Modal.Footer>
+          </Modal>
+        );
+      }
+      
+        const [modalShow, setModalShow] = React.useState(false);
+    // 모달 창
     
     
     
@@ -159,7 +199,11 @@ const JOdetail = () => {
                         { urgentmark  === 1 ? <span>''</span> : <div className='urgentmark'>급구</div> }
                         </div>
                         <div className='offerbtnpart'>
-                        <button id='offerbtn'>제의하기</button>
+                        <button id='offerbtn' onClick={() => setModalShow(true)}>제의하기</button>
+                        <MyVerticallyCenteredModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
                         </div>
                         <div className='price'>
                         <span> { postdetail.post_pay } 원</span>
