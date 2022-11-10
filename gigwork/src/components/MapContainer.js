@@ -9,7 +9,7 @@ const MapContainer = ({ myloc, makerloc }) => {
         const container = document.getElementById('myMap'); //지도를 표시할 div
         const options = {
             center: new kakao.maps.LatLng(myloc.lat, myloc.lng),
-            level: 7
+            level: 6
         };
         const map = new kakao.maps.Map(container, options); //지도를 생성
 
