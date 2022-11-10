@@ -7,18 +7,19 @@ import star from '../asset/imgSJ/star.png'
 const EVLmanner = () => {
   
     // // 내 아이디
-    // let myId = localStorage.getItem('id')
+    let myId = localStorage.getItem('id')
     // // 평가 대상 아이디
-    // var str = decodeURI(window.location.search);
-    // const params = new URLSearchParams(str)
-    // const oppId = {id : params.get('id')}
+    var str = decodeURI(window.location.search);
+    const params = new URLSearchParams(str)
+    const oppNick = {name : params.get('nick')}
 
 // 임시 값
-    let myId = 'tjdwns65';
-    let oppId = 'chotjdwns123@naver.com'
+    // let myId = 'tjdwns65';
+    // let oppId = 'chotjdwns123@naver.com'
 // 임시 값
 // 상대 아이디를 쿼리스트링으로 넘겨주는김에 닉네임도 같이 넘겨주면 좋을듯
 
+const [oppId,setOppId]=useState('')
 
  const navigate = useNavigate()
 
@@ -76,11 +77,17 @@ let today = year+'-'+(month.padStart(2,'0'))+'-'+(date.padStart(2,'0'))
 
 const writeSay = (e)=>{
     setSayInfo(e.target.value)
-    console.log(sayInfo)
 }
 const [sayInfo,setSayInfo]=useState('')
 
 const [evlInfo,setEvlInfo] = useState({})
+
+useEffect(()=>{
+    axios
+    .post('/gigwork/profile/nameToId',oppNick)
+    .then(res=>setOppId(res.data))
+    .catch(e=>console.log(e))
+},[oppNick,sayInfo])
 
 useEffect(()=>{
     setEvlInfo({targetId:oppId,oppId:myId,evlPoint:point,evlContent:sayInfo,evlDate:today})
@@ -99,7 +106,7 @@ const saveEvl=()=>{
     <div className='top_div'>
         <div className='mannerContainer'>
             <div>
-                <h1>00님 매너평가 남기기</h1>
+                <h1>{oppNick.name}님 매너평가 남기기</h1>
             </div>
             <div>
             <h3>별점 평가</h3>
@@ -108,7 +115,7 @@ const saveEvl=()=>{
                 {resStarList}
             </div>
             <div>
-                <h3>00님께 남길 말</h3>
+                <h3>{oppNick.name}님께 남길 말</h3>
             </div>
             <div className='mannerCommentContainer'> 
                 <textarea  id="say" rows="2" onChange={writeSay}></textarea>

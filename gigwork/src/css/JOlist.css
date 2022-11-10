@@ -321,6 +321,8 @@
     margin: 1em 0em;
 }
 .joCardItem2 img{
-    width: 13em;
+    width: 14em;
+    height: 13em;
+    object-fit: cover;
 }
 /* 필터div */
