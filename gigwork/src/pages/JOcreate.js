@@ -3,11 +3,11 @@ import PostCode from '../components/PostCode'
 import DaumPostcode from 'react-daum-postcode';
 import '../css/JOcreate.css'
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const JOcreate = () => {
-
+  const navigate = useNavigate();
   
   const [pic, setPic] = useState('')
   const handleFile = () => {
@@ -135,6 +135,8 @@ const JOcreate = () => {
       .post('/gigwork/post/create', postInfo)
       .then(res => console.log(res))
       .catch(e => console.log(e));
+
+      navigate('/JOlist')
   }
 
 
@@ -200,28 +202,29 @@ const JOcreate = () => {
               </span>
             </div>
             <div className='salary'>
-              <div>
-                <span>수당{"\u00A0"}{"\u00A0"}</span>
-                <input type="text" id='salarybox' placeholder='수당을 입력해주세요' value={pay} onChange={jobpay}></input>
+              <div className='inputSalary'>
+                <span>수당</span><br/>
               </div>
-
-              <div>
+              <div className='offerInput'>
+                <input type="text" id='salarybox' placeholder='수당을 입력해주세요' value={pay} onChange={jobpay}/>
                 <input type='checkbox' id='offerYesNo' onChange={offerYN} value={offer} />
                 <span>제의받기</span>
 
               </div>
-              <br />
+
+            
             </div>
 
             <div className='datebox'>
               <div className='urgentbox'>
                 <div className='datepart'>
+                  <span>근무기간</span>
                   <input type='datetime-local' border="none" onChange={startDate} value={startdate} disabled={disable} id='startdate' /> {"\u00A0"}부터
 
                   <input type='datetime-local' onChange={endDate} value={enddate} id='enddate' /> {"\u00A0"}까지
                 </div>
                 <div className='timebox'>
-                  <input type='checkbox' onChange={urgentYN} value={urgent} /><span>급구</span>
+                  <input type='checkbox' onChange={urgentYN} value={urgent} id='timeCheck'/><span>급구</span>
                 </div>
               </div>
               <div className='postcode'>
@@ -254,7 +257,7 @@ const JOcreate = () => {
                 {/* <span>{files && <img src={files} alt="preview-img" width='70px' height='70px' />}</span> */}
               </div>
               <div className='postbtn'>
-                <Link to="/JOlist"><button type='submit' id='submitbtn' onClick={createPost}>게시</button></Link>
+                <button type='submit' id='submitbtn' onClick={createPost}>게시</button>
                 <Link to="/"><button id='submitbtn'>취소</button></Link>
               </div>
 

@@ -14,7 +14,7 @@
     font-size: 2.5em;
 }
 .postbox{
-  height: 60rem;
+  height: 72rem;
   width: 40rem;;
   display: flex;
   flex-direction: row;
@@ -70,13 +70,13 @@
 .urgentbox{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    
 }
 
 .datepart{
     margin-bottom: 0.5rem;
     width: 18rem;
-    
+    margin-right: -2rem;
     
 }   
 
@@ -88,7 +88,18 @@
 .timebox{
     display: flex;
     flex-direction: row;
-    /* justify-content: space-between; */
+    margin-top: 4.5em;
+    
+}
+
+.timebox input{
+    margin-top: 0.2rem;
+    
+    
+}
+
+#timeCheck{
+    margin-left: 2.9rem;
 }
 
 .timepart>input {
@@ -98,10 +109,25 @@
 
 .salary{
     margin-bottom: 1rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly
   
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between
+    
+  
+}
+
+#offerYesNo{
+    margin-left: 3.8rem;
+   
+}
+
+.inputSalary{
+    
+}
+
+.datepart input{
+    margin-bottom: 0.3rem;
 }
 
 .address_search{
@@ -169,10 +195,10 @@
 }
 
 .postbtn{
-    /* margin-top: 2.5rem; */
     display:flex;
     flex-direction: row;
    justify-content: center;
+   
    
    
 }
@@ -192,9 +218,9 @@
 
 }
 
-.postbtn>button:hover{
+#submitbtn:hover{
     color:white;
-    background-color: var(--mainNavy);
+    background-color: #586591;
     
 
 }

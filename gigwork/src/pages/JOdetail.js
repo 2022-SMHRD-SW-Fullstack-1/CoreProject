@@ -17,14 +17,36 @@ const JOdetail = () => {
     const params = new URLSearchParams(str);
     const proDetail = { post_num: params.get('post_num') }
     const [postdetail, setPostdetail] = useState({})
-
-
-
-    const [bookMarkIcon, setbookMarkIcon] = useState(voidpic);
     const urgentmark = <span> {postdetail.urgent}</span>
     const [bookmarkcount, setBookmarkcount] = useState()
-    const [bookmark, setBookmark] = useState(false)
+    
     const date = new Date
+    const bookmark = bookmarkcount != 0 ? starpic : voidpic
+    
+    
+    
+    const [bookMarkIcon, setbookMarkIcon] = useState(bookmark);
+    
+    useEffect(() => {
+        const config = { "Content-Type": 'application/json' };
+
+        axios
+            .post('gigwork/my/mybookmark',
+                { mem_id: localStorage.getItem("id"), post_num: proDetail.post_num }, config)
+            .then(res => { console.log(res.data) })
+            .catch(e => console.log(e))
+
+    }, [setbookMarkIcon])
+
+    const clickBookmark = (e) => {
+        if (bookmarkcount==1) {
+            setbookMarkIcon(voidpic)
+            setBookmarkcount(0)
+        } else if(bookmarkcount==0) {
+            setbookMarkIcon(starpic)
+            setBookmarkcount(1)
+        }
+    }
 
     // 페이지 이동을 위한 navigate 생성
     const navigate = useNavigate()
@@ -61,28 +83,11 @@ const JOdetail = () => {
 
 
 
-    useEffect(() => {
-        const config = { "Content-Type": 'application/json' };
-
-        axios
-            .post('gigwork/my/mybookmark',
-                { mem_id: localStorage.getItem("id"), post_num: proDetail.post_num }, config)
-            .then(res => { console.log(res.data) })
-            .catch(e => console.log(e))
-
-    }, [bookMarkIcon])
 
 
 
 
-    const clickBookmark = (e) => {
-        if (bookMarkIcon == starpic) {
-            setbookMarkIcon(voidpic)
-        } else if (bookMarkIcon == voidpic) {
-            setbookMarkIcon(starpic)
 
-        }
-    }
 
     //콘솔 출력을 위한 값
     console.log("값", proDetail)
@@ -96,7 +101,7 @@ const JOdetail = () => {
 
     function MyVerticallyCenteredModal(props) {
 
-        
+
         const [wantPay, setWantPay] = useState(0)
         // input창에 가격 입력하면 가격 저장
         const handlePay = (e) => {
@@ -130,11 +135,11 @@ const JOdetail = () => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                <br/>
+                    <br />
                     <h4>원하는 가격을 입력해 주세요</h4>
-                    <br/>
+                    <br />
                     <input id='wantPayInput' type='number' onChange={handlePay}></input>원
-                    <br/>
+                    <br />
                 </Modal.Body>
                 <Modal.Footer>
                     <Button onClick={deal}>제의하기</Button>
@@ -148,12 +153,19 @@ const JOdetail = () => {
 
     const offerBtnClick = () => {
         localStorage.getItem('nick') === null
-        ? navigate('/login')
-        : setModalShow(true)
+            ? navigate('/login')
+            : setModalShow(true)
     }
 
+    // const [profilepic, setProfilepic] = useState({userPic})
+    // axios
+    // .post('gigwork/my/myprofile', { mem_id: localStorage.getItem("id") })
+    // .then((res)=>
+    // // {   setProfilepic(res.data)
+    //         {console.log(res.data)})
+    // .catch(e=>console.log("오류", e))
 
-
+    
 
 
     return (
@@ -173,7 +185,10 @@ const JOdetail = () => {
                                 </div>
                             </div>
                             <div className='trustpart'>
-                                {/* <span>신뢰도</span> */}
+                                <div>
+
+                                    {urgentmark === 1 ? <span>''</span> : <div className='urgentmark'>급구</div>}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -205,35 +220,36 @@ const JOdetail = () => {
                     <hr />
 
                     <div className='tradepart'>
+
+                        
                         <div className='tradebtn'>
 
                             <label htmlFor='bookmark' >
+                                
                                 <img width='30px' src={bookMarkIcon} />
                                 <input type='checkbox' id='bookmark' onClick={clickBookmark} style={{ display: "none" }} />
                             </label>
-                        </div>
-
-                        <div>
-
-                            {urgentmark === 1 ? <span>''</span> : <div className='urgentmark'>급구</div>}
-                        </div>
-                        <div className='offerbtnpart'>
-                            <button id='offerbtn' onClick={offerBtnClick}>제의하기</button>
-                            <MyVerticallyCenteredModal
-                                partner_nick={postdetail.name}
-                                post_num= {params.get('post_num')}
-                                post_title= {postdetail.title}
-                                show={modalShow}
-                                onHide={() => setModalShow(false)}
-                            />
                         </div>
                         <div className='price'>
                             <span> {postdetail.post_pay} 원</span>
                         </div>
 
+                        <div className='offerbtnpart'>
+                            <button id='offerbtn' onClick={offerBtnClick}>제의하기</button>
+                            <MyVerticallyCenteredModal
+                                partner_nick={postdetail.name}
+                                post_num={params.get('post_num')}
+                                post_title={postdetail.title}
+                                show={modalShow}
+                                onHide={() => setModalShow(false)}
+                            />
+                        </div>
+
+
+
 
                         <div className='chat'>
-                            <button onClick={goToChat} id='chatbtn'>채팅으로 거래하기</button>
+                            <button onClick={goToChat} id='chatbtn'>채팅으로 거래하기</button><br />
                         </div>
 
 
