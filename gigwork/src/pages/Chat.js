@@ -33,12 +33,14 @@ const Chat = ({ socket, connect }) => {
       .post('gigwork/chat/getPostInfo', { post_num: crtChtR.post_num })
       .then(res => setPostInfo(res.data))
       .catch(e => console.log(e));
+    
   }, [crtChtR])
   // 채팅방 정보를 바꿔줄 onClick 이벤트리스너
   const changeChtR = (e) => {
     const pn = e.currentTarget.getAttribute("post_num")
+    console.log(e.currentTarget.getAttribute("cr_seq"))
     axios
-      .post('gigwork/chat/roomInfo', { nick: localStorage.getItem("nick") })
+      .post('gigwork/chat/roomInfo', { nick: localStorage.getItem("nick"), cr_seq: e.currentTarget.getAttribute("cr_seq") })
       .then(res => {
         setChatroomList(res.data)
         setCrtChtR({
@@ -53,18 +55,22 @@ const Chat = ({ socket, connect }) => {
       .post('gigwork/chat/getPostInfo', { post_num: e.currentTarget.getAttribute("post_num") })
       .then(res => setPostInfo(res.data))
       .catch(e => console.log(e));
+    axios
+      .post('gigwork/chat/content', { roomnum: e.currentTarget.getAttribute("cr_seq") })
+      .then(res => setChatContentList(res.data))
+      .catch(e => console.log(e));
   }
 
   // 채팅 내용을 저장할 변수
   const [chatContentList, setChatContentList] = useState([]);
   // 채팅 방 정보가 업데이트되면 채팅 내용을 가져온다.
-  useEffect(() => {
-    chatroomList.length !== 0 &&
-      axios
-        .post('gigwork/chat/content', { roomnum: crtChtR.roomnum })
-        .then(res => setChatContentList(res.data))
-        .catch(e => console.log(e));
-  }, [chatroomList, crtChtR])
+  // useEffect(() => {
+  //   chatroomList.length !== 0 &&
+  //     axios
+  //       .post('gigwork/chat/content', { roomnum: crtChtR.roomnum })
+  //       .then(res => setChatContentList(res.data))
+  //       .catch(e => console.log(e));
+  // }, [ ])
 
 
   // 채팅 메세지를 저장할 변수
@@ -140,6 +146,9 @@ const Chat = ({ socket, connect }) => {
     }
   }
 
+  console.log(crtChtR)
+  console.log(chatroomList)
+
   return (
     <div className='top_div' id='chatHead'>
       <div>
@@ -147,9 +156,10 @@ const Chat = ({ socket, connect }) => {
           {chatroomList.map((item) => (<div onClick={changeChtR}
             className='chatroomTab'
             key={item.cr_seq}
+            cr_seq={item.cr_seq}
             post_num={item.post_num}>
             <span>{item.partner_nick === localStorage.getItem("nick") ? item.mem_nick : item.partner_nick}</span>
-            <span>{item.cr_date}</span>
+            <span>{item.cr_date}-{item.cr_seq}</span>
           </div>))}
         </div>
         <div className='rightBox'>
