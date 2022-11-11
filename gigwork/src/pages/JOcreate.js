@@ -3,11 +3,11 @@ import PostCode from '../components/PostCode'
 import DaumPostcode from 'react-daum-postcode';
 import '../css/JOcreate.css'
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const JOcreate = () => {
-
+  const navigate = useNavigate();
   
   const [pic, setPic] = useState('')
   const handleFile = () => {
@@ -135,6 +135,8 @@ const JOcreate = () => {
       .post('/gigwork/post/create', postInfo)
       .then(res => console.log(res))
       .catch(e => console.log(e));
+
+      navigate('/JOlist')
   }
 
 
@@ -254,7 +256,7 @@ const JOcreate = () => {
                 {/* <span>{files && <img src={files} alt="preview-img" width='70px' height='70px' />}</span> */}
               </div>
               <div className='postbtn'>
-                <Link to="/JOlist"><button type='submit' id='submitbtn' onClick={createPost}>게시</button></Link>
+                <button type='submit' id='submitbtn' onClick={createPost}>게시</button>
                 <Link to="/"><button id='submitbtn'>취소</button></Link>
               </div>
 
