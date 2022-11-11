@@ -23,6 +23,7 @@ import EVLmanner from './pages/EVLmanner';
 import MyBookmark from './pages/MyBookmark';
 import MyPost from './pages/MyPost';
 
+import { useBeforeunload } from "react-beforeunload";
 
 function App() {
   
@@ -73,6 +74,9 @@ function App() {
   //     ? setHeader(<Header socket={socket}/>)
   //     : setHeader(<Header_s />)
   // }, [url])
+
+
+  useBeforeunload((event) => event.preventDefault());
 
   return (
     <div>
