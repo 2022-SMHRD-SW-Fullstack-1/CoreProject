@@ -200,28 +200,29 @@ const JOcreate = () => {
               </span>
             </div>
             <div className='salary'>
-              <div>
-                <span>수당{"\u00A0"}{"\u00A0"}</span>
-                <input type="text" id='salarybox' placeholder='수당을 입력해주세요' value={pay} onChange={jobpay}></input>
+              <div className='inputSalary'>
+                <span>수당</span><br/>
               </div>
-
-              <div>
+              <div className='offerInput'>
+                <input type="text" id='salarybox' placeholder='수당을 입력해주세요' value={pay} onChange={jobpay}/>
                 <input type='checkbox' id='offerYesNo' onChange={offerYN} value={offer} />
                 <span>제의받기</span>
 
               </div>
-              <br />
+
+            
             </div>
 
             <div className='datebox'>
               <div className='urgentbox'>
                 <div className='datepart'>
+                  <span>근무기간</span>
                   <input type='datetime-local' border="none" onChange={startDate} value={startdate} disabled={disable} id='startdate' /> {"\u00A0"}부터
 
                   <input type='datetime-local' onChange={endDate} value={enddate} id='enddate' /> {"\u00A0"}까지
                 </div>
                 <div className='timebox'>
-                  <input type='checkbox' onChange={urgentYN} value={urgent} /><span>급구</span>
+                  <input type='checkbox' onChange={urgentYN} value={urgent} id='timeCheck'/><span>급구</span>
                 </div>
               </div>
               <div className='postcode'>

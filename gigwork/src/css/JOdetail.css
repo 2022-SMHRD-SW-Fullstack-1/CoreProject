@@ -46,7 +46,8 @@
     min-height: 300px;
     max-height: 500px;
     display: flex;
- 
+    margin-right: 19px;
+    
 }
 
 #content{
@@ -103,9 +104,11 @@
 
 #write{
     margin-left: 10px;
+    
 }
 .content{
     margin-left: 10px;
+    
     
 }
 .tradepart{
@@ -165,6 +168,7 @@ hr{
     padding-top: 0.23rem;
     box-sizing: border-box;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    
 
     
 }
@@ -194,4 +198,23 @@ hr{
     --bs-btn-hover-color:black;
     --bs-btn-hover-bg : #ffef7963;
     --bs-btn-hover-border-color:white;
+}
+
+#offerbtn{
+    margin-right: 0.5rem;
+    background-color: var(--mainYellow ); 
+    border: none;
+    width:6rem;
+    height: 30px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+#offerbtn:hover{
+    color:white;
+    background-color: var(--mainNavy);
+}
+.urgentmark{
+    margin-right: 19px;
 }
