@@ -137,7 +137,7 @@
   }
   /* 활동내역 들어갈 공간 */
   .activeFirstDiv{
-    width: 24.85em;
+    width: 24.5em;
     height: 5.5em;
     margin: 10px 0px;
     border: 0.3em solid var(--mainYellow);
