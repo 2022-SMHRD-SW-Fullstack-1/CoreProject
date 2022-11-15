@@ -115,7 +115,6 @@ const Chat = ({ socket, connect }) => {
   //소켓에서 오는 메세지를 받는 함수
   socket.onmessage = function (event) {
     let message = JSON.parse(event.data);
-    console.log(message);
     message.talker !== undefined &&
     setChatContentList(chatContentList.concat({ cc_seq: 0, talker: message.talker, msg: message.msg, msg_time: message.msg_time, cr_seq: message.cr_seq }))
   };
@@ -145,9 +144,6 @@ const Chat = ({ socket, connect }) => {
       navigate('/EVLmanner?nick=' + (localStorage.getItem("nick")===crtChtR.mem_nick?crtChtR.mem_nick:crtChtR.partner_nick))
     }
   }
-
-  console.log(crtChtR)
-  console.log(chatroomList)
 
   return (
     <div className='top_div' id='chatHead'>

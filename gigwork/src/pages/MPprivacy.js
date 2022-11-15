@@ -1,6 +1,5 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import man from '../asset/imgSJ/검정색사람.png'
 import MPmenu from '../components/MPmenu'
 
 const MPprivacy = () => {

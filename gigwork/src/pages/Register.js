@@ -18,7 +18,6 @@ const Register = () => {
   const emailSecond=(e)=>{
     setEmailPartTwo(e.target.value)
     setEmail(emailPartOne+"@"+e.target.value)
-    console.log(email)
   }
 
   // 이메일 정보 얻기
@@ -27,7 +26,6 @@ const Register = () => {
   const [password,setPassword] =useState('')
   const handlePassword=(e)=>{
     setPassword(e.target.value)
-    console.log(password)
   }
   // 패스워드 정보 얻기
 
@@ -35,7 +33,6 @@ const Register = () => {
   const [phoneNum,setPhoneNum] = useState('')
   const handlePhoneNum=(e)=>{
     setPhoneNum(e.target.value)
-    console.log(phoneNum)
   }
   // 전화번호 정보 얻기
 
@@ -43,21 +40,18 @@ const Register = () => {
   const [name,setName]=useState('')
   const handleName=(e)=>{
     setName(e.target.value)
-    console.log(name)
   }
   // 이름 정보 얻기
   // 닉네임 정보 얻기
   const [nick,setNick]=useState('')
   const handleNick=(e)=>{
     setNick(e.target.value)
-    console.log(nick)
   }
   // 닉네임 정보 얻기
   // 생년월일 정보 얻기
   const [birth,setBirth]=useState(0)
   const handleBirth=(e)=>{
     setBirth((e.target.value.substr(0,4)-2023)*-1)
-    console.log(birth)
   }
   
   // 생년월일 정보 얻기
@@ -65,7 +59,6 @@ const Register = () => {
   const [gender,setGender]=useState('')
   const handleGender=(e)=>{
     setGender(e.target.value)
-    console.log(gender)
   }
   // 성별 정보 얻기
 
@@ -80,7 +73,6 @@ const Register = () => {
     let m = now.getMonth()+1+""
     let d = now.getDate()+""
     setRegiDate(y+"-"+m.padStart(2,"0")+"-"+d.padStart(2,"0"))
-    console.log(regiDate)
   },[emailFirst])
   // 기본 정보
   // 위도경도얻기
@@ -111,7 +103,6 @@ getLocation();
   const [allInfo,setAllInfo]=useState({})
   useEffect(()=>{
     setAllInfo({id:email,pw:password,name:nick,age:birth,gender:gender,phone:phoneNum,trust:trust,join_date:regiDate,lat:lat,lng:lng,mem_type:memType})
-    console.log(allInfo);
   },[email,password,nick,birth,gender,phoneNum,trust,regiDate,lat,lng,memType])
   // 모든 정보 모으기
 

@@ -1,17 +1,8 @@
 import '../css/SJ.css'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Card from 'react-bootstrap/Card';
-import pfimg from '../asset/imgSJ/검정색사람.png';
 import { Link, useNavigate } from 'react-router-dom';
-
-import PFmyview from './PFmyview';
-import PFotherview from './PFotherview';
 
 
 const PFlist = () => {

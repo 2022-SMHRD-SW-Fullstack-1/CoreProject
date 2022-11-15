@@ -1,6 +1,5 @@
 import React, { useEffect, useState, ChangeEvent, useRef, Component } from 'react'
 import PostCode from '../components/PostCode'
-import DaumPostcode from 'react-daum-postcode';
 import '../css/JOcreate.css'
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
@@ -10,13 +9,10 @@ const JOcreate = () => {
   const navigate = useNavigate();
   
   const [pic, setPic] = useState('')
-  const handleFile = () => {
 
-  }
   const date = new Date
   const time = new Date(+date + 3240 * 10000).toISOString().substring(0, 16);
 
-  console.log(time)
 
   let testId = localStorage.getItem('id')
 
@@ -44,7 +40,6 @@ const JOcreate = () => {
   const [pay, setPay] = useState('')
   const jobpay = (e) => {
     setPay(e.target.value)
-    console.log(e.target.value)
   }
   const [urgent, setUrgent] = useState('urgentN.png')
 
@@ -52,12 +47,10 @@ const JOcreate = () => {
   const urgentYN = () => {
     if (urgent == 'urgentN.png') {
       setUrgent('urgentY.png')
-      console.log(urgent)
       setStartdate(new Date(+date + 3240 * 10000).toISOString().substring(0, 16))
       setDisable(true)
     } else {
       setUrgent('urgentN.png')
-      console.log(urgent)
       setDisable(false)
     }
   }
@@ -91,12 +84,10 @@ const JOcreate = () => {
   const [startdate, setStartdate] = useState('')
   const startDate = (e) => {
     setStartdate(e.target.value)
-    console.log(e.target.value)
   }
   const [enddate, setEnddate] = useState('')
   const endDate = (e) => {
     setEnddate(e.target.value)
-    console.log(e.target.value)
   }
 
   const [locX, setLocX] = useState(126.91981851928963)
@@ -130,7 +121,6 @@ const JOcreate = () => {
 
 
   const createPost = () => {
-    console.log(postInfo)
     axios
       .post('/gigwork/post/create', postInfo)
       .then(res => console.log(res))
@@ -149,10 +139,8 @@ const JOcreate = () => {
 
    let handleCategory = (e) => {
     setCategory(e.target.value)
-    console.log(e.target.value)
     if (e.target.value == '청소/집안일') {
       setImgSrcInfo('mainClean.png')
-      console.log(category(e.target.value))
     } else if (e.target.value == '동행/돌봄') {
       setImgSrcInfo('together.png')
     } else if (e.target.value == '벌레/쥐잡기') {
@@ -181,7 +169,6 @@ const JOcreate = () => {
       postOffer: offer, workStart: startdate, workEnd: enddate, lat: locY,
       lng: locX, urgent: urgent, title: title, content: content, imgSrc: imgSrcInfo, regDate: time
     })
-    console.log(postInfo)
   }, [category, pay, offer, startdate, enddate, locX, locY, urgent, title, content, imgSrcInfo])
 
 

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import '../css/MyBookmark.css'
 import MPmenu from '../components/MPmenu'
-import { useNavigate } from 'react-router-dom'
 
 
 const MyPost = () => {

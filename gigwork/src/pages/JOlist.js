@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import '../css/JOlist.css'
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import '../css/JOlist.css';
 import axios from 'axios';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import sidepic from '../asset/imgJY/play.png'
 import { useNavigate } from 'react-router-dom';
 
 
@@ -16,8 +12,6 @@ const JOlist = () => {
     //post_num 받고 proDetail에 저장하기
     var str = decodeURI(window.location.search);
     const params = new URLSearchParams(str);
-    const proDetail = { post_num: params.get('post_num') }
-
 
 
 
@@ -63,11 +57,11 @@ const JOlist = () => {
     }
 
     const [startDate, setStartDate] = useState('');
-    const handleStartDate = (e) => { setStartDate(e.target.value); console.log(e.target.value) }
+    const handleStartDate = (e) => { setStartDate(e.target.value) }
     const [endDate, setEndDate] = useState('');
-    const handleEndDate = (e) => { setEndDate(e.target.value); console.log(e.target.value) }
+    const handleEndDate = (e) => { setEndDate(e.target.value) }
     const [jobCategory, setJobCategory] = useState('')
-    const handleJobCategory = (e) => { setJobCategory(e.target.value); console.log(e.target.value) }
+    const handleJobCategory = (e) => { setJobCategory(e.target.value) }
     const [offer, setOffer] = useState('N')
     const handleOffer = (e) => {
         if (offer == 'offerN.png' ||offer == 'N') {
@@ -77,7 +71,7 @@ const JOlist = () => {
           }           
         }
     const [pay, setPay] = useState(0)
-    const handlePay = (e) => { setPay(e.target.value); console.log(e.target.value) }
+    const handlePay = (e) => { setPay(e.target.value) }
 
 
     //필터 정보를 저장할 변수

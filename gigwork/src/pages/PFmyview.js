@@ -14,9 +14,6 @@ import down50 from '../asset/imgSJ/face50down.png';
 
 
 const PFmyview = () => {
-
-    const [pfImgSrc,setPfImgSrc] = ('N.png')
-
    
     const idInfo = {id : localStorage.getItem('id')}
     const [viewInfo,setViewInfo] = useState({data:{name:'',cate_one:'',cate_two:'',

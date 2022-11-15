@@ -5,19 +5,6 @@ import arrow from '../asset/imgSJ/화살표.png'
 
 const MPmenu = () => {
 
-    // 반응형 할때 사용
-    // const menuSize=()=>{
-    //     if(window.innerWidth<"1000"){
-    //         document.querySelector(".menu").classList.add('menuNone')
-    //         document.querySelector("img").classList.remove('menuNone')
-    //     }else {
-    //         document.querySelector(".menu").classList.remove('menuNone')
-    //         document.querySelector("img").classList.add('menuNone')
-    //     }
-    // } 
-    // window.addEventListener("resize", menuSize);
-    // menuSize()
-
     return (
         <div>
             

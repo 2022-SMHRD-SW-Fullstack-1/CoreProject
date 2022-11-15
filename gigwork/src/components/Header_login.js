@@ -103,7 +103,6 @@ const Header_login = ({ socket }) => {
 //알림 메세지 실시간으로 띄우기
 socket.onmessage = function (event) {
   let message = JSON.parse(event.data);
-  console.log(message);
   if (message.talker !== undefined) {
   let newAlert = {
     alert_cnt: message.msg, alert_seq: 0,

@@ -145,7 +145,6 @@ let [closeInfo,setCloseInfo]=useState('')
 
 const writeSay = (e)=>{
     setSayInfo(e.target.value)
-    console.log(sayInfo)
 }
 const openDate=(e)=>{
         setOpenInfo(e.target.value)
@@ -186,14 +185,8 @@ function getLocation(){
             axios.get(`https://dapi.kakao.com/v2/local/geo/coord2address.json?x=${lng}&y=${lat}&input_coord=WGS84`
             ,{headers:{Authorization:`KakaoAK 60d5d81294704ed44ae5c3954751b412`}}
                  )
-             .then(res=>{
-                console.log(res.data.documents)
-                console.log(res.data.documents[0].address.region_1depth_name)
-                console.log(res.data.documents[0].address.region_2depth_name)
-                console.log(whatSido)
-                console.log(whatGungu)
-                }
-            ).catch(e=>console.log(e))
+            .then(res=>console.log(res.data.documents))
+            .catch(e=>console.log(e))
         },function(error){
             console.error(error);
         },{

@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import MPmenu from '../components/MPmenu';
-import man from '../asset/imgSJ/검정색사람.png'
-import { Link } from 'react-router-dom'
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import tri from '../asset/imgSJ/노란삼각형.png';
 import axios from 'axios';
@@ -97,10 +94,6 @@ const PFotherview = () => {
         if (localStorage.getItem('nick') === null) {
             navigate('/login')
         } else {
-            // axios
-            //     .post('gigwork/chat/createCR', { mem_nick: localStorage.getItem('nick'), partner_nick: postdetail.name, post_num: params.get('post_num') })
-            //     .then(res => console.log(res))
-            //     .catch(e => console.log(e));
             navigate('/chat')
         }
     }

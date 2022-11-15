@@ -76,22 +76,9 @@ const JOdetail = () => {
             .post('gigwork/my/searchBookmark', { mem_id: localStorage.getItem("id"), post_num: proDetail.post_num })
             .then(res => {
                 setBookmarkcount(res.data)
-                console.log('넘어온 값?', res.data)
             })
             .catch(e => console.log('오류?', e))
     }, [])
-
-
-
-
-
-
-
-
-
-    //콘솔 출력을 위한 값
-    console.log("값", proDetail)
-    console.log(localStorage.id)
 
 
 
@@ -110,7 +97,6 @@ const JOdetail = () => {
         // 제의하기 버튼 누르면 모달창 끄고 원하는 가격 콘솔에 띄우기
         const deal = () => {
             let now = new Date();
-            console.log("원하는 가격 : ", wantPay)
             // 채팅 방 생성
             axios
                 .post('gigwork/chat/makeOffer', { mem_nick: localStorage.getItem('nick'), partner_nick: props.partner_nick, post_num: props.post_num, post_title: props.post_title, wantPay: wantPay })
@@ -156,14 +142,6 @@ const JOdetail = () => {
             ? navigate('/login')
             : setModalShow(true)
     }
-
-    // const [profilepic, setProfilepic] = useState({userPic})
-    // axios
-    // .post('gigwork/my/myprofile', { mem_id: localStorage.getItem("id") })
-    // .then((res)=>
-    // // {   setProfilepic(res.data)
-    //         {console.log(res.data)})
-    // .catch(e=>console.log("오류", e))
 
     
 
