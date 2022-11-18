@@ -39,7 +39,7 @@
 ![핵심프로젝트_최종발표 31](https://user-images.githubusercontent.com/112389243/202657141-a40ecdaa-e12c-45f8-a294-6ea6049eb13e.png)
 
 # 9. 시연 영상
-
+[프로젝트 보러가기](https://youtu.be/47O-feLmaHk)
 
 
 
