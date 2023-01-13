@@ -13,11 +13,6 @@ const EVLmanner = () => {
     const params = new URLSearchParams(str)
     const oppNick = {name : params.get('nick')}
 
-// 임시 값
-    // let myId = 'tjdwns65';
-    // let oppId = 'chotjdwns123@naver.com'
-// 임시 값
-// 상대 아이디를 쿼리스트링으로 넘겨주는김에 닉네임도 같이 넘겨주면 좋을듯
 
 const [oppId,setOppId]=useState('')
 

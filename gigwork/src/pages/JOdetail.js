@@ -65,7 +65,6 @@ const JOdetail = () => {
 
 
     useEffect(() => {
-
         axios
             .post('gigwork/my/mypost', proDetail)
             .then(res => setPostdetail(res.data))

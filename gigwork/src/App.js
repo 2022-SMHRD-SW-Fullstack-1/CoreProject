@@ -53,29 +53,6 @@ function App() {
     && setHeader(<Header_login socket={socket}/>)
   }, [url])
 
-  //창 크기에 따른 헤더 변환
-  // const handleResize = () => {
-  //   window.innerWidth > 900
-  //     ? setHeader(<Header socket={socket}/>)
-  //     : setHeader(<Header_s />)
-  // }
-
-  //창 크기가 변화하는지 지속적으로 체크함
-  // useEffect(() => {
-  //   window.addEventListener('resize', handleResize);
-  //   return () => {
-  //     window.removeEventListener('resize', handleResize);
-  //   }
-  // }, []);
-
-  //url이 변경되면 헤더 크기를 창크기에 맞게 설정해줌
-  // useEffect(() => {
-  //   window.innerWidth > 900
-  //     ? setHeader(<Header socket={socket}/>)
-  //     : setHeader(<Header_s />)
-  // }, [url])
-
-
   useBeforeunload((event) => event.preventDefault());
 
   return (

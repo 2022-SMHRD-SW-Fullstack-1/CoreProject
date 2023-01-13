@@ -14,7 +14,7 @@ const JOlist = () => {
     const params = new URLSearchParams(str);
 
 
-
+    
     const navigate = useNavigate()
     const goToDetail=(e)=>{
         const post_num = e.target.getAttribute("name")
@@ -81,7 +81,10 @@ const JOlist = () => {
     
     const Ckfilterbtn = () => {
         // setPrintdata(receiveList.filter(v =>(v.post_cate==jobCategory)&&(urgent=="N"||v.urgent==urgent)&&(new Date(v.worktime_s)<=startDate)&&(new Date(v.worktime_e)>=endDate)&&(offer=='N'||offer==v.post_offer_yn)&&(v.post_pay>=pay)))
-        setPrintdata(receiveList.filter(v =>(v.post_cate==jobCategory||jobCategory==''||jobCategory=='default')&&(v.post_pay>=pay)&&(v.worktime_s>=startDate||startDate=='')&&(v.worktime_e<=endDate||endDate=='')&&(urgent=="N"||v.urgent==urgent)&&(offer=='N'||offer==v.post_offer_yn)))
+        setPrintdata(receiveList.filter(v =>(v.post_cate==jobCategory||jobCategory==''||jobCategory=='default')
+        &&(v.post_pay>=pay)&&(v.worktime_s>=startDate||startDate=='')
+        &&(v.worktime_e<=endDate||endDate=='')&&(urgent=="N"||v.urgent==urgent)
+        &&(offer=='N'||offer==v.post_offer_yn)))
         setJobCategory('')
         setPay(0)
         setStartDate('')
